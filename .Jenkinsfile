@@ -16,11 +16,6 @@ pipeline {
   }
   stages {
 
-    stage('克隆前端仓库代码') {
-      steps {
-        git(url: 'https://bmec.ustc.edu.cn/git/Mars456/ohif-v3.git', credentialsId: 'bmec-gitlab-2', branch: 'master', changelog: true, poll: false)
-      }
-    }
     stage('安装前端代码依赖和打包') {
       steps {
         sh 'yarn config set registry https://registry.npm.taobao.org'
