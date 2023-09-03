@@ -29,14 +29,16 @@ pipeline {
 
     stage('构建前端镜像并推送') {
       steps {
-        sh 'cd ./platform/app'
+        dir('platform/app') {
         echo 'save dist artifacts'
+        sh 'ls'
         sh 'tar -zcvf dist.tar.gz dist/'
         archiveArtifacts(artifacts: 'dist.tar.gz', fingerprint: true)
         echo 'build docker image'
         sh 'docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY'
         sh 'docker build -t $CI_REGISTRY/$CI_REGISTRY_PROJECT/$CI_OHIF_IMAGE:$CI_OHIF_TAG .'
         sh 'docker push $CI_REGISTRY/$CI_REGISTRY_PROJECT/$CI_OHIF_IMAGE:$CI_OHIF_TAG'
+        }
         }
       }
   }
