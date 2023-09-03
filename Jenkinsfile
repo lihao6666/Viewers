@@ -11,6 +11,8 @@ pipeline {
 
     CI_OHIF_IMAGE='ohif-v3'
     CI_OHIF_TAG='3.7.0'
+    HTTP_PROXY='http://10.0.1.38:7890'
+    HTTPS_PROXY='http://10.0.1.38:7890'
 
 
   }
