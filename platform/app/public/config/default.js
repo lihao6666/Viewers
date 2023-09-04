@@ -1,5 +1,5 @@
 window.config = {
-  routerBasename: '/',
+  routerBasename: '/ohif/',
   // whiteLabeling: {},
   extensions: [],
   modes: [],
@@ -131,17 +131,17 @@ window.config = {
     {
       commandName: 'rotateViewportCW',
       label: 'Rotate Right',
-      keys: ['r']
+      keys: ['r'],
     },
     {
       commandName: 'rotateViewportCCW',
       label: 'Rotate Left',
-      keys: ['l']
+      keys: ['l'],
     },
     {
       commandName: 'invertViewport',
       label: 'Invert',
-      keys: ['i']
+      keys: ['i'],
     },
     {
       commandName: 'flipViewportHorizontal',
@@ -156,32 +156,32 @@ window.config = {
     {
       commandName: 'scaleUpViewport',
       label: 'Zoom In',
-      keys: ['+']
+      keys: ['+'],
     },
     {
       commandName: 'scaleDownViewport',
       label: 'Zoom Out',
-      keys: ['-']
+      keys: ['-'],
     },
     {
       commandName: 'fitViewportToWindow',
       label: 'Zoom to Fit',
-      keys: ['=']
+      keys: ['='],
     },
     {
       commandName: 'resetViewport',
       label: 'Reset',
-      keys: ['space']
+      keys: ['space'],
     },
     {
       commandName: 'nextImage',
       label: 'Next Image',
-      keys: ['down']
+      keys: ['down'],
     },
     {
       commandName: 'previousImage',
       label: 'Previous Image',
-      keys: ['up']
+      keys: ['up'],
     },
     // {
     //   commandName: 'previousViewportDisplaySet',
@@ -196,7 +196,7 @@ window.config = {
     {
       commandName: 'setToolActive',
       commandOptions: {
-        toolName: 'Zoom'
+        toolName: 'Zoom',
       },
       label: 'Zoom',
       keys: ['z'],
