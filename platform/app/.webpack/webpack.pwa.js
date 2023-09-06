@@ -1,14 +1,20 @@
 // https://developers.google.com/web/tools/workbox/guides/codelabs/webpack
 // ~~ WebPack
 const path = require('path');
-const { merge } = require('webpack-merge');
+const {
+  merge
+} = require('webpack-merge');
 const webpack = require('webpack');
 const webpackBase = require('./../../../.webpack/webpack.base.js');
 // ~~ Plugins
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const {
+  CleanWebpackPlugin
+} = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { InjectManifest } = require('workbox-webpack-plugin');
+const {
+  InjectManifest
+} = require('workbox-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // ~~ Directories
 const SRC_DIR = path.join(__dirname, '../src');
@@ -42,7 +48,10 @@ const setHeaders = (res, path) => {
 };
 
 module.exports = (env, argv) => {
-  const baseConfig = webpackBase(env, argv, { SRC_DIR, DIST_DIR });
+  const baseConfig = webpackBase(env, argv, {
+    SRC_DIR,
+    DIST_DIR
+  });
   const isProdBuild = process.env.NODE_ENV === 'production';
   const hasProxy = PROXY_TARGET && PROXY_DOMAIN;
 
@@ -54,7 +63,7 @@ module.exports = (env, argv) => {
       path: DIST_DIR,
       filename: isProdBuild ? '[name].bundle.[chunkhash].js' : '[name].js',
       publicPath: PUBLIC_URL, // Used by HtmlWebPackPlugin for asset prefix
-      devtoolModuleFilenameTemplate: function(info) {
+      devtoolModuleFilenameTemplate: function (info) {
         if (isProdBuild) {
           return `webpack:///${info.resourcePath}`;
         } else {
@@ -102,8 +111,7 @@ module.exports = (env, argv) => {
           },
           // Copy Dicom Microscopy Viewer build files
           {
-            from:
-              '../../../node_modules/dicom-microscopy-viewer/dist/dynamic-import',
+            from: '../../../node_modules/dicom-microscopy-viewer/dist/dynamic-import',
             to: DIST_DIR,
             globOptions: {
               ignore: ['**/*.min.js.map'],
@@ -111,8 +119,7 @@ module.exports = (env, argv) => {
           },
           // Copy dicom-image-loader build files
           {
-            from:
-              '../../../node_modules/@cornerstonejs/dicom-image-loader/dist/dynamic-import',
+            from: '../../../node_modules/@cornerstonejs/dicom-image-loader/dist/dynamic-import',
             to: DIST_DIR,
           },
         ],
@@ -145,23 +152,24 @@ module.exports = (env, argv) => {
       open: true,
       port: 3000,
       client: {
-        overlay: { errors: true, warnings: false },
+        overlay: {
+          errors: true,
+          warnings: false
+        },
       },
       proxy: {
         '/dicomweb': 'http://localhost:5000',
       },
-      static: [
-        {
-          directory: '../../testdata',
-          staticOptions: {
-            extensions: ['gz', 'br'],
-            index: ['index.json.gz', 'index.mht.gz'],
-            redirect: true,
-            setHeaders,
-          },
-          publicPath: '/viewer-testdata',
+      static: [{
+        directory: '../../testdata',
+        staticOptions: {
+          extensions: ['gz', 'br'],
+          index: ['index.json.gz', 'index.mht.gz'],
+          redirect: true,
+          setHeaders,
         },
-      ],
+        publicPath: '/viewer-testdata',
+      }, ],
       //public: 'http://localhost:' + 3000,
       //writeToDisk: true,
       historyApiFallback: {
@@ -170,6 +178,7 @@ module.exports = (env, argv) => {
       headers: {
         'Cross-Origin-Embedder-Policy': 'require-corp',
         'Cross-Origin-Opener-Policy': 'same-origin',
+        'Cross-Origin-Resource-Policy': 'cross-origin',
       },
     },
   });
