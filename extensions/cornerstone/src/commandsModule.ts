@@ -13,6 +13,7 @@ import {
 import { Types as OhifTypes } from '@ohif/core';
 
 import CornerstoneViewportDownloadForm from './utils/CornerstoneViewportDownloadForm';
+import CornerstoneViewportUpload from './utils/CornerstoneViewportUpload';
 import callInputDialog from './utils/callInputDialog';
 import toggleStackImageSync from './utils/stackSync/toggleStackImageSync';
 import { getFirstAnnotationSelected } from './utils/measurementServiceMappings/utils/selection';
@@ -33,6 +34,7 @@ function commandsModule({
     cornerstoneViewportService,
     uiNotificationService,
     measurementService,
+    uiOutViewLayerService,
   } = servicesManager.services as CornerstoneServices;
 
   const { measurementServiceSource } = this;
@@ -369,12 +371,24 @@ function commandsModule({
     },
     showDownloadViewportModal: () => {
       const { activeViewportIndex } = viewportGridService.getState();
+      const cornerstoneViewport = cornerstoneViewportService.getCornerstoneViewportByIndex(
+        activeViewportIndex
+      );
+      if (!cornerstoneViewport) {
+        return;
+      }
+      uiOutViewLayerService.show({
+        content: CornerstoneViewportUpload,
+        contentProps: {
+          servicesManager,
+          width: 512,
+          height: 512,
+          closeUploadLayer: uiOutViewLayerService.hide(),
+        },
+      });
+      return;
 
-      if (
-        !cornerstoneViewportService.getCornerstoneViewportByIndex(
-          activeViewportIndex
-        )
-      ) {
+      if (!cornerstoneViewport) {
         // Cannot download a non-cornerstone viewport (image).
         uiNotificationService.show({
           title: 'Download Image',

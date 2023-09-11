@@ -31,6 +31,7 @@ import {
   CustomizationService,
   StateSyncService,
   PanelService,
+  UIOutViewLayerService,
 } from './services';
 
 import {
@@ -125,6 +126,7 @@ export {
   PubSubService,
   Types,
   PanelService,
+  UIOutViewLayerService,
 };
 
 export { OHIF };

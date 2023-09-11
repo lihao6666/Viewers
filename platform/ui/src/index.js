@@ -31,6 +31,8 @@ export {
   UserAuthenticationContext,
   UserAuthenticationProvider,
   useUserAuthentication,
+  OutViewLayerProvider,
+  useOutViewLayer,
 } from './contextProviders';
 
 /** COMPONENTS */
@@ -111,6 +113,7 @@ export {
   WindowLevelMenuItem,
   ImageScrollbar,
   ViewportOverlay,
+  OutViewLayer,
 } from './components';
 
 /** These are mostly used in the docs */

@@ -20,6 +20,9 @@ import Services from '../types/Services';
 import StateSyncService from './StateSyncService';
 import PanelService from './PanelService';
 
+// 渲染图片成
+import UIOutViewLayerService from './UIOutViewLayerService';
+
 export {
   Services,
   MeasurementService,
@@ -40,4 +43,5 @@ export {
   PubSubService,
   UserAuthenticationService,
   PanelService,
+  UIOutViewLayerService,
 };

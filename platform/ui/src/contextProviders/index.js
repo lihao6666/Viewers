@@ -43,3 +43,8 @@ export {
   UserAuthenticationProvider,
   useUserAuthentication,
 } from './UserAuthenticationProvider';
+
+export {
+  OutViewLayerProvider,
+  useOutViewLayer,
+} from './OutViewLayerProvider';
