@@ -42,4 +42,13 @@ pipeline {
         }
       }
   }
+
+  post {
+    failure {
+        slackSend (color: 'warning', message: "ohif-v3镜像构建失败，版本号：$CI_OHIF_TAG")
+    }
+    success {
+        slackSend (color: 'good', message: "ohif-v3镜像构建成功，版本号：$CI_OHIF_TAG")
+    }
+  }
 }
