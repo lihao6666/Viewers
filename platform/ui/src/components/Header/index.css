@@ -1,0 +1,14 @@
+.scroll-swiper-line {
+  width: 100%;
+  height: 100%;
+  overflow: visible !important;
+}
+
+.auto-width-slide {
+  width: auto !important;
+  min-width: 100%;
+}
+
+.top-right-setting-item-title {
+  white-space: nowrap;
+}
