@@ -31,7 +31,9 @@ import {
   CustomizationService,
   StateSyncService,
   PanelService,
+  // 
   UIOutViewLayerService,
+  ParseTagsService,
 } from './services';
 
 import {
@@ -84,6 +86,9 @@ const OHIF = {
   pubSubServiceInterface,
   PubSubService,
   PanelService,
+  // 
+  UIOutViewLayerService,
+  ParseTagsService,
 };
 
 export {
@@ -126,7 +131,9 @@ export {
   PubSubService,
   Types,
   PanelService,
+  // 
   UIOutViewLayerService,
+  ParseTagsService,
 };
 
 export { OHIF };

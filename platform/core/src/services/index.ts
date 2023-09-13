@@ -22,6 +22,7 @@ import PanelService from './PanelService';
 
 // 渲染图片成
 import UIOutViewLayerService from './UIOutViewLayerService';
+import ParseTagsService from './ParseTagsService';
 
 export {
   Services,
@@ -43,5 +44,7 @@ export {
   PubSubService,
   UserAuthenticationService,
   PanelService,
+  // 添加
   UIOutViewLayerService,
+  ParseTagsService,
 };
