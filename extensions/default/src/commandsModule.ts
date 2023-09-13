@@ -525,7 +525,7 @@ const commandsModule = ({
       const { displaySetInstanceUIDs } = activeViewportSpecificData;
 
       const displaySets = displaySetService.activeDisplaySets;
-      const { UIModalService } = servicesManager.services;
+      const { UIModalService, ParseTagsService } = servicesManager.services;
 
       const displaySetInstanceUID = displaySetInstanceUIDs[0];
       UIModalService.show({
@@ -534,6 +534,7 @@ const commandsModule = ({
           displaySets,
           displaySetInstanceUID,
           onClose: UIModalService.hide,
+          ParseTagsService,
         },
         title: 'DICOM Tag Browser',
       });

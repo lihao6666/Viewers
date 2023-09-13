@@ -97,6 +97,15 @@ export function UserAuthenticationProvider({ children, service }) {
         getUser,
         reset,
         set,
+        getAuthorizationHeader: () => {
+          const urlParmasStr = window.location.search.slice(1);
+          const searchParams = new URLSearchParams(urlParmasStr);
+          const headerAuth = {
+            Authorization: 'Bearer ' + searchParams.get('token'),
+          };
+          console.log(headerAuth, 'tokenResult');
+          return headerAuth;
+        },
       });
     }
   }, [getState, service, setUser, getUser, reset, set]);
@@ -111,6 +120,15 @@ export function UserAuthenticationProvider({ children, service }) {
       getUser,
       reset,
       set,
+      getAuthorizationHeader: () => {
+        const urlParmasStr = window.location.search.slice(1);
+        const searchParams = new URLSearchParams(urlParmasStr);
+        const headerAuth = {
+          Authorization: 'Bearer ' + searchParams.get('token'),
+        };
+        console.log(headerAuth, 'tokenResult');
+        return headerAuth;
+      },
     });
   }
 

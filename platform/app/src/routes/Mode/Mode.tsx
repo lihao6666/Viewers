@@ -161,31 +161,29 @@ export default function ModeRoute({
   const runTimeHangingProtocolId = lowerCaseSearchParams.get(
     'hangingprotocolid'
   );
-  const token = lowerCaseSearchParams.get('token');
+  // const token = lowerCaseSearchParams.get('token');
 
-  if (token) {
-    // if a token is passed in, set the userAuthenticationService to use it
-    // for the Authorization header for all requests
-    userAuthenticationService.setServiceImplementation({
-      getAuthorizationHeader: () => ({
-        Authorization: 'Bearer ' + token,
-      }),
-    });
+  // if (token) {
+  //   // if a token is passed in, set the userAuthenticationService to use it
+  //   // for the Authorization header for all requests
+  //   userAuthenticationService.setServiceImplementation({
+  //     getAuthorizationHeader: () => ({
+  //       Authorization: 'Bearer ' + token,
+  //     }),
+  //   });
 
-    // Create a URL object with the current location
-    const urlObj = new URL(
-      window.location.origin + location.pathname + location.search
-    );
-
-    // Remove the token from the URL object
-    urlObj.searchParams.delete('token');
-    const cleanUrl = urlObj.toString();
-
-    // Update the browser's history without the token
-    if (window.history && window.history.replaceState) {
-      window.history.replaceState(null, '', cleanUrl);
-    }
-  }
+  //   // Create a URL object with the current location
+  //   const urlObj = new URL(
+  //     window.location.origin + location.pathname + location.search
+  //   );
+  //   // Remove the token from the URL object
+  //   urlObj.searchParams.delete('token');
+  //   const cleanUrl = urlObj.toString();
+  //   // Update the browser's history without the token
+  //   if (window.history && window.history.replaceState) {
+  //     window.history.replaceState(null, '', cleanUrl);
+  //   }
+  // }
 
   // Preserve the old array interface for hotkeys
   const hotkeys = Array.isArray(hotkeyObj) ? hotkeyObj : hotkeyObj?.hotkeys;

@@ -124,6 +124,7 @@ import iconMPR from './../../assets/icons/icon-mpr-alt.svg';
 import checkboxDefault from './../../assets/icons/checkbox-default.svg';
 import checkboxActive from './../../assets/icons/checkbox-active.svg';
 import referenceLines from './../../assets/icons/reference-lines.svg';
+import uploadCloud from './../../assets/icons/upload-cloud.svg';
 
 /** Old OHIF */
 import oldTrash from './../../assets/icons/old-trash.svg';
@@ -257,6 +258,7 @@ const ICONS = {
   'checkbox-default': checkboxDefault,
   'checkbox-active': checkboxActive,
   'tool-referenceLines': referenceLines,
+  'upload-cloud': uploadCloud,
 
   /** Old OHIF */
   'old-trash': oldTrash,
