@@ -26,7 +26,7 @@ import {
 } from '@ohif/ui';
 // Viewer Project
 // TODO: Should this influence study list?
-import { AppConfigProvider } from '@state';
+import { AppConfigProvider, DeviceInfoProvider, getDeviceInfo } from '@state';
 import createRoutes from './routes';
 import appInit from './appInit.js';
 import OpenIdConnectRoutes from './utils/OpenIdConnectRoutes';
@@ -47,7 +47,7 @@ function App({ config, defaultExtensions, defaultModes }) {
 
     run();
   }, []);
-
+  
   if (!init) {
     return null;
   }
@@ -80,8 +80,11 @@ function App({ config, defaultExtensions, defaultModes }) {
     uiOutViewLayerService,
   } = servicesManager.services;
 
+  const initDeviceInfo = getDeviceInfo();
+
   const providers = [
     [AppConfigProvider, { value: appConfigState }],
+    [DeviceInfoProvider, { value: initDeviceInfo }],
     [UserAuthenticationProvider, { service: userAuthenticationService }],
     [I18nextProvider, { i18n }],
     [ThemeWrapper],

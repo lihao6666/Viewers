@@ -87,16 +87,16 @@ function ViewerLayout({
   const commitHash = process.env.COMMIT_HASH;
 
   const menuOptions = [
-    {
-      title: t('Header:About'),
-      icon: 'info',
-      onClick: () =>
-        show({
-          content: AboutModal,
-          title: 'About OHIF Viewer',
-          contentProps: { versionNumber, commitHash },
-        }),
-    },
+    // {
+    //   title: t('Header:About'),
+    //   icon: 'info',
+    //   onClick: () =>
+    //     show({
+    //       content: AboutModal,
+    //       title: 'About OHIF Viewer',
+    //       contentProps: { versionNumber, commitHash },
+    //     }),
+    // },
     {
       title: t('Header:Preferences'),
       icon: 'settings',

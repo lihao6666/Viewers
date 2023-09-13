@@ -7,7 +7,8 @@ window.config = {
     // Shows a custom route -access via http://localhost:3000/custom
     // helloPage: '@ohif/extension-default.customizationModule.helloPage',
   },
-  showStudyList: true,
+  // 是否能返回列表
+  showStudyList: false,
   // some windows systems have issues with more than 3 web workers
   maxNumberOfWebWorkers: 3,
   // below flag is for performance reasons, but it might not work for all servers
@@ -99,25 +100,30 @@ window.config = {
     // Could use services manager here to bring up a dialog/modal if needed.
     console.warn('test, navigate to https://ohif.org/');
   },
-  // whiteLabeling: {
-  //   /* Optional: Should return a React component to be rendered in the "Logo" section of the application's Top Navigation bar */
-  //   createLogoComponentFn: function (React) {
-  //     return React.createElement(
-  //       'a',
-  //       {
-  //         target: '_self',
-  //         rel: 'noopener noreferrer',
-  //         className: 'text-purple-600 line-through',
-  //         href: '/',
-  //       },
-  //       React.createElement('img',
-  //         {
-  //           src: './assets/customLogo.svg',
-  //           className: 'w-8 h-8',
-  //         }
-  //       ))
-  //   },
-  // },
+  whiteLabeling: {
+    /* Optional: Should return a React component to be rendered in the "Logo" section of the application's Top Navigation bar */
+    createLogoComponentFn: function(React, { deviceInfo }) {
+      const publicUrl = window.PUBLIC_URL || '/';
+      const { isAndroid, isMobile, winWidth } = deviceInfo || {};
+      const logoPath = `${publicUrl}assets/${
+        isAndroid || isMobile || winWidth < 768 ? 'mobile-' : ''
+      }header-logo.png`;
+      return React.createElement(
+        'a',
+        {
+          target: '_self',
+          rel: 'noopener noreferrer',
+          className: 'block overflow-hidden text-purple-600',
+          // href: 'javascript: void(0);',
+          onClick: event => event.preventDefault(),
+        },
+        React.createElement('img', {
+          src: logoPath,
+          className: 'h-10 opacity-75',
+        })
+      );
+    },
+  },
   hotkeys: [{
       commandName: 'incrementActiveViewport',
       label: 'Next Viewport',

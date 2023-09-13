@@ -298,7 +298,8 @@ const toolbarButtons = [
     id: 'Capture',
     type: 'ohif.action',
     props: {
-      icon: 'tool-capture',
+      // icon: 'tool-capture',
+      icon: 'upload-cloud',
       label: 'Capture',
       type: 'action',
       commands: [
