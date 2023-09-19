@@ -76,9 +76,7 @@ async function appInit(appConfigOrFunc, defaultExtensions, defaultModes) {
       return appConfig.httpErrorHandler;
     }
   };
-  console.log(defaultExtensions, 'defaultExtensions');
-  console.log(appConfig.extensions, 'appConfig.extensions');
-  console.log(appConfig.dataSources, 'appConfig.dataSources');
+
   /**
    * Example: [ext1, ext2, ext3]
    * Example2: [[ext1, config], ext2, [ext3, config]]
@@ -87,12 +85,11 @@ async function appInit(appConfigOrFunc, defaultExtensions, defaultModes) {
     ...defaultExtensions,
     ...appConfig.extensions,
   ]);
-  console.log(loadedExtensions, 'loadedExtensions');
   await extensionManager.registerExtensions(
     loadedExtensions,
     appConfig.dataSources
   );
-  // console.log(extensionManager, 'extensionManager1')
+
   // TODO: We no longer use `utils.addServer`
   // TODO: We no longer init webWorkers at app level
   // TODO: We no longer init the user Manager
@@ -100,11 +97,12 @@ async function appInit(appConfigOrFunc, defaultExtensions, defaultModes) {
   if (!appConfig.modes) {
     throw new Error('No modes are defined! Check your app-config.js');
   }
+
   const loadedModes = await loadModules([
     ...(appConfig.modes || []),
     ...defaultModes,
   ]);
-  console.log(JSON.stringify(loadedModes), 'loadedModes');
+
   // This is the name for the loaded istance object
   appConfig.loadedModes = [];
   const modesById = new Set();

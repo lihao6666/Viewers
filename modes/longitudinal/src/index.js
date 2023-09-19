@@ -130,6 +130,7 @@ function modeFactory({ modeConfiguration }) {
         'MPR',
         'Crosshairs',
         'MoreTools',
+        'Settings',
       ]);
 
       // // ActivatePanel event trigger for when a segmentation or measurement is added.

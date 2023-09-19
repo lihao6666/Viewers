@@ -130,6 +130,7 @@ const LeftBottomTags = [
     label: 'THK',
     showLabel: true,
     sort: 3,
+    unit: 'mm',
   },
   {
     tag: '(0018,9087)',
@@ -147,6 +148,12 @@ const LeftBottomTags = [
     tag: '(0028,0011)',
     label: '',
   },
+  // {
+  //   tag: '(0018,0088)',
+  //   label: 'Spacing',
+  //   sort: 6,
+  //   showLabel: true,
+  // },
 ];
 
 const tagValFormats = {
@@ -421,7 +428,6 @@ function CustomizableViewportOverlay({
     );
     return tagRows;
   }, [instanceNumber, viewportData]);
-
   /**
    * Initial toolbar state
    */
@@ -652,9 +658,9 @@ function CustomizableViewportOverlay({
 
     return (
       <>
-        {leftBottomInfos.map(({ label, value, showLabel }, i) => (
+        {leftBottomInfos.map(({ label, value, showLabel, unit }, i) => (
           <div key={`bottomLeftOverlayItem_${i}`}>
-            {showLabel ? `${label}:` : ''} {value}
+            {showLabel ? `${label}:` : ''} {value} {unit ? unit : ''}
           </div>
         ))}
         <div>

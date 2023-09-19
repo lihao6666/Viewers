@@ -379,7 +379,7 @@ function MicroscopyPanel(props: IMicroscopyPanelProps) {
           onEdit={onMeasurementItemEditHandler}
         />
       </div>
-      <div className="flex justify-center p-4">
+      <div className="flex justify-center p-4 w-full">
         <ButtonGroup color="black" size="inherit">
           {/* Let's hide the save button for now, as export SR for SM is a proof of concept */}
           {/*{promptSave && (

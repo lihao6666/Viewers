@@ -178,7 +178,7 @@ export default function PanelRoiThresholdSegmentation({
   return (
     <>
       <div className="flex flex-col">
-        <div className="overflow-x-hidden overflow-y-auto invisible-scrollbar">
+        <div className="overflow-x-hidden overflow-y-auto w-full invisible-scrollbar">
           <div className="flex mx-4 my-4 mb-4 space-x-4">
             <Button
               onClick={() => {

@@ -28,6 +28,11 @@ const arrowPositionStyle = {
     left: '50%',
     transform: 'translateX(-50%) rotate(180deg)',
   },
+  'top-right': {
+    bottom: -15,
+    // left: '50%',
+    transform: 'translateX(-100%) rotate(180deg)',
+  },
 };
 
 const Tooltip = ({

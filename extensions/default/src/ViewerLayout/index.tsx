@@ -226,6 +226,7 @@ function ViewerLayout({
         isReturnEnabled={!!appConfig.showStudyList}
         onClickReturnButton={onClickReturnButton}
         WhiteLabeling={appConfig.whiteLabeling}
+        commandsManager={commandsManager}
       >
         <ErrorBoundary context="Primary Toolbar">
           <div className="relative flex justify-center">
@@ -235,7 +236,7 @@ function ViewerLayout({
       </Header>
       <div
         className="bg-black flex flex-row items-stretch w-full overflow-hidden flex-nowrap relative"
-        style={{ height: 'calc(100vh - 52px' }}
+        style={{ height: 'calc(100vh - 60px' }}
       >
         <React.Fragment>
           {showLoadingIndicator && (
@@ -253,7 +254,7 @@ function ViewerLayout({
             </ErrorBoundary>
           ) : null}
           {/* TOOLBAR + GRID */}
-          <div className="flex flex-col flex-1 h-full">
+          <div className="flex flex-col flex-1 h-full p-1">
             <div className="flex items-center justify-center flex-1 h-full overflow-hidden bg-black relative">
               <ErrorBoundary context="Grid">
                 <ViewportGridComp

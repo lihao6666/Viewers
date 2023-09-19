@@ -92,7 +92,12 @@ const Dropdown = ({ id, children, showDropdownIcon, list, titleClassName }) => {
   }, [open]);
 
   return (
-    <div data-cy="dropdown" ref={element} className="relative">
+    <div
+      data-cy="dropdown"
+      ref={element}
+      className="relative"
+      style={{ height: 26 }}
+    >
       <div className="flex items-center cursor-pointer" onClick={toggleList}>
         {renderTitleElement()}
       </div>

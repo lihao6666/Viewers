@@ -114,6 +114,7 @@ export {
   ImageScrollbar,
   ViewportOverlay,
   OutViewLayer,
+  SettingMenuItem,
 } from './components';
 
 /** These are mostly used in the docs */

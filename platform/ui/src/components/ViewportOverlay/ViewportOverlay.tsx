@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-
+import { useViewportGrid } from '@ohif/ui';
 import './ViewportOverlay.css';
 
 const classes = {
@@ -17,8 +17,9 @@ const ViewportOverlay = ({
   bottomLeft,
   color,
 }) => {
+  const [viewportData] = useViewportGrid();
   const overlay = 'absolute pointer-events-none viewport-overlay';
-  return (
+  return viewportData.showTagsBrowser ? (
     <div className={classnames(color ? color : 'text-primary-light')}>
       <div
         data-cy={'viewport-overlay-top-left'}
@@ -45,7 +46,7 @@ const ViewportOverlay = ({
         {bottomLeft}
       </div>
     </div>
-  );
+  ) : null;
 };
 
 export default ViewportOverlay;

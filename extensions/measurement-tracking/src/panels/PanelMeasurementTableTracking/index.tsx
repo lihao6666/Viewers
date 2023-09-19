@@ -247,7 +247,7 @@ function PanelMeasurementTableTracking({ servicesManager, extensionManager }) {
   return (
     <>
       <div
-        className="overflow-x-hidden overflow-y-auto invisible-scrollbar"
+        className="overflow-x-hidden overflow-y-auto w-full invisible-scrollbar"
         ref={measurementsPanelRef}
         data-cy={'trackedMeasurements-panel'}
       >
@@ -275,7 +275,7 @@ function PanelMeasurementTableTracking({ servicesManager, extensionManager }) {
           />
         )}
       </div>
-      <div className="flex justify-center p-4">
+      <div className="flex justify-center p-4 w-full">
         <ActionButtons
           onExportClick={exportReport}
           onCreateReportClick={() => {

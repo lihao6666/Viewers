@@ -12,6 +12,9 @@ import viewportLabels from '../utils/viewportLabels';
 
 const DEFAULT_STATE = {
   activeViewportIndex: 0,
+  leftPanelOpen: false,
+  rightPanelOpen: false,
+  showTagsBrowser: true,
   layout: {
     numRows: 0,
     numCols: 0,

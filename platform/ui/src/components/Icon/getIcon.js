@@ -124,7 +124,11 @@ import iconMPR from './../../assets/icons/icon-mpr-alt.svg';
 import checkboxDefault from './../../assets/icons/checkbox-default.svg';
 import checkboxActive from './../../assets/icons/checkbox-active.svg';
 import referenceLines from './../../assets/icons/reference-lines.svg';
+// ++
 import uploadCloud from './../../assets/icons/upload-cloud.svg';
+import markPanel from './../../assets/icons/mark-panel.svg';
+import seriesPanel from './../../assets/icons/series-panel.svg';
+import checkSelected from './../../assets/icons/check-selected.svg';
 
 /** Old OHIF */
 import oldTrash from './../../assets/icons/old-trash.svg';
@@ -258,7 +262,11 @@ const ICONS = {
   'checkbox-default': checkboxDefault,
   'checkbox-active': checkboxActive,
   'tool-referenceLines': referenceLines,
+  // ++
   'upload-cloud': uploadCloud,
+  'mark-panel': markPanel,
+  'series-panel': seriesPanel,
+  'check-selected': checkSelected,
 
   /** Old OHIF */
   'old-trash': oldTrash,
@@ -281,7 +289,7 @@ function addIcon(iconName, iconSVG) {
  */
 export default function getIcon(key, props) {
   if (!key || !ICONS[key]) {
-    return React.createElement('div', null, 'Missing Icon');
+    return React.createElement('div', {className: 'ww-1'}, 'Missing Icon');
   }
 
   return React.createElement(ICONS[key], props);

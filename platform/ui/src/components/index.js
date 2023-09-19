@@ -75,6 +75,7 @@ import LoadingIndicatorTotalPercent from './LoadingIndicatorTotalPercent';
 import ViewportActionBar from './ViewportActionBar';
 import ProgressLoadingBar from './ProgressLoadingBar';
 import OutViewLayer from './OutViewLayer';
+import SettingMenuItem from './SettingMenuItem';
 
 export {
   AboutModal,
@@ -155,4 +156,5 @@ export {
   ViewportOverlay,
   WindowLevelMenuItem,
   OutViewLayer,
+  SettingMenuItem,
 };
