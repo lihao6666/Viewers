@@ -1,2 +1,2 @@
-import ThumbnailTracked from './ThumbnailTracked';
+import ThumbnailTracked from './CustomThumbnailTracked';
 export default ThumbnailTracked;

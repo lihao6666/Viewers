@@ -80,7 +80,7 @@ function ViewerLayout({
     appConfig.showLoadingIndicator
   );
 
-  const { hangingProtocolService } = servicesManager.services;
+  const { hangingProtocolService, UIViewportDialogService } = servicesManager.services;
 
   const { hotkeyDefinitions, hotkeyDefaults } = hotkeysManager;
   const versionNumber = process.env.VERSION_NUMBER;
@@ -219,6 +219,16 @@ function ViewerLayout({
   const rightPanelComponents = rightPanels.map(getPanelData);
   const viewportComponents = viewports.map(getViewportComponentData);
 
+  const clickHandlerCrossSwiper = (event: any) => {
+    const ev = new CustomEvent('CROSS_SWIPER_EVENT', {
+      detail: {
+        target: event.target,
+      },
+    });
+    window.dispatchEvent(ev);
+    UIViewportDialogService?.onOutsideClick?.();
+  };
+
   return (
     <div>
       <Header
@@ -229,7 +239,10 @@ function ViewerLayout({
         commandsManager={commandsManager}
       >
         <ErrorBoundary context="Primary Toolbar">
-          <div className="relative flex justify-center">
+          <div
+            className="relative flex justify-center"
+            onClick={clickHandlerCrossSwiper}
+          >
             <Toolbar servicesManager={servicesManager} />
           </div>
         </ErrorBoundary>

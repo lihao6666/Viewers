@@ -54,3 +54,23 @@
     * promptBeginTracking.tsx  ohif-v3\extensions\measurement-tracking\src\contexts\TrackedMeasurementsContext\promptBeginTracking.js (手机端跳过追踪确认)
     * index.tsx ohif-v3\modes\basic-dev-mode\src\index.js （手机端Zoom工具配置）
     * mobileToolbarButton.js ohif-v3\modes\basic-dev-mode\src\mobileToolbarButton.js (手机端头部功能按钮)
+
+### 业务逻辑修改
+  - Fix: 修改的文件
+    * commandsModule.tsx  ohif-v3\extensions\default\src\commandsModule.ts (添加头部功能操作)
+    * getToolbarModule.tsx ohif-v3\extensions\default\src\getToolbarModule.tsx (添加头部按钮组件)
+    * ToolbarCornerInfoBtn.tsx ohif-v3\extensions\default\src\Toolbar\ToolbarCornerInfoBtn.tsx (自定义头部角信息按钮)
+    * index.tsx  ohif-v3\extensions\default\src\ViewerLayout\index.tsx (修复swiper滑动阻止了事件冒泡)
+    * index.js ohif-v3\modes\basic-test-mode\src\index.js （区分手机端的按钮）
+    * mobileToolbarButton.js ohif-v3\modes\tmtv\src\mobileToolbarButtons.js(移动端头部功能按钮)
+    * Header.tsx ohif-v3\platform\ui\src\component (头部左右侧边栏按钮)
+    * CustomLoadingIndicator.tsx ohif-v3\platform\ui\src\component (loading 动画)
+    * MeasurementItem.tsx ohif-v3\platform\ui\src\component\MeasurementTable (删除标记)
+    * CustomSidePanel.tsx ohif-v3\platform\ui\src\component\SidePanel (侧边栏文件变动大，复制重写)
+    * SplitButton.tsx ohif-v3\platform\ui\src\component\SplitButton (修复因滑动导致的头部功能下拉框没有收起)
+    * CustomThumbnail.tsx ohif-v3\platform\ui\src\component\Thumbnail (自定义左侧边栏的序列的样式)
+    * CustomThumbnailTracked.tsx ohif-v3\platform\ui\src\component\ThumbnailTracked (修改左侧边栏样式，改动多，复制重写)
+    * ToolbarButton.tsx ohif-v3\platform\ui\src\component\ToolbarButton (修改控制toolTip的显示)
+    * CustomViewportActionBar.tsx ohif-v3\platform\ui\src\component\ViewportActionBar (影像区域头部信息的修改)
+    * ViewportDialogProvider.tsx ohif-v3\platform\ui\src\contextProviders (viewportDialog服务对象上绑定outsideClickMethod)
+    * customWhiteLabeling.js ohif-v3\platform\app\assets\js (修改logo)

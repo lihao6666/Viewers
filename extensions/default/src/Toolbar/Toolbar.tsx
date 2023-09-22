@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, forwardRef, useState } from 'react';
 import classnames from 'classnames';
 
-export default function Toolbar({ servicesManager }) {
+const Toolbar = ({ servicesManager }, propRef) => {
   const { toolbarService } = servicesManager.services;
   const [toolbarButtons, setToolbarButtons] = useState([]);
   const [buttonState, setButtonState] = useState({
@@ -57,10 +57,13 @@ export default function Toolbar({ servicesManager }) {
               isActive={isActive}
               onInteraction={args => toolbarService.recordInteraction(args)}
               servicesManager={servicesManager}
+              ref={propRef}
             />
           </div>
         );
       })}
     </>
   );
-}
+};
+
+export default forwardRef(Toolbar);

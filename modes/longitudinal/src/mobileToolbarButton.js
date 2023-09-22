@@ -4,6 +4,7 @@ import {
   // ExpandableToolbarButton,
   // ListMenu,
   WindowLevelMenuItem,
+  SettingMenuItem,
 } from '@ohif/ui';
 import { defaults } from '@ohif/core';
 
@@ -75,7 +76,7 @@ function _createSetToolActiveCommands(toolName) {
   return temp;
 }
 
-const toolbarButtons = [
+const mobileToolbarButton = [
   // Measurement
   {
     id: 'MeasurementTools',
@@ -371,6 +372,22 @@ const toolbarButtons = [
       ],
     },
   },
+  // TagBrowser
+  {
+    id: 'TagBrowser',
+    type: 'ohif.toggle',
+    props: {
+      icon: 'list-bullets',
+      label: 'Tag Browser',
+      commands: [
+        {
+          commandName: 'openDICOMTagViewer',
+          commandOptions: {},
+          context: 'DEFAULT',
+        },
+      ],
+    },
+  },
   // 四角信息
   {
     id: 'CornerInfo',
@@ -604,19 +621,19 @@ const toolbarButtons = [
           ],
           'Calibration Line'
         ),
-        _createActionButton(
-          'TagBrowser',
-          'list-bullets',
-          'Dicom Tag Browser',
-          [
-            {
-              commandName: 'openDICOMTagViewer',
-              commandOptions: {},
-              context: 'DEFAULT',
-            },
-          ],
-          'Dicom Tag Browser'
-        ),
+        // _createActionButton(
+        //   'TagBrowser',
+        //   'list-bullets',
+        //   'Dicom Tag Browser',
+        //   [
+        //     {
+        //       commandName: 'openDICOMTagViewer',
+        //       commandOptions: {},
+        //       context: 'DEFAULT',
+        //     },
+        //   ],
+        //   'Dicom Tag Browser'
+        // ),
       ],
     },
   },
@@ -638,4 +655,4 @@ const toolbarButtons = [
   },
 ];
 
-export default toolbarButtons;
+export default mobileToolbarButton;

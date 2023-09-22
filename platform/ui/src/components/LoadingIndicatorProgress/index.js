@@ -1,2 +1,2 @@
-import LoadingIndicatorProgress from './LoadingIndicatorProgress';
+import LoadingIndicatorProgress from './CustomLoadingIndicator';
 export default LoadingIndicatorProgress;

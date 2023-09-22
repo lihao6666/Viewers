@@ -27,6 +27,18 @@ function _createButton(type, id, icon, label, commands, tooltip, uiType) {
   };
 }
 
+function _createCommands(commandName, toolName, toolGroupIds) {
+  return toolGroupIds.map(toolGroupId => ({
+    /* It's a command that is being run when the button is clicked. */
+    commandName,
+    commandOptions: {
+      toolName,
+      toolGroupId,
+    },
+    context: 'CORNERSTONE',
+  }));
+}
+
 const _createActionButton = _createButton.bind(null, 'action');
 const _createToggleButton = _createButton.bind(null, 'toggle');
 const _createToolButton = _createButton.bind(null, 'tool');
@@ -55,27 +67,7 @@ function _createWwwcPreset(preset, title, subtitle) {
   };
 }
 
-const toolGroupIds = ['default', 'mpr', 'SRToolGroup'];
-
-/**
- * Creates an array of 'setToolActive' commands for the given toolName - one for
- * each toolGroupId specified in toolGroupIds.
- * @param {string} toolName
- * @returns {Array} an array of 'setToolActive' commands
- */
-function _createSetToolActiveCommands(toolName) {
-  const temp = toolGroupIds.map(toolGroupId => ({
-    commandName: 'setToolActive',
-    commandOptions: {
-      toolGroupId,
-      toolName,
-    },
-    context: 'CORNERSTONE',
-  }));
-  return temp;
-}
-
-const toolbarButtons = [
+const mobileToolbarButton = [
   // Measurement
   {
     id: 'MeasurementTools',
@@ -231,21 +223,6 @@ const toolbarButtons = [
           ],
           'Circle Tool'
         ),
-        _createToolButton(
-          'Rectangle',
-          'tool-rectangle',
-          'Rectangle',
-          [
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'RectangleROI',
-              },
-              context: 'CORNERSTONE',
-            },
-          ],
-          'Rectangle'
-        ),
       ],
     },
   },
@@ -257,7 +234,15 @@ const toolbarButtons = [
       type: 'tool',
       icon: 'tool-zoom',
       label: 'Zoom',
-      commands: _createSetToolActiveCommands('Zoom'),
+      commands: [
+        {
+          commandName: 'setToolActive',
+          commandOptions: {
+            toolName: 'Zoom',
+          },
+          context: 'CORNERSTONE',
+        },
+      ],
     },
   },
   // Window Level + Presets...
@@ -306,15 +291,22 @@ const toolbarButtons = [
       type: 'tool',
       icon: 'tool-move',
       label: 'Pan',
-      commands: _createSetToolActiveCommands('Pan'),
+      commands: [
+        {
+          commandName: 'setToolActive',
+          commandOptions: {
+            toolName: 'Pan',
+          },
+          context: 'CORNERSTONE',
+        },
+      ],
     },
   },
   {
     id: 'Capture',
     type: 'ohif.action',
     props: {
-      // icon: 'tool-capture',
-      icon: 'upload-cloud',
+      icon: 'tool-capture',
       label: 'Capture',
       type: 'action',
       commands: [
@@ -328,10 +320,96 @@ const toolbarButtons = [
   },
   {
     id: 'Layout',
-    type: 'ohif.layoutSelector',
+    type: 'ohif.splitButton',
     props: {
-      rows: 3,
-      columns: 3,
+      groupId: 'LayoutTools',
+      isRadio: false,
+      primary: {
+        id: 'Layout',
+        type: 'action',
+        uiType: 'ohif.layoutSelector',
+        icon: 'tool-layout',
+        label: 'Grid Layout',
+        props: {
+          rows: 4,
+          columns: 4,
+          commands: [
+            {
+              commandName: 'setLayout',
+              commandOptions: {},
+              context: 'CORNERSTONE',
+            },
+          ],
+        },
+      },
+      secondary: {
+        icon: 'chevron-down',
+        label: '',
+        isActive: true,
+        tooltip: 'Hanging Protocols',
+      },
+      items: [
+        {
+          id: '2x2',
+          type: 'action',
+          label: '2x2',
+          commands: [
+            {
+              commandName: 'setHangingProtocol',
+              commandOptions: {
+                protocolId: '@ohif/mnGrid',
+                stageId: '2x2',
+              },
+              context: 'DEFAULT',
+            },
+          ],
+        },
+        {
+          id: '3x1',
+          type: 'action',
+          label: '3x1',
+          commands: [
+            {
+              commandName: 'setHangingProtocol',
+              commandOptions: {
+                protocolId: '@ohif/mnGrid',
+                stageId: '3x1',
+              },
+              context: 'DEFAULT',
+            },
+          ],
+        },
+        {
+          id: '2x1',
+          type: 'action',
+          label: '2x1',
+          commands: [
+            {
+              commandName: 'setHangingProtocol',
+              commandOptions: {
+                protocolId: '@ohif/mnGrid',
+                stageId: '2x1',
+              },
+              context: 'DEFAULT',
+            },
+          ],
+        },
+        {
+          id: '1x1',
+          type: 'action',
+          label: '1x1',
+          commands: [
+            {
+              commandName: 'setHangingProtocol',
+              commandOptions: {
+                protocolId: '@ohif/mnGrid',
+                stageId: '1x1',
+              },
+              context: 'DEFAULT',
+            },
+          ],
+        },
+      ],
     },
   },
   {
@@ -363,24 +441,24 @@ const toolbarButtons = [
         {
           commandName: 'setToolActive',
           commandOptions: {
-            toolName: 'Crosshairs',
             toolGroupId: 'mpr',
+            toolName: 'Crosshairs',
           },
           context: 'CORNERSTONE',
         },
       ],
     },
   },
-  // 四角信息
+  // TagBrowser
   {
-    id: 'CornerInfo',
-    type: 'ohif.cornerInfoButton',
+    id: 'TagBrowser',
+    type: 'ohif.toggle',
     props: {
-      icon: 'check-selected',
-      label: 'Corner Information',
+      icon: 'list-bullets',
+      label: 'Tag Browser',
       commands: [
         {
-          commandName: 'toggleOpenTagsBrowser',
+          commandName: 'openDICOMTagViewer',
           commandOptions: {},
           context: 'DEFAULT',
         },
@@ -542,38 +620,6 @@ const toolbarButtons = [
           ],
           'Angle'
         ),
-
-        // Next two tools can be added once icons are added
-        // _createToolButton(
-        //   'Cobb Angle',
-        //   'tool-cobb-angle',
-        //   'Cobb Angle',
-        //   [
-        //     {
-        //       commandName: 'setToolActive',
-        //       commandOptions: {
-        //         toolName: 'CobbAngle',
-        //       },
-        //       context: 'CORNERSTONE',
-        //     },
-        //   ],
-        //   'Cobb Angle'
-        // ),
-        // _createToolButton(
-        //   'Planar Freehand ROI',
-        //   'tool-freehand',
-        //   'PlanarFreehandROI',
-        //   [
-        //     {
-        //       commandName: 'setToolActive',
-        //       commandOptions: {
-        //         toolName: 'PlanarFreehandROI',
-        //       },
-        //       context: 'CORNERSTONE',
-        //     },
-        //   ],
-        //   'Planar Freehand ROI'
-        // ),
         _createToolButton(
           'Magnify',
           'tool-magnify',
@@ -590,52 +636,23 @@ const toolbarButtons = [
           'Magnify'
         ),
         _createToolButton(
-          'CalibrationLine',
-          'tool-calibration',
-          'Calibration',
+          'Rectangle',
+          'tool-rectangle',
+          'Rectangle',
           [
             {
               commandName: 'setToolActive',
               commandOptions: {
-                toolName: 'CalibrationLine',
+                toolName: 'RectangleROI',
               },
               context: 'CORNERSTONE',
             },
           ],
-          'Calibration Line'
+          'Rectangle'
         ),
-        _createActionButton(
-          'TagBrowser',
-          'list-bullets',
-          'Dicom Tag Browser',
-          [
-            {
-              commandName: 'openDICOMTagViewer',
-              commandOptions: {},
-              context: 'DEFAULT',
-            },
-          ],
-          'Dicom Tag Browser'
-        ),
-      ],
-    },
-  },
-  // Settings
-  {
-    id: 'Settings',
-    type: 'ohif.toggle',
-    props: {
-      icon: 'settings',
-      label: 'Settings',
-      commands: [
-        {
-          commandName: 'toggleOpenPreferences',
-          commandOptions: {},
-          context: 'DEFAULT',
-        },
       ],
     },
   },
 ];
 
-export default toolbarButtons;
+export default mobileToolbarButton;

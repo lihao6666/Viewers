@@ -1,9 +1,12 @@
 import React, { ReactElement } from 'react';
 
 import './ProgressLoadingBar.css';
+import classNames from 'classnames';
 
 export type ProgressLoadingBarProps = {
   progress?: number;
+  height?: number;
+  colorClass?: string;
 };
 /**
  * A React component that renders a loading progress bar.
@@ -13,17 +16,19 @@ export type ProgressLoadingBarProps = {
  */
 function ProgressLoadingBar({
   progress,
+  height = 8,
+  colorClass = 'bg-primary-light',
 }: ProgressLoadingBarProps): ReactElement {
   return (
     <div className="loading">
       {progress === undefined || progress === null ? (
-        <div className="infinite-loading-bar bg-primary-light"></div>
+        <div className={classNames('infinite-loading-bar', colorClass)}></div>
       ) : (
         <div
-          className="bg-primary-light"
+          className={classNames(colorClass)}
           style={{
             width: `${progress}%`,
-            height: '8px',
+            height,
           }}
         ></div>
       )}

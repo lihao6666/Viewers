@@ -18,6 +18,7 @@ const ToolbarButton = ({
   isActive: _isActive,
   className,
   bState = {},
+  tooltip,
   ...rest
   //
 }) => {
@@ -46,34 +47,40 @@ const ToolbarButton = ({
   ) : (
     <div>{label || 'Missing icon and label'}</div>
   );
-
+  const iconBtnNode = (
+    <IconButton
+      variant={isActive ? 'contained' : 'text'}
+      bgColor={bgClasses[type]}
+      size="toolbar"
+      className={classnames(activeClass, classes[type], className)}
+      onClick={() => {
+        onInteraction({
+          itemId: id,
+          interactionType: type,
+          commands,
+        });
+      }}
+      name={label}
+      key={id}
+      id={id}
+      {...rest}
+    >
+      {iconEl}
+    </IconButton>
+  );
   return (
     <div key={id}>
-      <Tooltip
-        isSticky={shouldShowDropdown}
-        content={shouldShowDropdown ? dropdownContent : label}
-        tight={shouldShowDropdown}
-      >
-        <IconButton
-          variant={isActive ? 'contained' : 'text'}
-          bgColor={bgClasses[type]}
-          size="toolbar"
-          className={classnames(activeClass, classes[type], className)}
-          onClick={() => {
-            onInteraction({
-              itemId: id,
-              interactionType: type,
-              commands,
-            });
-          }}
-          name={label}
-          key={id}
-          id={id}
-          {...rest}
+      {tooltip !== false ? (
+        <Tooltip
+          isSticky={shouldShowDropdown}
+          content={shouldShowDropdown ? dropdownContent : label}
+          tight={shouldShowDropdown}
         >
-          {iconEl}
-        </IconButton>
-      </Tooltip>
+          {iconBtnNode}
+        </Tooltip>
+      ) : (
+        iconBtnNode
+      )}
     </div>
   );
 };

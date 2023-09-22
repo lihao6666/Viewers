@@ -12,6 +12,7 @@ const MeasurementItem = ({
   isActive,
   onClick,
   onEdit,
+  onDelete,
   item,
 }) => {
   const [isHovering, setIsHovering] = useState(false);
@@ -53,27 +54,41 @@ const MeasurementItem = ({
         {index}
       </div>
       <div className="relative flex flex-col flex-1 px-2 py-1">
-        <span className="mb-1 text-base text-primary-light">{label}</span>
+        <span className="mb-1 text-base text-primary-light break-all">{label}</span>
         {displayText.map((line, i) => (
           <span
             key={i}
-            className="pl-2 text-base text-white border-l border-primary-light"
+            className="pl-2 text-base text-white border-l border-primary-light break-all"
             dangerouslySetInnerHTML={{ __html: line }}
           ></span>
         ))}
         <Icon
           className={classnames(
-            'text-white w-4 absolute cursor-pointer transition duration-300',
-            { 'invisible opacity-0 mr-2': !isActive && !isHovering },
-            { 'visible opacity-1': !isActive && isHovering }
+            'text-white w-4 absolute cursor-pointer transition duration-300 visible opacity-1'
+            // { 'invisible opacity-0': !isActive && !isHovering },
+            // { 'visible opacity-1': !isActive && isHovering }
           )}
           name="pencil"
           style={{
             top: 4,
             right: 4,
-            transform: isActive || isHovering ? '' : 'translateX(100%)',
+            // transform: isActive || isHovering ? '' : 'translateX(100%)',
           }}
           onClick={onEditHandler}
+        />
+        <Icon
+          className={classnames(
+            'text-white text-2lg w-4 absolute cursor-pointer transition duration-300',
+            { 'invisible opacity-0': !isHovering },
+            { 'visible opacity-1': isHovering }
+          )}
+          name="icon-delete"
+          style={{
+            bottom: 4,
+            right: 4,
+            transform: isHovering ? '' : 'translateX(100%)',
+          }}
+          onClick={() => onDelete({ uid: item.uid })}
         />
       </div>
     </div>

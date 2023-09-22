@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import OutsideClickHandler from 'react-outside-click-handler';
@@ -94,7 +94,7 @@ const SplitButton = ({
   servicesManager,
 }) => {
   const { t } = useTranslation('Buttons');
-
+  const splitBtnRef = useRef();
   const { toolbarService } = servicesManager?.services || {};
 
   const { primaryToolId, toggles } = bState;
@@ -183,12 +183,30 @@ const SplitButton = ({
 
   const listItemRenderer = renderer || DefaultListItemRenderer;
 
+  useEffect(() => {
+    const customCrossSwiperCb = (event: any) => {
+      const eventData = event.detail;
+      const { target } = eventData;
+      const splitBtnNode = splitBtnRef.current;
+      if (splitBtnNode && !splitBtnNode.contains(target)) {
+        outsideClickHandler();
+      }
+    };
+    window.addEventListener('CROSS_SWIPER_EVENT', customCrossSwiperCb, false);
+    return () => {
+      window.removeEventListener(
+        'CROSS_SWIPER_EVENT',
+        customCrossSwiperCb,
+        false
+      );
+    };
+  }, []);
   return (
     <OutsideClickHandler
       onOutsideClick={outsideClickHandler}
       disabled={!state.isExpanded}
     >
-      <div name="SplitButton" className="relative">
+      <div name="SplitButton" className="relative" ref={splitBtnRef}>
         <div
           className={classes.Button({
             ...state,
@@ -199,7 +217,8 @@ const SplitButton = ({
           onMouseLeave={onMouseLeaveHandler}
         >
           <div className={classes.Interface}>
-            <div onClick={outsideClickHandler}>
+            {/*  onClick={outsideClickHandler} */}
+            <div>
               <PrimaryButtonComponent
                 key={state.primary.id}
                 {...state.primary}
@@ -246,7 +265,10 @@ const SplitButton = ({
         </div>
         {/* EXPANDED LIST OF OPTIONS */}
         <div
-          className={classes.Content({ ...state })}
+          className={classNames(classes.Content({ ...state }), {
+            'right-0': groupId === 'MoreTools',
+            'left-0': groupId === 'MeasurementTools',
+          })}
           data-cy={`${groupId}-list-menu`}
         >
           <ListMenu

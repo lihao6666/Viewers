@@ -19,6 +19,7 @@ function Header({
   onClickReturnButton,
   isSticky,
   WhiteLabeling,
+  commandsManager,
   ...props
 }): ReactNode {
   const { t } = useTranslation('Header');
@@ -32,6 +33,12 @@ function Header({
     if (isReturnEnabled && onClickReturnButton) {
       onClickReturnButton();
     }
+  };
+
+  const toggleOpenSeriesPanel = (event: any, side) => {
+    event.preventDefault();
+    // eslint-disable-next-line react/prop-types
+    commandsManager.runCommand('toggleOpenPanel', { side });
   };
 
   useEffect(() => {
@@ -64,7 +71,7 @@ function Header({
               // Either injected service? Or context (like react router's `useLocation`?) */}
           <div
             className={classNames(
-              'inline-flex items-center h-full',
+              'inline-flex items-center h-full pr-3 pl-1',
               isReturnEnabled && 'cursor-pointer'
             )}
             onClick={onClickReturn}
@@ -76,7 +83,24 @@ function Header({
               {WhiteLabeling?.createLogoComponentFn?.(React, {
                 ...props,
                 deviceInfo,
-              }) || <Svg name="logo-ohif" />}
+              })}
+              {/* <a
+                onClick={event => toggleOpenSeriesPanel(event, 'left')}
+                className="flex items-center m-2 justify-center h-8 text-white w-8 text-2xl opacity-85"
+              >
+                <Icon name="series-panel" />
+              </a> */}
+              <IconButton
+                id={'options-mark-panel-icon'}
+                variant="text"
+                color="inherit"
+                size="initial"
+                style={{ padding: 10 }}
+                onClick={event => toggleOpenSeriesPanel(event, 'left')}
+                className="text-center items-center justify-center text-xl transition duration-300 ease-in-out outline-none font-bold focus:outline-none text-white hover:bg-primary-light hover:text-black active:opacity-80 focus:!bg-primary-light focus:text-black rounded-md text-lg inline-flex text-common-bright hover:!bg-primary-dark hover:text-primary-light"
+              >
+                <Icon name="series-panel" className="w-5 h-5 fill-current" />
+              </IconButton>
             </div>
           </div>
         </div>
@@ -97,11 +121,30 @@ function Header({
           </div>
         </div>
         <div className="flex h-full items-center bg-secondary-dark relative z-10">
-          <div className="flex">
+          <div className="flex items-center pr-1 pl-3">
             {/* <span className="mr-3 text-lg text-common-light">
               {t('INVESTIGATIONAL USE ONLY')}
             </span> */}
-            <Dropdown
+            
+            {/* <a
+              onClick={event => toggleOpenSeriesPanel(event, 'right')}
+              className="flex items-center mr-2 justify-center h-8 text-white w-8 text-2xl opacity-85"
+            >
+              <Icon name="mark-panel" />
+            </a> */}
+            <IconButton
+              id={'options-mark-panel-icon'}
+              variant="text"
+              color="inherit"
+              size="initial"
+              style={{ padding: 10 }}
+              onClick={event => toggleOpenSeriesPanel(event, 'right')}
+              className="text-center items-center justify-center text-xl transition duration-300 ease-in-out outline-none font-bold focus:outline-none text-white hover:bg-primary-light hover:text-black active:opacity-80 focus:!bg-primary-light focus:text-black rounded-md text-lg inline-flex text-common-bright hover:!bg-primary-dark hover:text-primary-light"
+            >
+              <Icon name="mark-panel" className="w-5 h-5 fill-current" />
+            </IconButton>
+
+            {/* <Dropdown
               id="options"
               showDropdownIcon={false}
               list={menuOptions}
@@ -125,7 +168,7 @@ function Header({
               >
                 <Icon name="chevron-down" />
               </IconButton>
-            </Dropdown>
+            </Dropdown> */}
           </div>
         </div>
       </div>
