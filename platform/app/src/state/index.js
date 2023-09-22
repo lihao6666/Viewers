@@ -5,6 +5,11 @@ import {
   getDeviceInfo,
 } from './deviceInfo.tsx';
 
+const OHIF_BROADCAST_CHANNEL_NAME = 'OHIF_BROADCAST_CHANNEL_NAME';
+export const BROADCAST_EVENT_NAMES = {
+  UPLOAD_CAPTURE_IMAGE: 'UPLOAD-CAPTURE-IMAGE',
+};
+export const ohifChannel = new BroadcastChannel(OHIF_BROADCAST_CHANNEL_NAME);
 export {
   AppConfigProvider,
   useAppConfig,

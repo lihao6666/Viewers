@@ -5,6 +5,7 @@ import getActiveViewportEnabledElement from './getActiveViewportEnabledElement';
 import html2canvas from 'html2canvas';
 import { ToolGroupManager } from '@cornerstonejs/tools';
 import { useOutViewLayer } from '@ohif/ui';
+import { ohifChannel, BROADCAST_EVENT_NAMES } from '@state';
 import {
   // Enums,
   getEnabledElement,
@@ -130,11 +131,19 @@ const CornerstoneViewportUpload = ({ servicesManager, width, height }) => {
         `div[data-viewport-uid="${UPLOAD_VIEWPORT_ID}"]`
       );
       html2canvas(divForDownloadViewport).then(canvas => {
+        const base64 = canvas.toDataURL('image/png', 1.0);
+        ohifChannel.postMessage({
+          eventName: BROADCAST_EVENT_NAMES.UPLOAD_CAPTURE_IMAGE,
+          data: {
+            imageBase64: base64,
+          },
+        });
+        outViewLayer.hide();
+        return;
         const link = document.createElement('a');
         link.download = 'image.png';
-        link.href = canvas.toDataURL('image/png', 1.0);
+        link.href = base64;
         link.click();
-        outViewLayer.hide();
       });
 
       // window.opener

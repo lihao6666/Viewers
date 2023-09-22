@@ -58,8 +58,13 @@ function LoadingIndicatorProgress({ className, textBlock, progress }) {
       )}
     >
       <div className="w-48">
-        <div className="flex opacity-80">
-          <div
+        <div className="w-full opacity-80">
+          <img
+            src={spritePath}
+            className="inline-block w-full align-top"
+            alt=""
+          />
+          {/* <div
             className="w-[21.333%] pt-[21.333%] animat"
             style={{
               ...styleBgImage,
@@ -68,25 +73,25 @@ function LoadingIndicatorProgress({ className, textBlock, progress }) {
           ></div>
           <div className="flex-1 flex items-stretch">
             {letterList.map(({ width, bgXPos }, idx) => {
-              // const delay = (duration / letterList.length) * idx;
-              // letter-wave
+              const delay = (duration / letterList.length) * idx;
               return (
                 <span
                   key={bgXPos}
                   className={classNames(
                     `w-[${width}]`,
-                    'inline-block align-middle h-full'
+                    'inline-block align-middle h-full letter-wave'
                   )}
                   style={{
                     ...styleBgImage,
+                    width,
                     backgroundPosition: `${bgXPos} 0`,
-                    // animationDuration: `${duration}s`,
-                    // animationDelay: `${delay}s`,
+                    animationDuration: `${duration}s`,
+                    animationDelay: `${delay}s`,
                   }}
                 ></span>
               );
             })}
-          </div>
+          </div> */}
         </div>
         <div className="mt-4">
           <ProgressLoadingBar colorClass="bg-white opacity-80" />

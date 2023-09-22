@@ -255,6 +255,7 @@ function ViewerLayout({
           {showLoadingIndicator && (
             <LoadingIndicatorProgress className="h-full w-full bg-black" />
           )}
+          {/* <LoadingIndicatorProgress className="h-full w-full bg-black" /> */}
           {/* LEFT SIDEPANELS */}
           {leftPanelComponents.length ? (
             <ErrorBoundary context="Left Panel">

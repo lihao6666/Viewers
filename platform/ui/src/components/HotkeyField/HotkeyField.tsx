@@ -57,7 +57,7 @@ HotkeyField.propTypes = {
   modifierKeys: PropTypes.array,
   disabled: PropTypes.bool,
   hotkeys: PropTypes.shape({
-    initialize: PropTypes.func.isRequired,
+    initialize: PropTypes.func,
     pause: PropTypes.func.isRequired,
     unpause: PropTypes.func.isRequired,
     startRecording: PropTypes.func.isRequired,
