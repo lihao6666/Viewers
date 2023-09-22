@@ -9,10 +9,13 @@ import PropTypes from 'prop-types';
 import isEqual from 'lodash.isequal';
 import { ViewportGridService } from '@ohif/core';
 import viewportLabels from '../utils/viewportLabels';
-
+const winWidth =
+  window.innerWidth ||
+  document.documentElement.clientWidth ||
+  document.body.clientWidth;
 const DEFAULT_STATE = {
   activeViewportIndex: 0,
-  leftPanelOpen: false,
+  leftPanelOpen: winWidth > 1360 ? true : false,
   rightPanelOpen: false,
   showTagsBrowser: true,
   layout: {
