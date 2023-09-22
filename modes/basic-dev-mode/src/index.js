@@ -4,6 +4,10 @@ import { id } from './id';
 
 const configs = {
   Length: {},
+  Zoom: {
+    pan: false,
+    pinchToZoom: false,
+  },
   //
 };
 

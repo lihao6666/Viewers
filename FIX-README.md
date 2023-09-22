@@ -46,3 +46,11 @@
     * user.js ohif-v3/platform/core/src
     * getAuthorizationHeader.js ohif-v3/platform/core/src/DICOMWeb
     * UserAuthenticationProvider.tsx ohif-v3/platform/ui/src/contextProviders
+
+### 修改部分功能
+  - Fix: 修改
+    * CustomizableViewportOverlay.tsx  ohif-v3\extensions\cornerstone\src\Viewport\Overlays\CustomizableViewportOverlay.tsx（修改角信息）
+    * PanelSegmentation.tsx  ohif-v3\extensions\cornerstone-dicom-seg\src\panels\PanelSegmentation.tsx（修改参数类型）
+    * promptBeginTracking.tsx  ohif-v3\extensions\measurement-tracking\src\contexts\TrackedMeasurementsContext\promptBeginTracking.js (手机端跳过追踪确认)
+    * index.tsx ohif-v3\modes\basic-dev-mode\src\index.js （手机端Zoom工具配置）
+    * mobileToolbarButton.js ohif-v3\modes\basic-dev-mode\src\mobileToolbarButton.js (手机端头部功能按钮)

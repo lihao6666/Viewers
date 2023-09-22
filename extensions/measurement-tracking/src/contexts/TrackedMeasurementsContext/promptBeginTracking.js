@@ -1,4 +1,5 @@
 import { ButtonEnums } from '@ohif/ui';
+import { isMobile } from 'react-device-detect';
 
 const RESPONSE = {
   NO_NEVER: -1,
@@ -13,6 +14,16 @@ function promptBeginTracking({ servicesManager, extensionManager }, ctx, evt) {
   const { viewportIndex, StudyInstanceUID, SeriesInstanceUID } = evt;
 
   return new Promise(async function(resolve, reject) {
+    if (isMobile) {
+      resolve({
+        userResponse: RESPONSE.SET_STUDY_AND_SERIES,
+        StudyInstanceUID,
+        SeriesInstanceUID,
+        viewportIndex,
+      });
+      return;
+    }
+
     let promptResult = await _askTrackMeasurements(
       uiViewportDialogService,
       viewportIndex

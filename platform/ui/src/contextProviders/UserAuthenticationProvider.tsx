@@ -103,7 +103,6 @@ export function UserAuthenticationProvider({ children, service }) {
           const headerAuth = {
             Authorization: 'Bearer ' + searchParams.get('token'),
           };
-          console.log(headerAuth, 'tokenResult');
           return headerAuth;
         },
       });
@@ -126,7 +125,6 @@ export function UserAuthenticationProvider({ children, service }) {
         const headerAuth = {
           Authorization: 'Bearer ' + searchParams.get('token'),
         };
-        console.log(headerAuth, 'tokenResult');
         return headerAuth;
       },
     });

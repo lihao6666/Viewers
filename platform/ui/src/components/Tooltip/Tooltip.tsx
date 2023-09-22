@@ -118,6 +118,7 @@ Tooltip.propTypes = {
     'left',
     'right',
     'top',
+    'top-right',
   ]),
   isSticky: PropTypes.bool,
   tight: PropTypes.bool,

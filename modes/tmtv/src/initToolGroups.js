@@ -42,6 +42,10 @@ function _initToolGroups(toolNames, Enums, toolGroupService, commandsManager) {
   };
 
   const toolsConfig = {
+    [toolNames.Zoom]: {
+      pan: false,
+      pinchToZoom: false,
+    },
     [toolNames.Crosshairs]: {
       viewportIndicators: false,
       autoPan: {
@@ -160,6 +164,10 @@ function initMPRToolGroup(toolNames, Enums, toolGroupService, commandsManager) {
   };
 
   const toolsConfig = {
+    [toolNames.Zoom]: {
+      pan: false,
+      pinchToZoom: false,
+    },
     [toolNames.Crosshairs]: {
       viewportIndicators: false,
       autoPan: {

@@ -24,7 +24,7 @@ const DISPLAY_STUDY_SUMMARY_INITIAL_VALUE = {
   description: '', // 'CHEST/ABD/PELVIS W CONTRAST',
 };
 
-function PanelMeasurementTableTracking({ servicesManager, extensionManager }) {
+function PanelMeasurementTableTracking({ servicesManager, commandsManager, extensionManager }) {
   const [viewportGrid, viewportGridService] = useViewportGrid();
   const [measurementChangeTimestamp, setMeasurementsUpdated] = useState(
     Date.now().toString()
@@ -262,6 +262,7 @@ function PanelMeasurementTableTracking({ servicesManager, extensionManager }) {
           title="Measurements"
           data={displayMeasurementsWithoutFindings}
           servicesManager={servicesManager}
+          commandsManager={commandsManager}
           onClick={jumpToImage}
           onEdit={onMeasurementItemEditHandler}
         />
@@ -270,6 +271,7 @@ function PanelMeasurementTableTracking({ servicesManager, extensionManager }) {
             title="Additional Findings"
             data={additionalFindings}
             servicesManager={servicesManager}
+            commandsManager={commandsManager}
             onClick={jumpToImage}
             onEdit={onMeasurementItemEditHandler}
           />

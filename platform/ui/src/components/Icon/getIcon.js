@@ -129,6 +129,7 @@ import uploadCloud from './../../assets/icons/upload-cloud.svg';
 import markPanel from './../../assets/icons/mark-panel.svg';
 import seriesPanel from './../../assets/icons/series-panel.svg';
 import checkSelected from './../../assets/icons/check-selected.svg';
+import iconDelete from './../../assets/icons/icon-delete.svg';
 
 /** Old OHIF */
 import oldTrash from './../../assets/icons/old-trash.svg';
@@ -267,6 +268,7 @@ const ICONS = {
   'mark-panel': markPanel,
   'series-panel': seriesPanel,
   'check-selected': checkSelected,
+  'icon-delete': iconDelete,
 
   /** Old OHIF */
   'old-trash': oldTrash,

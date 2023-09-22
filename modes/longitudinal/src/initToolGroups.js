@@ -48,6 +48,10 @@ function initDefaultToolGroup(
   };
 
   const toolsConfig = {
+    [toolNames.Zoom]: {
+      pan: false,
+      pinchToZoom: false,
+    },
     [toolNames.ArrowAnnotate]: {
       getTextCallback: (callback, eventDetails) =>
         commandsManager.runCommand('arrowTextCallback', {
@@ -126,6 +130,10 @@ function initSRToolGroup(extensionManager, toolGroupService, commandsManager) {
   };
 
   const toolsConfig = {
+    [toolNames.Zoom]: {
+      pan: false,
+      pinchToZoom: false,
+    },
     [toolNames.ArrowAnnotate]: {
       getTextCallback: (callback, eventDetails) =>
         commandsManager.runCommand('arrowTextCallback', {
@@ -193,6 +201,10 @@ function initMPRToolGroup(extensionManager, toolGroupService, commandsManager) {
   };
 
   const toolsConfig = {
+    [toolNames.Zoom]: {
+      pan: false,
+      pinchToZoom: false,
+    },
     [toolNames.Crosshairs]: {
       viewportIndicators: false,
       autoPan: {

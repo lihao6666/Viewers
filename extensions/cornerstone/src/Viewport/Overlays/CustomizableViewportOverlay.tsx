@@ -105,10 +105,10 @@ const RightBottomTags = [
 ];
 // 左下角
 const LeftBottomTags = [
-  {
-    tag: '(0008,103E)',
-    sort: 0,
-  },
+  // {
+  //   tag: '(0008,103E)',
+  //   sort: 0,
+  // },
   {
     tag: '(0018,0080)',
     label: 'TR',
@@ -612,11 +612,16 @@ function CustomizableViewportOverlay({
       currentTagValues,
       ' '
     );
-    return rightTopInfos.map(({ label, value, showLabel }, i) => (
-      <div key={`topRightOverlayItem_${i}`}>
-        {showLabel ? `${label}:` : ''} {value}
-      </div>
-    ));
+    return rightTopInfos.map(({ label, value, showLabel }, i) => {
+      if (!(value || '').trim()) {
+        return null;
+      }
+      return (
+        <div key={`topRightOverlayItem_${i}`}>
+          {showLabel ? `${label}:` : ''} {value}
+        </div>
+      );
+    });
   }, [dicomTagList]);
   // const getTopRightContent = useCallback(() => {
   //   const items = topRightCustomization?.items || [

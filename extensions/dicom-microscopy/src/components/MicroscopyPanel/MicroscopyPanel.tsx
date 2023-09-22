@@ -374,6 +374,7 @@ function MicroscopyPanel(props: IMicroscopyPanelProps) {
         <MeasurementTable
           title="Measurements"
           servicesManager={props.servicesManager}
+          commandsManager={props.commandsManager}
           data={data}
           onClick={onMeasurementItemClickHandler}
           onEdit={onMeasurementItemEditHandler}

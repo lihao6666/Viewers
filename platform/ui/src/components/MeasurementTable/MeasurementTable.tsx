@@ -11,6 +11,7 @@ const MeasurementTable = ({
   onClick,
   onEdit,
   servicesManager,
+  commandsManager,
 }) => {
   servicesManager = servicesManager as ServicesManager;
   const { customizationService } = servicesManager.services;
@@ -25,6 +26,13 @@ const MeasurementTable = ({
     }
   );
   const CustomMeasurementItem = itemCustomization.content;
+
+  const onDelete = options => {
+    commandsManager.run({
+      commandName: 'deleteMeasurement',
+      commandOptions: options,
+    });
+  };
 
   return (
     <div>
@@ -47,6 +55,7 @@ const MeasurementTable = ({
               item={measurementItem}
               onClick={onClick}
               onEdit={onEdit}
+              onDelete={onDelete}
             />
           ))}
         {data.length === 0 && (
