@@ -37,9 +37,15 @@ window.config = {
       configuration: {
         friendlyName: 'FQ PACS',
         name: 'aws',
-        wadoUriRoot: '/pacs/wado',
-        qidoRoot: '/pacs/dicom-web',
-        wadoRoot: '/pacs/dicom-web',
+        // old server
+        // wadoUriRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/wado',
+        // qidoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
+        // wadoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
+
+        // new server
+        wadoUriRoot: '/apis/pacs/wado',
+        qidoRoot: '/apis/pacs/dicom-web',
+        wadoRoot: '/apis/pacs/dicom-web',
         qidoSupportsIncludeField: false,
         imageRendering: 'wadors',
         thumbnailRendering: 'wadors',
