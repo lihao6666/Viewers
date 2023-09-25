@@ -131,30 +131,20 @@ const CornerstoneViewportUpload = ({ servicesManager, width, height }) => {
         `div[data-viewport-uid="${UPLOAD_VIEWPORT_ID}"]`
       );
       html2canvas(divForDownloadViewport).then(canvas => {
-        const base64 = canvas.toDataURL('image/png', 1.0);
-        ohifChannel.postMessage({
-          eventName: BROADCAST_EVENT_NAMES.UPLOAD_CAPTURE_IMAGE,
-          data: {
-            imageBase64: base64,
-          },
-        });
-        outViewLayer.hide();
-        return;
-        const link = document.createElement('a');
-        link.download = 'image.png';
-        link.href = base64;
-        link.click();
+        const postOHIFData = (data) => {
+          const postEvent = {
+            eventName: BROADCAST_EVENT_NAMES.UPLOAD_CAPTURE_IMAGE,
+            data,
+          };
+          (window.opener || window.parent)?.postMessage(postEvent, '*');
+          console.log(!!window.opener, !!window.parent, BROADCAST_EVENT_NAMES.UPLOAD_CAPTURE_IMAGE);
+          ohifChannel.postMessage(postEvent);
+          outViewLayer.hide();
+        }
+        canvas.toBlob(postOHIFData);
+        // const base64 = canvas.toDataURL('image/png', 1.0);
+        // postOHIFData(base64);
       });
-
-      // window.opener
-      //   ? window.opener.postMessage({
-      //       eventName: 'POST_UPLOAD_IMAGE',
-      //       data: 'POST_UPLOAD_IMAGE',
-      //     }, '*')
-      //   : window.parent.postMessage({
-      //       eventName: 'POST_UPLOAD_IMAGE',
-      //       data: 'POST_UPLOAD_IMAGE',
-      //     }, '*')
     }
   };
 
