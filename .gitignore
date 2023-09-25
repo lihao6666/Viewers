@@ -25,11 +25,6 @@ yarn-error.log
 .env
 *.code-workspace
 
-# 前端开发修改的一些配置文件 2023-09-10
-netlify.toml
-webpack.pwa.js
-nginx.conf
-
 # Common Example Data Directories
 sampledata/
 example/deps/
