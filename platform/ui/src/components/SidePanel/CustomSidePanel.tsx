@@ -229,6 +229,7 @@ const SidePanel = ({
             // 'pl-1 pr-1 pt-1': side === 'left',
           }
         )}
+        style={{width: 252}}
       >
         {tabs.length > 1 &&
           _getMoreThanOneTabLayout(
@@ -345,7 +346,7 @@ function _getMoreThanOneTabLayout(
                     }}
                   />
                 </span>
-                <span className="text-[10px] select-none font-medium whitespace-nowrap mt-[5px]">
+                <span className="text-[10px] select-none font-medium whitespace-nowrap mt-[5px] w-[100px]">
                   {obj.label}
                 </span>
               </div>

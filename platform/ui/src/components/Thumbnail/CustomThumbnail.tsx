@@ -82,7 +82,7 @@ const Thumbnail = ({
       role="button"
       // tabIndex="0"
     >
-      <div className="series-part-layer flex">
+      <div className="flex">
         <div className="flex flex-col mr-2 py-1">
           <div
             className={classnames(
@@ -130,7 +130,7 @@ const Thumbnail = ({
             {renderViewportLabels()}
           </div>
         </div>
-        <div className="series-part-layer">
+        <div className="series-part-layer flex-1">
           <div ref={drag} className="series-item relative">
             <div
               className={classnames(

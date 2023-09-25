@@ -140,7 +140,7 @@ function PanelStudyBrowserTracking({
         });
       }
     });
-  }, [displaySetService, dataSource, getImageSrc]);
+  }, [displaySetService, dataSource]); // displaySetService, dataSource, getImageSrc
 
   // ~~ displaySets
   useEffect(() => {
