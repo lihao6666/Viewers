@@ -77,7 +77,10 @@ function Header({
             onClick={onClickReturn}
           >
             {isReturnEnabled && (
-              <Icon name="chevron-left" className="w-8 text-primary-active" />
+              <Icon
+                name="chevron-left"
+                className="text-primary-active w-8"
+              />
             )}
             <div className="flex items-center h-full">
               {WhiteLabeling?.createLogoComponentFn?.(React, {

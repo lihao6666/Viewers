@@ -37,14 +37,7 @@ const StudyBrowser = ({
   const getTabContent = () => {
     const tabData = tabs.find(tab => tab.name === activeTabName);
     return tabData.studies.map(
-      ({
-        studyInstanceUid,
-        date,
-        description,
-        numInstances,
-        modalities,
-        displaySets,
-      }) => {
+      ({ studyInstanceUid, date, description, numInstances, modalities, displaySets }) => {
         const isExpanded = expandedStudyInstanceUIDs.includes(studyInstanceUid);
         return (
           <React.Fragment key={studyInstanceUid}>
@@ -97,7 +90,7 @@ const StudyBrowser = ({
             return (
               <LegacyButton
                 key={name}
-                className={'text-white text-base p-2 min-w-18'}
+                className={'min-w-18 p-2 text-base text-white'}
                 size="initial"
                 color={color}
                 bgColor={isActive ? 'bg-primary-main' : 'bg-black'}
@@ -148,11 +141,8 @@ StudyBrowser.propTypes = {
               seriesNumber: StringNumber,
               numInstances: PropTypes.number,
               description: PropTypes.string,
-              componentType: PropTypes.oneOf([
-                'thumbnail',
-                'thumbnailTracked',
-                'thumbnailNoImage',
-              ]).isRequired,
+              componentType: PropTypes.oneOf(['thumbnail', 'thumbnailTracked', 'thumbnailNoImage'])
+                .isRequired,
               isTracked: PropTypes.bool,
               viewportIdentificator: PropTypes.arrayOf(PropTypes.string),
               /**

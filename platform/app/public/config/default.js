@@ -47,9 +47,6 @@ window.config = {
         // wadoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
 
         // new server
-        // wadoUriRoot: '/pacs/wado',
-        // qidoRoot: '/pacs/dicom-web',
-        // wadoRoot: '/pacs/dicom-web',
         wadoUriRoot: '/apis/pacs/wado',
         qidoRoot: '/apis/pacs/dicom-web',
         wadoRoot: '/apis/pacs/dicom-web',

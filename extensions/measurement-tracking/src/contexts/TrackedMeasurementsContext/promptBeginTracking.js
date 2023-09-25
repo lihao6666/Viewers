@@ -11,7 +11,7 @@ const RESPONSE = {
 
 function promptBeginTracking({ servicesManager, extensionManager }, ctx, evt) {
   const { uiViewportDialogService } = servicesManager.services;
-  const { viewportIndex, StudyInstanceUID, SeriesInstanceUID } = evt;
+  const { viewportId, StudyInstanceUID, SeriesInstanceUID } = evt;
 
   return new Promise(async function(resolve, reject) {
     if (isMobile) {
@@ -19,27 +19,27 @@ function promptBeginTracking({ servicesManager, extensionManager }, ctx, evt) {
         userResponse: RESPONSE.SET_STUDY_AND_SERIES,
         StudyInstanceUID,
         SeriesInstanceUID,
-        viewportIndex,
+        viewportId,
       });
       return;
     }
 
     let promptResult = await _askTrackMeasurements(
       uiViewportDialogService,
-      viewportIndex
+      viewportId
     );
 
     resolve({
       userResponse: promptResult,
       StudyInstanceUID,
       SeriesInstanceUID,
-      viewportIndex,
+      viewportId,
     });
   });
 }
 
-function _askTrackMeasurements(uiViewportDialogService, viewportIndex) {
-  return new Promise(function(resolve, reject) {
+function _askTrackMeasurements(uiViewportDialogService, viewportId) {
+  return new Promise(function (resolve, reject) {
     const message = 'Track measurements for this series?';
     const actions = [
       {
@@ -67,7 +67,7 @@ function _askTrackMeasurements(uiViewportDialogService, viewportIndex) {
     };
 
     uiViewportDialogService.show({
-      viewportIndex,
+      viewportId,
       id: 'measurement-tracking-prompt-begin-tracking',
       type: 'info',
       message,

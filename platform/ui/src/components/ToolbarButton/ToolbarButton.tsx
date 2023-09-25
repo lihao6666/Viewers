@@ -42,11 +42,7 @@ const ToolbarButton = ({
 
   const activeClass = isActive ? 'active' : '';
   const shouldShowDropdown = !!isActive && !!dropdownContent;
-  const iconEl = icon ? (
-    <Icon name={icon} />
-  ) : (
-    <div>{label || 'Missing icon and label'}</div>
-  );
+  const iconEl = icon ? <Icon name={icon} /> : <div>{label || 'Missing icon and label'}</div>;
   const iconBtnNode = (
     <IconButton
       variant={isActive ? 'contained' : 'text'}
