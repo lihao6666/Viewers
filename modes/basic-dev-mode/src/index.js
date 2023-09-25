@@ -84,18 +84,18 @@ function modeFactory({ modeConfiguration }) {
           { toolName: toolNames.CalibrationLine },
         ],
         // enabled
+        enabled: [{ toolName: toolNames.ImageOverlayViewer }],
         // disabled
       };
 
       const toolGroupId = 'default';
-      toolGroupService.createToolGroupAndAddTools(toolGroupId, tools, configs);
+      toolGroupService.createToolGroupAndAddTools(toolGroupId, tools);
 
       let unsubscribe;
 
       const activateTool = () => {
         toolbarService.recordInteraction({
           groupId: 'WindowLevel',
-          itemId: 'WindowLevel',
           interactionType: 'tool',
           commands: [
             {

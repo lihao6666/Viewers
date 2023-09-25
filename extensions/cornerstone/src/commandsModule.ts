@@ -265,8 +265,7 @@ function commandsModule({
     toolbarServiceRecordInteraction: props => {
       toolbarService.recordInteraction(props);
     },
-
-    setToolActive: ({ toolName, toolGroupId = null }) => {
+    setToolActive: ({ toolName, toolGroupId = null, toggledState }) => {
       if (toolName === 'Crosshairs') {
         const activeViewportToolGroup = toolGroupService.getToolGroup(null);
 
@@ -327,6 +326,14 @@ function commandsModule({
           toolGroup.setToolPassive(activeToolName);
         }
       }
+
+      // If there is a toggle state, then simply set the enabled/disabled state without
+      // setting the tool active.
+      if (toggledState != null) {
+        toggledState ? toolGroup.setToolEnabled(toolName) : toolGroup.setToolDisabled(toolName);
+        return;
+      }
+
       // Set the new toolName to be active
       toolGroup.setToolActive(toolName, {
         bindings: [
@@ -547,16 +554,12 @@ function commandsModule({
         toggledState,
       });
     },
-    toggleReferenceLines: ({ toggledState }) => {
+    setSourceViewportForReferenceLinesTool: ({ toggledState }) => {
       const { activeViewportId } = viewportGridService.getState();
       const viewportInfo = cornerstoneViewportService.getViewportInfo(activeViewportId);
 
       const viewportId = viewportInfo.getViewportId();
       const toolGroup = toolGroupService.getToolGroupForViewport(viewportId);
-
-      if (!toggledState) {
-        toolGroup.setToolDisabled(ReferenceLinesTool.toolName);
-      }
 
       toolGroup.setToolConfiguration(
         ReferenceLinesTool.toolName,
@@ -565,7 +568,6 @@ function commandsModule({
         },
         true // overwrite
       );
-      toolGroup.setToolEnabled(ReferenceLinesTool.toolName);
     },
     storePresentation: ({ viewportId }) => {
       cornerstoneViewportService.storePresentation({ viewportId });
@@ -692,8 +694,8 @@ function commandsModule({
     toggleStackImageSync: {
       commandFn: actions.toggleStackImageSync,
     },
-    toggleReferenceLines: {
-      commandFn: actions.toggleReferenceLines,
+    setSourceViewportForReferenceLinesTool: {
+      commandFn: actions.setSourceViewportForReferenceLinesTool,
     },
     storePresentation: {
       commandFn: actions.storePresentation,
