@@ -46,10 +46,10 @@ pipeline {
 
   post {
     failure {
-        slackSend (color: 'warning', message: "ohif-v3镜像构建失败，版本号：$CI_OHIF_TAG，更新描述：$CI_OHIF_DESC")
+        slackSend (color: 'warning', message: "ohif-v3镜像构建失败，版本号：$CI_OHIF_TAG" + "，更新描述：$CI_OHIF_DESC")
     }
     success {
-        slackSend (color: 'good', message: "ohif-v3镜像构建成功，版本号：$CI_OHIF_TAG，更新描述：$CI_OHIF_DESC")
+        slackSend (color: 'good', message: "ohif-v3镜像构建成功，版本号：$CI_OHIF_TAG" + "，更新描述：$CI_OHIF_DESC")
     }
   }
 }
