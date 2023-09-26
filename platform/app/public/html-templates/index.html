@@ -1,5 +1,5 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="zh-CN" class="overflow-hidden">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -26,18 +26,12 @@
       name="apple-mobile-web-app-status-bar-style"
       content="black-translucent"
     />
-    <meta
-      name="apple-mobile-web-app-title"
-      content="@ohif/app"
-    />
-    <meta
-      name="msapplication-TileColor"
-      content="#fff"
-    />
-    <meta
+    <meta name="apple-mobile-web-app-title" content="@ohif/app" />
+    <meta name="msapplication-TileColor" content="#fff" />
+    <!-- <meta
       name="msapplication-TileImage"
       content="<%= PUBLIC_URL %>assets/mstile-144x144.png"
-    />
+    /> -->
     <meta
       name="msapplication-config"
       content="<%= PUBLIC_URL %>assets/browserconfig.xml"
@@ -47,11 +41,9 @@
       href="<%= PUBLIC_URL %>manifest.json"
     />
 
-    <link
-      rel="shortcut icon"
-      href="<%= PUBLIC_URL %>assets/favicon.ico"
-    />
-    <link
+    <!-- <link rel="shortcut icon" href="<%= PUBLIC_URL %>assets/favicon.ico" /> -->
+    <link rel="shortcut icon" href="<%= PUBLIC_URL %>assets/icon.png" />
+    <!-- <link
       rel="icon"
       type="image/png"
       sizes="16x16"
@@ -173,7 +165,7 @@
       type="image/png"
       sizes="228x228"
       href="<%= PUBLIC_URL %>assets/coast-228x228.png"
-    />
+    /> -->
     <link
       rel="yandex-tableau-widget"
       href="<%= PUBLIC_URL %>assets/yandex-browser-manifest.json"
@@ -186,6 +178,7 @@
     <script type="text/javascript">
       window.PUBLIC_URL = '<%= PUBLIC_URL %>';
     </script>
+    <script type="text/javascript" src="<%= PUBLIC_URL %>assets/js/customWhiteLabeling.js"></script>
     <script
       rel="preload"
       as="script"
@@ -199,7 +192,7 @@
       src="<%= PUBLIC_URL %>init-service-worker.js"
     ></script>
 
-    <title>OHIF Viewer</title>
+    <title>USTCFQ Viewer</title>
 
     <!-- WEB FONTS -->
     <link

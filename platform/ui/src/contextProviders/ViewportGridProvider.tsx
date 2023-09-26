@@ -4,6 +4,10 @@ import merge from 'lodash.merge';
 import PropTypes from 'prop-types';
 import { ViewportGridService, utils } from '@ohif/core';
 import viewportLabels from '../utils/viewportLabels';
+const winWidth =
+  window.innerWidth ||
+  document.documentElement.clientWidth ||
+  document.body.clientWidth;
 
 interface Viewport {
   viewportId: string;
@@ -28,10 +32,16 @@ interface DefaultState {
   activeViewportId: string | null;
   layout: Layout;
   viewports: Map<string, Viewport>;
+  leftPanelOpen: boolean;
+  rightPanelOpen: boolean;
+  showTagsBrowser: boolean;
 }
 
 const DEFAULT_STATE: DefaultState = {
   activeViewportId: null,
+  leftPanelOpen: winWidth > 1360 ? true : false,
+  rightPanelOpen: false,
+  showTagsBrowser: true,
   layout: {
     numRows: 0,
     numCols: 0,

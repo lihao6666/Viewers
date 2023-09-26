@@ -74,6 +74,8 @@ import LoadingIndicatorProgress from './LoadingIndicatorProgress';
 import LoadingIndicatorTotalPercent from './LoadingIndicatorTotalPercent';
 import ViewportActionBar from './ViewportActionBar';
 import ProgressLoadingBar from './ProgressLoadingBar';
+import OutViewLayer from './OutViewLayer';
+import SettingMenuItem from './SettingMenuItem';
 import LegacySidePanel from './LegacySidePanel';
 import PanelSection from './PanelSection';
 import AdvancedToolbox from './AdvancedToolbox';
@@ -163,4 +165,6 @@ export {
   ViewportPane,
   ViewportOverlay,
   WindowLevelMenuItem,
+  OutViewLayer,
+  SettingMenuItem,
 };

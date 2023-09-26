@@ -23,8 +23,7 @@ const DISPLAY_STUDY_SUMMARY_INITIAL_VALUE = {
   modality: '', // 'CT',
   description: '', // 'CHEST/ABD/PELVIS W CONTRAST',
 };
-
-function PanelMeasurementTableTracking({ servicesManager, extensionManager }) {
+function PanelMeasurementTableTracking({ servicesManager, commandsManager, extensionManager }) {
   const [viewportGrid] = useViewportGrid();
   const [measurementChangeTimestamp, setMeasurementsUpdated] = useState(Date.now().toString());
   const debouncedMeasurementChangeTimestamp = useDebounce(measurementChangeTimestamp, 200);
@@ -216,7 +215,7 @@ function PanelMeasurementTableTracking({ servicesManager, extensionManager }) {
   return (
     <>
       <div
-        className="invisible-scrollbar overflow-y-auto overflow-x-hidden"
+        className="overflow-x-hidden overflow-y-auto w-full invisible-scrollbar"
         ref={measurementsPanelRef}
         data-cy={'trackedMeasurements-panel'}
       >
@@ -231,6 +230,7 @@ function PanelMeasurementTableTracking({ servicesManager, extensionManager }) {
           title="Measurements"
           data={displayMeasurementsWithoutFindings}
           servicesManager={servicesManager}
+          commandsManager={commandsManager}
           onClick={jumpToImage}
           onEdit={onMeasurementItemEditHandler}
         />
@@ -239,12 +239,13 @@ function PanelMeasurementTableTracking({ servicesManager, extensionManager }) {
             title="Additional Findings"
             data={additionalFindings}
             servicesManager={servicesManager}
+            commandsManager={commandsManager}
             onClick={jumpToImage}
             onEdit={onMeasurementItemEditHandler}
           />
         )}
       </div>
-      <div className="flex justify-center p-4">
+      <div className="flex justify-center p-4 w-full">
         <ActionButtons
           onExportClick={exportReport}
           onCreateReportClick={() => {

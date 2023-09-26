@@ -104,19 +104,33 @@ function ViewerLayout({
   const rightPanelComponents = rightPanels.map(getPanelData);
   const viewportComponents = viewports.map(getViewportComponentData);
 
+  // const clickHandlerCrossSwiper = (event: any) => {
+  //   const ev = new CustomEvent('CROSS_SWIPER_EVENT', {
+  //     detail: {
+  //       target: event.target,
+  //     },
+  //   });
+  //   window.dispatchEvent(ev);
+  //   UIViewportDialogService?.onOutsideClick?.();
+  // };
+
   return (
     <div>
       <ViewerHeader
         hotkeysManager={hotkeysManager}
         extensionManager={extensionManager}
         servicesManager={servicesManager}
+        commandsManager={commandsManager}
       />
       <div
-        className="relative flex w-full flex-row flex-nowrap items-stretch overflow-hidden bg-black"
-        style={{ height: 'calc(100vh - 52px' }}
+        className="bg-black flex flex-row items-stretch w-full overflow-hidden flex-nowrap relative"
+        style={{ height: 'calc(100vh - 60px' }}
       >
         <React.Fragment>
-          {showLoadingIndicator && <LoadingIndicatorProgress className="h-full w-full bg-black" />}
+          {showLoadingIndicator && (
+            <LoadingIndicatorProgress className="h-full w-full bg-black" />
+          )}
+          {/* <LoadingIndicatorProgress className="h-full w-full bg-black" /> */}
           {/* LEFT SIDEPANELS */}
           {leftPanelComponents.length ? (
             <ErrorBoundary context="Left Panel">
@@ -129,8 +143,8 @@ function ViewerLayout({
             </ErrorBoundary>
           ) : null}
           {/* TOOLBAR + GRID */}
-          <div className="flex h-full flex-1 flex-col">
-            <div className="relative flex h-full flex-1 items-center justify-center overflow-hidden bg-black">
+          <div className="flex flex-col flex-1 h-full p-1">
+            <div className="flex items-center justify-center flex-1 h-full overflow-hidden bg-black relative">
               <ErrorBoundary context="Grid">
                 <ViewportGridComp
                   servicesManager={servicesManager}

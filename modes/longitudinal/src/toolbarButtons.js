@@ -232,6 +232,21 @@ const toolbarButtons = [
           ],
           'Circle Tool'
         ),
+        _createToolButton(
+          'Rectangle',
+          'tool-rectangle',
+          'Rectangle',
+          [
+            {
+              commandName: 'setToolActive',
+              commandOptions: {
+                toolName: 'RectangleROI',
+              },
+              context: 'CORNERSTONE',
+            },
+          ],
+          'Rectangle'
+        ),
       ],
     },
   },
@@ -299,7 +314,8 @@ const toolbarButtons = [
     id: 'Capture',
     type: 'ohif.action',
     props: {
-      icon: 'tool-capture',
+      // icon: 'tool-capture',
+      icon: 'upload-cloud',
       label: 'Capture',
       type: 'action',
       commands: [
@@ -332,6 +348,22 @@ const toolbarButtons = [
           commandOptions: {
             protocolId: 'mpr',
           },
+          context: 'DEFAULT',
+        },
+      ],
+    },
+  },
+  // 四角信息
+  {
+    id: 'CornerInfo',
+    type: 'ohif.cornerInfoButton',
+    props: {
+      icon: 'check-selected',
+      label: 'Corner Information',
+      commands: [
+        {
+          commandName: 'toggleOpenTagsBrowser',
+          commandOptions: {},
           context: 'DEFAULT',
         },
       ],
@@ -451,23 +483,23 @@ const toolbarButtons = [
             },
           ]
         ),
-        _createToggleButton(
-          'ImageOverlayViewer',
-          'toggle-dicom-overlay',
-          'Image Overlay',
-          [
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'ImageOverlayViewer',
-              },
-              context: 'CORNERSTONE',
-            },
-          ],
-          'Image Overlay',
-          null,
-          true
-        ),
+        // _createToggleButton(
+        //   'ImageOverlayViewer',
+        //   'toggle-dicom-overlay',
+        //   'Image Overlay',
+        //   [
+        //     {
+        //       commandName: 'setToolActive',
+        //       commandOptions: {
+        //         toolName: 'ImageOverlayViewer',
+        //       },
+        //       context: 'CORNERSTONE',
+        //     },
+        //   ],
+        //   'Image Overlay',
+        //   null,
+        //   true
+        // ),
         _createToolButton(
           'StackScroll',
           'tool-stack-scroll',
@@ -586,21 +618,6 @@ const toolbarButtons = [
           'Magnify'
         ),
         _createToolButton(
-          'Rectangle',
-          'tool-rectangle',
-          'Rectangle',
-          [
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'RectangleROI',
-              },
-              context: 'CORNERSTONE',
-            },
-          ],
-          'Rectangle'
-        ),
-        _createToolButton(
           'CalibrationLine',
           'tool-calibration',
           'Calibration',
@@ -628,6 +645,22 @@ const toolbarButtons = [
           ],
           'Dicom Tag Browser'
         ),
+      ],
+    },
+  },
+  // Settings
+  {
+    id: 'Settings',
+    type: 'ohif.toggle',
+    props: {
+      icon: 'settings',
+      label: 'Settings',
+      commands: [
+        {
+          commandName: 'toggleOpenPreferences',
+          commandOptions: {},
+          context: 'DEFAULT',
+        },
       ],
     },
   },

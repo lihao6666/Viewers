@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, forwardRef, useState, useCallback } from 'react';
 import classnames from 'classnames';
 
-export default function Toolbar({ servicesManager }) {
+const Toolbar = ({ servicesManager }, propRef) => {
   const { toolbarService } = servicesManager.services;
   const [toolbarButtons, setToolbarButtons] = useState([]);
 
@@ -36,10 +36,13 @@ export default function Toolbar({ servicesManager }) {
               {...componentProps}
               onInteraction={onInteraction}
               servicesManager={servicesManager}
+              ref={propRef}
             />
           </div>
         );
       })}
     </>
   );
-}
+};
+
+export default forwardRef(Toolbar);

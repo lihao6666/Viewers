@@ -18,6 +18,10 @@ import Services from '../types/Services';
 import StateSyncService from './StateSyncService';
 import PanelService from './PanelService';
 
+// 渲染图片成
+import UIOutViewLayerService from './UIOutViewLayerService';
+import ParseTagsService from './ParseTagsService';
+
 export {
   Services,
   MeasurementService,
@@ -38,4 +42,7 @@ export {
   PubSubService,
   UserAuthenticationService,
   PanelService,
+  // 添加
+  UIOutViewLayerService,
+  ParseTagsService,
 };

@@ -149,6 +149,11 @@ module.exports = (env, argv) => {
       // compress: true,
       // http2: true,
       // https: true,
+      allowedHosts: [
+        '.cloud-ustcfq.com',
+        'workstation-front-dev.cloud-ustcfq.com'
+      ],
+      // disableHostCheck: true,
       open: true,
       port: 3000,
       client: {
@@ -178,7 +183,6 @@ module.exports = (env, argv) => {
       headers: {
         'Cross-Origin-Embedder-Policy': 'require-corp',
         'Cross-Origin-Opener-Policy': 'same-origin',
-        'Cross-Origin-Resource-Policy': 'cross-origin',
       },
     },
   });

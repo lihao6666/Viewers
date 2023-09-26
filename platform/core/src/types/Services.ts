@@ -8,6 +8,7 @@ import {
   StateSyncService,
   UINotificationService,
   UIModalService,
+  UIOutViewLayerService,
 } from '../services';
 
 /**
@@ -33,4 +34,5 @@ export default interface Services {
   cornerstoneCacheService?: unknown;
   segmentationService?: unknown;
   panelService?: unknown;
+  uiOutViewLayerService?: UIOutViewLayerService;
 }

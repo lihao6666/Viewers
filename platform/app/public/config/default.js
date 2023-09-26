@@ -3,8 +3,12 @@ window.config = {
   // whiteLabeling: {},
   extensions: [],
   modes: [],
-  customizationService: {},
-  showStudyList: true,
+  customizationService: {
+    // Shows a custom route -access via http://localhost:3000/custom
+    // helloPage: '@ohif/extension-default.customizationModule.helloPage',
+  },
+  // 是否能返回列表
+  showStudyList: false,
   // some windows systems have issues with more than 3 web workers
   maxNumberOfWebWorkers: 3,
   // below flag is for performance reasons, but it might not work for all servers
@@ -46,6 +50,9 @@ window.config = {
         wadoUriRoot: '/apis/pacs/wado',
         qidoRoot: '/apis/pacs/dicom-web',
         wadoRoot: '/apis/pacs/dicom-web',
+        // wadoUriRoot: '/pacs/wado',
+        // qidoRoot: '/pacs/dicom-web',
+        // wadoRoot: '/pacs/dicom-web',
         qidoSupportsIncludeField: false,
         imageRendering: 'wadors',
         thumbnailRendering: 'wadors',
@@ -142,7 +149,11 @@ window.config = {
   //       ))
   //   },
   // },
-  hotkeys: [{
+  whiteLabeling: {
+    ...(window.customWhiteLabeling || {}),
+  },
+  hotkeys: [
+    {
       commandName: 'incrementActiveViewport',
       label: 'Next Viewport',
       keys: ['right'],

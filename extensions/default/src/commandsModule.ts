@@ -1,17 +1,18 @@
-import { ServicesManager, utils, Types } from '@ohif/core';
-
+import { ServicesManager, utils, Types, hotkeys } from '@ohif/core';
+import { UserPreferences } from '@ohif/ui';
 import { ContextMenuController, defaultContextMenu } from './CustomizableContextMenu';
 import DicomTagBrowser from './DicomTagBrowser/DicomTagBrowser';
 import reuseCachedLayouts from './utils/reuseCachedLayouts';
 import findViewportsByPosition, {
   findOrCreateViewport as layoutFindOrCreate,
 } from './findViewportsByPosition';
-
+import i18n from '@ohif/i18n';
 import { ContextMenuProps } from './CustomizableContextMenu/types';
 import { NavigateHistory } from './types/commandModuleTypes';
 import { history } from '@ohif/app';
 
 const { subscribeToNextViewportGridChange } = utils;
+const { availableLanguages, defaultLanguage, currentLanguage } = i18n;
 
 export type HangingProtocolParams = {
   protocolId?: string;
@@ -37,6 +38,7 @@ const isHangingProtocolCommand = command =>
 const commandsModule = ({
   servicesManager,
   commandsManager,
+  hotkeysManager,
 }: Types.Extensions.ExtensionParams): Types.Extensions.CommandsModule => {
   const {
     customizationService,
@@ -47,6 +49,7 @@ const commandsModule = ({
     displaySetService,
     stateSyncService,
     toolbarService,
+    uiModalService
   } = (servicesManager as ServicesManager).services;
 
   // Define a context menu controller for use with any context menus
@@ -498,7 +501,7 @@ const commandsModule = ({
       const { displaySetInstanceUIDs } = activeViewportSpecificData;
 
       const displaySets = displaySetService.activeDisplaySets;
-      const { UIModalService } = servicesManager.services;
+      const { UIModalService, ParseTagsService } = servicesManager.services;
 
       const displaySetInstanceUID = displaySetInstanceUIDs[0];
       UIModalService.show({
@@ -507,8 +510,56 @@ const commandsModule = ({
           displaySets,
           displaySetInstanceUID,
           onClose: UIModalService.hide,
+          ParseTagsService,
         },
         title: 'DICOM Tag Browser',
+      });
+    },
+
+    // 切换左右的panel
+    toggleOpenPanel({ side = 'left' }) {
+      const panelField = `${side}PanelOpen`;
+      const veiwportState = viewportGridService.getState();
+      viewportGridService.set({
+        [panelField]: !veiwportState[panelField],
+      });
+    },
+
+    // 打开偏好设置
+    toggleOpenPreferences() {
+      const { hotkeyDefinitions, hotkeyDefaults } = hotkeysManager;
+      uiModalService.show({
+        title: i18n.t('UserPreferencesModal:User Preferences'),
+        content: UserPreferences,
+        contentProps: {
+          hotkeyDefaults: hotkeysManager.getValidHotkeyDefinitions(
+            hotkeyDefaults
+          ),
+          hotkeyDefinitions,
+          currentLanguage: currentLanguage(),
+          availableLanguages,
+          defaultLanguage,
+          onCancel: () => {
+            hotkeys.stopRecord();
+            hotkeys.unpause();
+            uiModalService.hide();
+          },
+          onSubmit: ({ hotkeyDefinitions, language }) => {
+            i18n.changeLanguage(language.value);
+            hotkeysManager.setHotkeys(hotkeyDefinitions);
+            uiModalService.hide();
+          },
+          onReset: () => hotkeysManager.restoreDefaultBindings(),
+          hotkeysModule: hotkeys,
+        },
+      });
+    },
+
+    // 切换显示tag信息
+    toggleOpenTagsBrowser() {
+      const veiwportState = viewportGridService.getState();
+      viewportGridService.set({
+        showTagsBrowser: !veiwportState.showTagsBrowser,
       });
     },
 
@@ -678,9 +729,21 @@ const commandsModule = ({
     openDICOMTagViewer: {
       commandFn: actions.openDICOMTagViewer,
     },
+    toggleOpenPanel: {
+      commandFn: actions.toggleOpenPanel,
+      options: {},
+    },
     updateViewportDisplaySet: {
       commandFn: actions.updateViewportDisplaySet,
       storeContexts: [],
+      options: {},
+    },
+    toggleOpenPreferences: {
+      commandFn: actions.toggleOpenPreferences,
+      options: {},
+    },
+    toggleOpenTagsBrowser: {
+      commandFn: actions.toggleOpenTagsBrowser,
       options: {},
     },
   };

@@ -1,2 +1,2 @@
-import ViewportActionBar from './ViewportActionBar';
-export default ViewportActionBar;
+import CustomViewportActionBar from './CustomViewportActionBar';
+export default CustomViewportActionBar;

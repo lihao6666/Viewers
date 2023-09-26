@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 import MeasurementItem from './MeasurementItem';
 
-const MeasurementTable = ({ data, title, onClick, onEdit, servicesManager }) => {
+const MeasurementTable = ({ data, title, onClick, onEdit, servicesManager, commandsManager }) => {
   servicesManager = servicesManager as ServicesManager;
   const { customizationService } = servicesManager.services;
   const { t } = useTranslation('MeasurementTable');
@@ -16,6 +16,13 @@ const MeasurementTable = ({ data, title, onClick, onEdit, servicesManager }) => 
     contentProps: {},
   });
   const CustomMeasurementItem = itemCustomization.content;
+
+  const onDelete = options => {
+    commandsManager.run({
+      commandName: 'deleteMeasurement',
+      commandOptions: options,
+    });
+  };
 
   return (
     <div>
@@ -36,6 +43,7 @@ const MeasurementTable = ({ data, title, onClick, onEdit, servicesManager }) => 
               item={measurementItem}
               onClick={onClick}
               onEdit={onEdit}
+              onDelete={onDelete}
             />
           ))}
         {data.length === 0 && (

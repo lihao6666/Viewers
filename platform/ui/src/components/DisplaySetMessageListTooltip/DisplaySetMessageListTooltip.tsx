@@ -9,7 +9,11 @@ import { useTranslation } from 'react-i18next';
  * @param param0
  * @returns
  */
-const DisplaySetMessageListTooltip = ({ messages, id }): React.ReactNode => {
+const DisplaySetMessageListTooltip = ({
+  messages,
+  id,
+  ...rest
+}): React.ReactNode => {
   const { t } = useTranslation('Messages');
   const [isOpen, setIsOpen] = useState(false);
   if (messages?.size()) {
@@ -22,6 +26,7 @@ const DisplaySetMessageListTooltip = ({ messages, id }): React.ReactNode => {
           onMouseOut={() => setIsOpen(false)}
           onBlur={() => setIsOpen(false)}
           name="status-alert-warning"
+          {...rest}
         />
         <PortalTooltip
           active={isOpen}

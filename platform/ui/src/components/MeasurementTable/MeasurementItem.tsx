@@ -4,7 +4,7 @@ import classnames from 'classnames';
 
 import Icon from '../Icon';
 
-const MeasurementItem = ({ uid, index, label, displayText, isActive, onClick, onEdit, item }) => {
+const MeasurementItem = ({ uid, index, label, displayText, isActive, onClick, onEdit, onDelete, item }) => {
   const [isHovering, setIsHovering] = useState(false);
 
   const onEditHandler = event => {
@@ -40,28 +40,42 @@ const MeasurementItem = ({ uid, index, label, displayText, isActive, onClick, on
       >
         {index}
       </div>
-      <div className="relative flex flex-1 flex-col px-2 py-1">
-        <span className="text-primary-light mb-1 text-base">{label}</span>
+      <div className="relative flex flex-col flex-1 px-2 py-1">
+        <span className="mb-1 text-base text-primary-light break-all">{label}</span>
         {displayText.map((line, i) => (
           <span
             key={i}
-            className="border-primary-light border-l pl-2 text-base text-white"
+            className="pl-2 text-base text-white border-l border-primary-light break-all"
             dangerouslySetInnerHTML={{ __html: line }}
           ></span>
         ))}
         <Icon
           className={classnames(
-            'absolute w-4 cursor-pointer text-white transition duration-300',
-            { 'invisible mr-2 opacity-0': !isActive && !isHovering },
-            { 'opacity-1 visible': !isActive && isHovering }
+            'text-white w-4 absolute cursor-pointer transition duration-300 visible opacity-1'
+            // { 'invisible opacity-0': !isActive && !isHovering },
+            // { 'visible opacity-1': !isActive && isHovering }
           )}
           name="pencil"
           style={{
             top: 4,
             right: 4,
-            transform: isActive || isHovering ? '' : 'translateX(100%)',
+            // transform: isActive || isHovering ? '' : 'translateX(100%)',
           }}
           onClick={onEditHandler}
+        />
+        <Icon
+          className={classnames(
+            'text-white text-2lg w-4 absolute cursor-pointer transition duration-300 visible opacity-1',
+            // { 'invisible opacity-0': !isHovering },
+            // { 'visible opacity-1': isHovering }
+          )}
+          name="icon-trash"
+          style={{
+            bottom: 4,
+            right: 4,
+            // transform: isHovering ? '' : 'translateX(100%)',
+          }}
+          onClick={() => onDelete({ uid: item.uid })}
         />
       </div>
     </div>

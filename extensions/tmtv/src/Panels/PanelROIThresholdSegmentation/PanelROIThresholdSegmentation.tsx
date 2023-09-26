@@ -169,8 +169,8 @@ export default function PanelRoiThresholdSegmentation({ servicesManager, command
   return (
     <>
       <div className="flex flex-col">
-        <div className="invisible-scrollbar overflow-y-auto overflow-x-hidden">
-          <div className="mx-4 my-4 mb-4 flex space-x-4">
+        <div className="overflow-x-hidden overflow-y-auto w-full invisible-scrollbar">
+          <div className="flex mx-4 my-4 mb-4 space-x-4">
             <Button
               onClick={() => {
                 setLabelmapLoading(true);

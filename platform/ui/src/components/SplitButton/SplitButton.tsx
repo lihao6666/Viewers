@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import OutsideClickHandler from 'react-outside-click-handler';
@@ -82,6 +82,8 @@ const SplitButton = ({
   Component,
 }) => {
   const { t } = useTranslation('Buttons');
+  const splitBtnRef = useRef();
+  // const { toolbarService } = servicesManager?.services || {};
   const [state, setState] = useState({ isHovering: false, isExpanded: false });
 
   const toggleExpanded = () => setState({ ...state, isExpanded: !state.isExpanded });
@@ -101,15 +103,30 @@ const SplitButton = ({
     />
   );
 
+  useEffect(() => {
+    const customCrossSwiperCb = (event: any) => {
+      const eventData = event.detail;
+      const { target } = eventData;
+      const splitBtnNode = splitBtnRef.current;
+      if (splitBtnNode && !splitBtnNode.contains(target)) {
+        collapse();
+      }
+    };
+    window.addEventListener('CROSS_SWIPER_EVENT', customCrossSwiperCb, false);
+    return () => {
+      window.removeEventListener(
+        'CROSS_SWIPER_EVENT',
+        customCrossSwiperCb,
+        false
+      );
+    };
+  }, []);
   return (
     <OutsideClickHandler
       onOutsideClick={collapse}
       disabled={!state.isExpanded}
     >
-      <div
-        id="SplitButton"
-        className="relative"
-      >
+      <div name="SplitButton" className="relative" ref={splitBtnRef}>
         <div
           className={classes.Button({ ...state, primary: { isActive } })}
           style={{ height: '40px' }}
@@ -138,7 +155,10 @@ const SplitButton = ({
           </div>
         </div>
         <div
-          className={classes.Content({ ...state })}
+          className={classNames(classes.Content({ ...state }), {
+            'right-0': groupId === 'MoreTools',
+            'left-0': groupId === 'MeasurementTools',
+          })}
           data-cy={`${groupId}-list-menu`}
         >
           <ListMenu

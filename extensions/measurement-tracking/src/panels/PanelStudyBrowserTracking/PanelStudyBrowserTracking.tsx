@@ -142,7 +142,7 @@ function PanelStudyBrowserTracking({
         return { ...prevState, ...newImageSrcEntry };
       });
     });
-  }, [displaySetService, dataSource, getImageSrc]);
+  }, [displaySetService, dataSource]); // displaySetService, dataSource, getImageSrc
 
   // ~~ displaySets
   useEffect(() => {

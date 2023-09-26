@@ -152,11 +152,9 @@ const Dropdown = ({
       data-cy="dropdown"
       ref={element}
       className="relative"
+      style={{ height: 26 }}
     >
-      <div
-        className="flex cursor-pointer items-center"
-        onClick={toggleList}
-      >
+      <div className="flex items-center cursor-pointer" onClick={toggleList}>
         {renderTitleElement()}
       </div>
 

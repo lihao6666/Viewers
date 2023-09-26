@@ -13,6 +13,7 @@ import {
 import { Types as OhifTypes } from '@ohif/core';
 
 import CornerstoneViewportDownloadForm from './utils/CornerstoneViewportDownloadForm';
+import CornerstoneViewportUpload from './utils/CornerstoneViewportUpload';
 import callInputDialog from './utils/callInputDialog';
 import toggleStackImageSync from './utils/stackSync/toggleStackImageSync';
 import { getFirstAnnotationSelected } from './utils/measurementServiceMappings/utils/selection';
@@ -33,6 +34,7 @@ function commandsModule({
     cornerstoneViewportService,
     uiNotificationService,
     measurementService,
+    uiOutViewLayerService,
   } = servicesManager.services as CornerstoneServices;
 
   const { measurementServiceSource } = this;
@@ -345,30 +347,45 @@ function commandsModule({
     },
     showDownloadViewportModal: () => {
       const { activeViewportId } = viewportGridService.getState();
-
-      if (!cornerstoneViewportService.getCornerstoneViewport(activeViewportId)) {
-        // Cannot download a non-cornerstone viewport (image).
-        uiNotificationService.show({
-          title: 'Download Image',
-          message: 'Image cannot be downloaded',
-          type: 'error',
-        });
+      const cornerstoneViewport = cornerstoneViewportService.getCornerstoneViewport(
+        activeViewportId
+      );
+      if (!cornerstoneViewport) {
         return;
       }
+      uiOutViewLayerService.show({
+        content: CornerstoneViewportUpload,
+        contentProps: {
+          servicesManager,
+          width: 512,
+          height: 512,
+          closeUploadLayer: uiOutViewLayerService.hide(),
+        },
+      });
+      // const { activeViewportId } = viewportGridService.getState();
+      // if (!cornerstoneViewportService.getCornerstoneViewport(activeViewportId)) {
+      //   // Cannot download a non-cornerstone viewport (image).
+      //   uiNotificationService.show({
+      //     title: 'Download Image',
+      //     message: 'Image cannot be downloaded',
+      //     type: 'error',
+      //   });
+      //   return;
+      // }
 
-      const { uiModalService } = servicesManager.services;
+      // const { uiModalService } = servicesManager.services;
 
-      if (uiModalService) {
-        uiModalService.show({
-          content: CornerstoneViewportDownloadForm,
-          title: 'Download High Quality Image',
-          contentProps: {
-            activeViewportId,
-            onClose: uiModalService.hide,
-            cornerstoneViewportService,
-          },
-        });
-      }
+      // if (uiModalService) {
+      //   uiModalService.show({
+      //     content: CornerstoneViewportDownloadForm,
+      //     title: 'Download High Quality Image',
+      //     contentProps: {
+      //       activeViewportId,
+      //       onClose: uiModalService.hide,
+      //       cornerstoneViewportService,
+      //     },
+      //   });
+      // }
     },
     rotateViewport: ({ rotation }) => {
       const enabledElement = _getActiveViewportEnabledElement();

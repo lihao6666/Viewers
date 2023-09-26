@@ -28,6 +28,11 @@ const arrowPositionStyle = {
     left: '50%',
     transform: 'translateX(-50%) rotate(180deg)',
   },
+  'top-right': {
+    bottom: -15,
+    // left: '50%',
+    transform: 'translateX(-100%) rotate(180deg)',
+  },
 };
 
 const Tooltip = ({ content, isSticky, position, className, tight, children, isDisabled }) => {
@@ -101,7 +106,15 @@ Tooltip.propTypes = {
   /** prevents tooltip from rendering despite hover/active/sticky */
   isDisabled: PropTypes.bool,
   content: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-  position: PropTypes.oneOf(['bottom', 'bottom-left', 'bottom-right', 'left', 'right', 'top']),
+  position: PropTypes.oneOf([
+    'bottom',
+    'bottom-left',
+    'bottom-right',
+    'left',
+    'right',
+    'top',
+    'top-right',
+  ]),
   isSticky: PropTypes.bool,
   tight: PropTypes.bool,
   children: PropTypes.node.isRequired,

@@ -18,6 +18,10 @@ function initDefaultToolGroup(extensionManager, toolGroupService, commandsManage
       {
         toolName: toolNames.Zoom,
         bindings: [{ mouseButton: Enums.MouseBindings.Secondary }],
+        configuration: {
+          pan: false,
+          pinchToZoom: false,
+        },
       },
       { toolName: toolNames.StackScrollMouseWheel, bindings: [] },
     ],
@@ -59,7 +63,28 @@ function initDefaultToolGroup(extensionManager, toolGroupService, commandsManage
     disabled: [{ toolName: toolNames.ReferenceLines }],
   };
 
-  toolGroupService.createToolGroupAndAddTools(toolGroupId, tools);
+  const toolsConfig = {
+    [toolNames.Zoom]: {
+      pan: false,
+      pinchToZoom: false,
+    },
+    [toolNames.ArrowAnnotate]: {
+      getTextCallback: (callback, eventDetails) =>
+        commandsManager.runCommand('arrowTextCallback', {
+          callback,
+          eventDetails,
+        }),
+
+      changeTextCallback: (data, eventDetails, callback) =>
+        commandsManager.runCommand('arrowTextCallback', {
+          callback,
+          data,
+          eventDetails,
+        }),
+    },
+  };
+
+  toolGroupService.createToolGroupAndAddTools(toolGroupId, tools, toolsConfig);
 }
 
 function initSRToolGroup(extensionManager, toolGroupService, commandsManager) {
@@ -102,6 +127,10 @@ function initSRToolGroup(extensionManager, toolGroupService, commandsManager) {
             mouseButton: Enums.MouseBindings.Secondary,
           },
         ],
+        configuration: {
+          pan: false,
+          pinchToZoom: false,
+        },
       },
       {
         toolName: toolNames.StackScrollMouseWheel,
@@ -122,6 +151,27 @@ function initSRToolGroup(extensionManager, toolGroupService, commandsManager) {
       },
     ],
     // disabled
+  };
+
+  const toolsConfig = {
+    [toolNames.Zoom]: {
+      pan: false,
+      pinchToZoom: false,
+    },
+    [toolNames.ArrowAnnotate]: {
+      getTextCallback: (callback, eventDetails) =>
+        commandsManager.runCommand('arrowTextCallback', {
+          callback,
+          eventDetails,
+        }),
+
+      changeTextCallback: (data, eventDetails, callback) =>
+        commandsManager.runCommand('arrowTextCallback', {
+          callback,
+          data,
+          eventDetails,
+        }),
+    },
   };
 
   const toolGroupId = 'SRToolGroup';
@@ -148,6 +198,10 @@ function initMPRToolGroup(extensionManager, toolGroupService, commandsManager) {
       {
         toolName: toolNames.Zoom,
         bindings: [{ mouseButton: Enums.MouseBindings.Secondary }],
+        configuration: {
+          pan: false,
+          pinchToZoom: false,
+        },
       },
       { toolName: toolNames.StackScrollMouseWheel, bindings: [] },
     ],
@@ -199,6 +253,35 @@ function initMPRToolGroup(extensionManager, toolGroupService, commandsManager) {
     // disabled
   };
 
+  const toolsConfig = {
+    [toolNames.Zoom]: {
+      pan: false,
+      pinchToZoom: false,
+    },
+    [toolNames.Crosshairs]: {
+      viewportIndicators: false,
+      autoPan: {
+        enabled: false,
+        panSize: 10,
+      },
+    },
+    [toolNames.ArrowAnnotate]: {
+      getTextCallback: (callback, eventDetails) =>
+        commandsManager.runCommand('arrowTextCallback', {
+          callback,
+          eventDetails,
+        }),
+
+      changeTextCallback: (data, eventDetails, callback) =>
+        commandsManager.runCommand('arrowTextCallback', {
+          callback,
+          data,
+          eventDetails,
+        }),
+    },
+  };
+
+  // toolGroupService.createToolGroupAndAddTools('mpr', tools, toolsConfig);
   toolGroupService.createToolGroupAndAddTools('mpr', tools);
 }
 function initVolume3DToolGroup(extensionManager, toolGroupService) {

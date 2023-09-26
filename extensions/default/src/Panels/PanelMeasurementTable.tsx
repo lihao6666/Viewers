@@ -211,12 +211,13 @@ export default function PanelMeasurementTable({
         <MeasurementTable
           title="Measurements"
           servicesManager={servicesManager}
+          commandsManager={commandsManager}
           data={displayMeasurements}
           onClick={jumpToImage}
           onEdit={onMeasurementItemEditHandler}
         />
       </div>
-      <div className="flex justify-center p-4">
+      <div className="flex justify-center p-4 w-full">
         <ActionButtons
           onExportClick={exportReport}
           onClearMeasurementsClick={clearMeasurements}

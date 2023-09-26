@@ -50,7 +50,7 @@ function ToolbarButtonWithServices({
 
 ToolbarButtonWithServices.propTypes = {
   id: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(['tool', 'action', 'toggle']).isRequired,
+  type: PropTypes.oneOf(['tool', 'action', 'toggle']),
   commands: PropTypes.arrayOf(
     PropTypes.shape({
       commandName: PropTypes.string.isRequired,

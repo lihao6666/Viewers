@@ -27,7 +27,13 @@ export const useViewportDialog = () => useContext(ViewportDialogContext);
 const ViewportDialogProvider = ({ children, service }) => {
   const [viewportDialogState, setViewportDialogState] = useState(DEFAULT_STATE);
   const show = useCallback(
-    params => setViewportDialogState({ ...viewportDialogState, ...params }),
+    params => {
+      setViewportDialogState({ ...viewportDialogState, ...params });
+      service.onOutsideClick = () => {
+        params?.onOutsideClick?.();
+        service.onOutsideClick = undefined;
+      };
+    },
     [viewportDialogState]
   );
   const hide = useCallback(() => setViewportDialogState(DEFAULT_STATE), []);

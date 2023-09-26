@@ -11,7 +11,8 @@ import Toolbar from '../Toolbar/Toolbar';
 
 const { availableLanguages, defaultLanguage, currentLanguage } = i18n;
 
-function ViewerHeader({ hotkeysManager, extensionManager, servicesManager }) {
+function ViewerHeader({ hotkeysManager, extensionManager, servicesManager, commandsManager }) {
+  const { hangingProtocolService, UIViewportDialogService } = servicesManager.services;
   const [appConfig] = useAppConfig();
   const navigate = useNavigate();
   const location = useLocation();
@@ -99,15 +100,28 @@ function ViewerHeader({ hotkeysManager, extensionManager, servicesManager }) {
     });
   }
 
+  const clickHandlerCrossSwiper = (event: any) => {
+    const ev = new CustomEvent('CROSS_SWIPER_EVENT', {
+      detail: {
+        target: event.target,
+      },
+    });
+    window.dispatchEvent(ev);
+    UIViewportDialogService?.onOutsideClick?.();
+  };
+
   return (
     <Header
-      menuOptions={menuOptions}
+      // menuOptions={menuOptions}
+      menuOptions={[]}
       isReturnEnabled={!!appConfig.showStudyList}
       onClickReturnButton={onClickReturnButton}
       WhiteLabeling={appConfig.whiteLabeling}
+      commandsManager={commandsManager}
     >
       <ErrorBoundary context="Primary Toolbar">
-        <div className="relative flex justify-center">
+        <div className="relative flex justify-center"
+            onClick={clickHandlerCrossSwiper}>
           <Toolbar servicesManager={servicesManager} />
         </div>
       </ErrorBoundary>

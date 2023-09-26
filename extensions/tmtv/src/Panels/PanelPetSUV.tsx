@@ -137,7 +137,7 @@ export default function PanelPetSUV({ servicesManager, commandsManager }) {
     displaySetService.setDisplaySetMetadataInvalidated(ptDisplaySet.displaySetInstanceUID);
   }
   return (
-    <div className="invisible-scrollbar overflow-y-auto overflow-x-hidden">
+    <div className="overflow-x-hidden overflow-y-auto w-full invisible-scrollbar">
       {
         <div className="flex flex-col">
           <div className="bg-primary-dark flex flex-col space-y-4 p-4">

@@ -18,6 +18,8 @@ import {
   errorHandler,
   CustomizationService,
   PanelService,
+  UIOutViewLayerService,
+  ParseTagsService,
   // utils,
 } from '@ohif/core';
 
@@ -64,6 +66,9 @@ async function appInit(appConfigOrFunc, defaultExtensions, defaultModes) {
     UserAuthenticationService.REGISTRATION,
     PanelService.REGISTRATION,
     StateSyncService.REGISTRATION,
+    // 添加
+    UIOutViewLayerService.REGISTRATION,
+    ParseTagsService.REGISTRATION,
   ]);
 
   errorHandler.getHTTPErrorHandler = () => {

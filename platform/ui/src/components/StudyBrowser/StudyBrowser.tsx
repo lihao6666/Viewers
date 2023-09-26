@@ -70,16 +70,11 @@ const StudyBrowser = ({
 
   return (
     <React.Fragment>
-      <div
-        className="w-100 border-secondary-light bg-primary-dark flex h-16 flex-row items-center justify-center border-b p-4"
+      {/* <div
+        className="flex flex-row items-center justify-center h-16 p-4 border-b w-100 border-secondary-light bg-primary-dark"
         data-cy={'studyBrowser-panel'}
       >
-        {/* TODO Revisit design of LegacyButtonGroup later - for now use LegacyButton for its children.*/}
-        <LegacyButtonGroup
-          variant="outlined"
-          color="secondary"
-          splitBorder={false}
-        >
+        <ButtonGroup variant="outlined" color="secondary" splitBorder={false}>
           {tabs.map(tab => {
             const { name, label, studies } = tab;
             const isActive = activeTabName === name;
@@ -108,9 +103,9 @@ const StudyBrowser = ({
               </LegacyButton>
             );
           })}
-        </LegacyButtonGroup>
-      </div>
-      <div className="ohif-scrollbar invisible-scrollbar flex flex-1 flex-col overflow-auto">
+        </ButtonGroup>
+      </div> */}
+      <div className="flex flex-col flex-1 overflow-auto ohif-scrollbar invisible-scrollbar">
         {getTabContent()}
       </div>
     </React.Fragment>

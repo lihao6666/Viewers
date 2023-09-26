@@ -1,7 +1,9 @@
 import { hotkeys } from '@ohif/core';
 import toolbarButtons from './toolbarButtons.js';
+import mobileToolbarButton from './mobileToolbarButton.js';
 import { id } from './id.js';
 import initToolGroups from './initToolGroups.js';
+import { isAndroid, isMobile } from 'react-device-detect';
 
 // Allow this mode by excluding non-imaging modalities such as SR, SEG
 // Also, SM is not a simple imaging modalities, so exclude it.
@@ -106,18 +108,45 @@ function modeFactory() {
       ));
 
       toolbarService.init(extensionManager);
-      toolbarService.addButtons(toolbarButtons);
-      toolbarService.createButtonSection('primary', [
-        'MeasurementTools',
-        'Zoom',
-        'WindowLevel',
-        'Pan',
-        'Capture',
-        'Layout',
-        'MPR',
-        'Crosshairs',
-        'MoreTools',
-      ]);
+      // toolbarService.addButtons(toolbarButtons);
+      // toolbarService.createButtonSection('primary', [
+      //   'MeasurementTools',
+      //   'Zoom',
+      //   'WindowLevel',
+      //   'Pan',
+      //   'Capture',
+      //   'Layout',
+      //   'MPR',
+      //   'Crosshairs',
+      //   'MoreTools',
+      // ]);
+      if (isAndroid || isMobile) {
+        toolbarService.addButtons(mobileToolbarButton);
+        toolbarService.createButtonSection('primary', [
+          'MeasurementTools',
+          'Zoom',
+          'WindowLevel',
+          'Pan',
+          'Capture',
+          'MPR',
+          'Crosshairs',
+          'TagBrowser',
+          'MoreTools',
+        ]);
+      } else {
+        toolbarService.addButtons(toolbarButtons);
+        toolbarService.createButtonSection('primary', [
+          'MeasurementTools',
+          'Zoom',
+          'WindowLevel',
+          'Pan',
+          'Capture',
+          'Layout',
+          'MPR',
+          'Crosshairs',
+          'MoreTools',
+        ]);
+      }
     },
     onModeExit: ({ servicesManager }) => {
       const {

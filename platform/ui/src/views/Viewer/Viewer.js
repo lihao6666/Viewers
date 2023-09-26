@@ -10,8 +10,8 @@ const Viewer = () => {
       <div>
         <Header />
         <div
-          className="flex w-full flex-1 flex-row flex-nowrap items-stretch overflow-hidden"
-          style={{ height: 'calc(100vh - 52px' }}
+          className="flex flex-row flex-nowrap items-stretch flex-1 w-full overflow-hidden"
+          style={{ height: 'calc(100vh - 60px' }}
         >
           <LegacySidePanel
             side="left"

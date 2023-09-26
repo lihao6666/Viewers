@@ -109,6 +109,7 @@ const IconButton = ({
   name,
   id,
   bgColor,
+  style,
   ...rest
 }) => {
   const buttonElement = useRef(null);
@@ -134,6 +135,7 @@ const IconButton = ({
       )}
       style={{
         padding: size === 'toolbar' ? '10px' : null,
+        ...style,
       }}
       ref={buttonElement}
       onClick={handleOnClick}

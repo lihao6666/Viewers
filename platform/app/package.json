@@ -16,7 +16,7 @@
     "npm": ">=6",
     "yarn": ">=1.16.0"
   },
-  "proxy": "http://10.0.1.38:9001",
+  "proxy": "http://10.0.1.151",
   "scripts": {
     "build:viewer": "cross-env NODE_ENV=production PUBLIC_URL=/ohif/ yarn run build",
     "build:dev": "cross-env NODE_ENV=development yarn run build",
@@ -64,6 +64,7 @@
     "@ohif/i18n": "3.7.0-beta.80",
     "@ohif/mode-basic-dev-mode": "3.7.0-beta.80",
     "@ohif/mode-longitudinal": "3.7.0-beta.80",
+    "@ohif/mode-segmentation": "3.7.0-beta.80",
     "@ohif/mode-microscopy": "3.7.0-beta.80",
     "@ohif/mode-test": "3.7.0-beta.80",
     "@ohif/ui": "3.7.0-beta.80",
