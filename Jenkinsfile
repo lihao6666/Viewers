@@ -11,6 +11,7 @@ pipeline {
 
     CI_OHIF_IMAGE='ohif-v3'
     CI_OHIF_TAG='3.7.0'
+    CI_OHIF_DESC='手机端适配、Header改造、其它一些样式修改'
     HTTP_PROXY='http://10.0.1.38:7890'
     HTTPS_PROXY='http://10.0.1.38:7890'
 
@@ -45,10 +46,10 @@ pipeline {
 
   post {
     failure {
-        slackSend (color: 'warning', message: "ohif-v3镜像构建失败，版本号：$CI_OHIF_TAG")
+        slackSend (color: 'warning', message: "ohif-v3镜像构建失败，版本号：$CI_OHIF_TAG，更新描述：$CI_OHIF_DESC")
     }
     success {
-        slackSend (color: 'good', message: "ohif-v3镜像构建成功，版本号：$CI_OHIF_TAG")
+        slackSend (color: 'good', message: "ohif-v3镜像构建成功，版本号：$CI_OHIF_TAG，更新描述：$CI_OHIF_DESC")
     }
   }
 }
