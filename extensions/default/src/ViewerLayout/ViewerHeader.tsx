@@ -11,7 +11,7 @@ import Toolbar from '../Toolbar/Toolbar';
 
 const { availableLanguages, defaultLanguage, currentLanguage } = i18n;
 
-function ViewerHeader({ hotkeysManager, extensionManager, servicesManager }) {
+function ViewerHeader({ hotkeysManager, extensionManager, servicesManager, commandsManager }) {
   const { hangingProtocolService, UIViewportDialogService } = servicesManager.services;
   const [appConfig] = useAppConfig();
   const navigate = useNavigate();
@@ -117,6 +117,7 @@ function ViewerHeader({ hotkeysManager, extensionManager, servicesManager }) {
       isReturnEnabled={!!appConfig.showStudyList}
       onClickReturnButton={onClickReturnButton}
       WhiteLabeling={appConfig.whiteLabeling}
+      commandsManager={commandsManager}
     >
       <ErrorBoundary context="Primary Toolbar">
         <div className="relative flex justify-center"
