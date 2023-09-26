@@ -177,9 +177,7 @@ module.exports = (env, argv) => {
       },
       headers: {
         'Cross-Origin-Embedder-Policy': 'require-corp',
-        // 'Cross-Origin-Opener-Policy': 'same-origin',
-        'Cross-Origin-Opener-Policy': 'unsafe-none',
-        // 'Cross-Origin-Resource-Policy': 'cross-origin',
+        'Cross-Origin-Opener-Policy': 'same-origin',
       },
     },
   });

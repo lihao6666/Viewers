@@ -42,7 +42,6 @@
 
     # COMMENT: For sharedArrayBuffer, see https://developer.chrome.com/blog/enabling-shared-array-buffer/
     Cross-Origin-Embedder-Policy = "require-corp"
-    # Cross-Origin-Opener-Policy =  "same-origin"
-    Cross-Origin-Opener-Policy =  "unsafe-none"
+    Cross-Origin-Opener-Policy =  "same-origin"
     # set CORP to cross-origin for anyone who wants to use the viewer in an iframe
     Cross-Origin-Resource-Policy = "cross-origin"

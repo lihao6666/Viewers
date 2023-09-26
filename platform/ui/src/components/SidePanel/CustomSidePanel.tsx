@@ -20,7 +20,7 @@ import Tooltip from '../Tooltip';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
-import './style.css';
+// import './style.css';
 
 const borderSize = 4;
 const expandedWidth = 248;

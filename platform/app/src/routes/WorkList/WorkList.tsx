@@ -336,8 +336,6 @@ function WorkList({
         >
           <div className="flex flex-row gap-2">
             {appConfig.loadedModes.map((mode, i) => {
-              const isFirst = i === 0;
-
               const modalitiesToCheck = modalities.replaceAll('/', '\\');
 
               const isValidMode = mode.isValidMode({
@@ -425,7 +423,9 @@ function WorkList({
             availableLanguages,
             defaultLanguage,
             onSubmit: state => {
-              i18n.changeLanguage(state.language.value);
+              if (state.language.value !== currentLanguage().value) {
+                i18n.changeLanguage(state.language.value);
+              }
               hotkeysManager.setHotkeys(state.hotkeyDefinitions);
               hide();
             },

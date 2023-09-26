@@ -3,6 +3,150 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.7.0-beta.80](https://github.com/OHIF/Viewers/compare/v3.7.0-beta.79...v3.7.0-beta.80) (2023-09-22)
+
+
+### Features
+
+* **segmentation mode:** Add create, and export SEG with Brushes ([#3632](https://github.com/OHIF/Viewers/issues/3632)) ([48bbd62](https://github.com/OHIF/Viewers/commit/48bbd6281a497ea68670239f5426a10ee6c56dc1))
+* **SidePanel:** new side panel tab look-and-feel ([#3657](https://github.com/OHIF/Viewers/issues/3657)) ([85c899b](https://github.com/OHIF/Viewers/commit/85c899b399e2521480724be145538993721b9378))
+
+
+
+
+
+# [3.7.0-beta.79](https://github.com/OHIF/Viewers/compare/v3.7.0-beta.78...v3.7.0-beta.79) (2023-09-22)
+
+**Note:** Version bump only for package @ohif/extension-default
+
+
+
+
+
+# [3.7.0-beta.78](https://github.com/OHIF/Viewers/compare/v3.7.0-beta.77...v3.7.0-beta.78) (2023-09-21)
+
+**Note:** Version bump only for package @ohif/extension-default
+
+
+
+
+
+# [3.7.0-beta.77](https://github.com/OHIF/Viewers/compare/v3.7.0-beta.76...v3.7.0-beta.77) (2023-09-21)
+
+**Note:** Version bump only for package @ohif/extension-default
+
+
+
+
+
+# [3.7.0-beta.76](https://github.com/OHIF/Viewers/compare/v3.7.0-beta.75...v3.7.0-beta.76) (2023-09-19)
+
+**Note:** Version bump only for package @ohif/extension-default
+
+
+
+
+
+# [3.7.0-beta.75](https://github.com/OHIF/Viewers/compare/v3.7.0-beta.74...v3.7.0-beta.75) (2023-09-18)
+
+
+### Bug Fixes
+
+* **DicomJson:** retrieve.series.metadata method should be async ([#3659](https://github.com/OHIF/Viewers/issues/3659)) ([2737903](https://github.com/OHIF/Viewers/commit/2737903386cf97399473e0fa64fe53ad14da155a))
+
+
+
+
+
+# [3.7.0-beta.74](https://github.com/OHIF/Viewers/compare/v3.7.0-beta.73...v3.7.0-beta.74) (2023-09-15)
+
+**Note:** Version bump only for package @ohif/extension-default
+
+
+
+
+
+# [3.7.0-beta.73](https://github.com/OHIF/Viewers/compare/v3.7.0-beta.72...v3.7.0-beta.73) (2023-09-12)
+
+
+### Bug Fixes
+
+* **health imaging:** studies not loading from healthimaging if imagepositionpatient is missing ([#3646](https://github.com/OHIF/Viewers/issues/3646)) ([74e62a1](https://github.com/OHIF/Viewers/commit/74e62a176374f720080d4e777972f70e7f2d8b2b))
+
+
+
+
+
+# [3.7.0-beta.72](https://github.com/OHIF/Viewers/compare/v3.7.0-beta.71...v3.7.0-beta.72) (2023-09-12)
+
+**Note:** Version bump only for package @ohif/extension-default
+
+
+
+
+
+# [3.7.0-beta.71](https://github.com/OHIF/Viewers/compare/v3.7.0-beta.70...v3.7.0-beta.71) (2023-09-12)
+
+
+### Bug Fixes
+
+* **suv:** import calculate-suv library version that prevents SUV calculation for a zero PatientWeight ([#3638](https://github.com/OHIF/Viewers/issues/3638)) ([0d10f46](https://github.com/OHIF/Viewers/commit/0d10f46b885fe54ec3dae1848134da658eb6280a))
+
+
+
+
+
+# [3.7.0-beta.70](https://github.com/OHIF/Viewers/compare/v3.7.0-beta.69...v3.7.0-beta.70) (2023-09-12)
+
+**Note:** Version bump only for package @ohif/extension-default
+
+
+
+
+
+# [3.7.0-beta.69](https://github.com/OHIF/Viewers/compare/v3.7.0-beta.68...v3.7.0-beta.69) (2023-09-11)
+
+**Note:** Version bump only for package @ohif/extension-default
+
+
+
+
+
+# [3.7.0-beta.68](https://github.com/OHIF/Viewers/compare/v3.7.0-beta.67...v3.7.0-beta.68) (2023-09-11)
+
+**Note:** Version bump only for package @ohif/extension-default
+
+
+
+
+
+# [3.7.0-beta.67](https://github.com/OHIF/Viewers/compare/v3.7.0-beta.66...v3.7.0-beta.67) (2023-09-06)
+
+
+### Bug Fixes
+
+* **hotkeys:** preserve hotkeys if changed, and reduce re-rendering ([#3635](https://github.com/OHIF/Viewers/issues/3635)) ([94f7cfb](https://github.com/OHIF/Viewers/commit/94f7cfb08e3490488394efc42ef089ebe55e86be))
+
+
+
+
+
+# [3.7.0-beta.66](https://github.com/OHIF/Viewers/compare/v3.7.0-beta.65...v3.7.0-beta.66) (2023-09-06)
+
+**Note:** Version bump only for package @ohif/extension-default
+
+
+
+
+
+# [3.7.0-beta.65](https://github.com/OHIF/Viewers/compare/v3.7.0-beta.64...v3.7.0-beta.65) (2023-09-06)
+
+**Note:** Version bump only for package @ohif/extension-default
+
+
+
+
+
 # [3.7.0-beta.64](https://github.com/OHIF/Viewers/compare/v3.7.0-beta.63...v3.7.0-beta.64) (2023-09-05)
 
 **Note:** Version bump only for package @ohif/extension-default
