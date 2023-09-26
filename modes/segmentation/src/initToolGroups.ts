@@ -22,7 +22,10 @@ function createTools(utilityModule) {
     active: [
       { toolName: toolNames.WindowLevel, bindings: [{ mouseButton: Enums.MouseBindings.Primary }] },
       { toolName: toolNames.Pan, bindings: [{ mouseButton: Enums.MouseBindings.Auxiliary }] },
-      { toolName: toolNames.Zoom, bindings: [{ mouseButton: Enums.MouseBindings.Secondary }] },
+      { toolName: toolNames.Zoom, bindings: [{ mouseButton: Enums.MouseBindings.Secondary }], configuration: {
+        pan: false,
+        pinchToZoom: false,
+      },},
       { toolName: toolNames.StackScrollMouseWheel, bindings: [] },
     ],
     passive: Object.keys(brushInstanceNames)

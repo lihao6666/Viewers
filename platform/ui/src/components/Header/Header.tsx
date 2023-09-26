@@ -37,6 +37,7 @@ function Header({
 
   const toggleOpenSeriesPanel = (event: any, side) => {
     event.preventDefault();
+    event.stopPropagation();
     // eslint-disable-next-line react/prop-types
     commandsManager.runCommand('toggleOpenPanel', { side });
   };
@@ -46,6 +47,9 @@ function Header({
       direction: 'horizontal',
       slidesPerView: 'auto',
       freeMode: true,
+      momentumBounce: false,
+      momentumBounceRatio: 0,
+      momentumVelocityRatio	: 0,
       noSwipingSelector: '#layoutChooser-dropdown-menu, #toolbar-slider, input',
       roundLengths: true,
       scrollbar: false,

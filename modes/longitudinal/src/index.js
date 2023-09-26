@@ -122,7 +122,7 @@ function modeFactory({ modeConfiguration }) {
           'WindowLevel',
           'Pan',
           'Capture',
-          'MPR',
+          // 'MPR',
           'CornerInfo',
           'TagBrowser',
           'Crosshairs',

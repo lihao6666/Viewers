@@ -18,6 +18,10 @@ function initDefaultToolGroup(extensionManager, toolGroupService, commandsManage
       {
         toolName: toolNames.Zoom,
         bindings: [{ mouseButton: Enums.MouseBindings.Secondary }],
+        configuration: {
+          pan: false,
+          pinchToZoom: false,
+        },
       },
       { toolName: toolNames.StackScrollMouseWheel, bindings: [] },
     ],
@@ -123,6 +127,10 @@ function initSRToolGroup(extensionManager, toolGroupService, commandsManager) {
             mouseButton: Enums.MouseBindings.Secondary,
           },
         ],
+        configuration: {
+          pan: false,
+          pinchToZoom: false,
+        },
       },
       {
         toolName: toolNames.StackScrollMouseWheel,
@@ -190,6 +198,10 @@ function initMPRToolGroup(extensionManager, toolGroupService, commandsManager) {
       {
         toolName: toolNames.Zoom,
         bindings: [{ mouseButton: Enums.MouseBindings.Secondary }],
+        configuration: {
+          pan: false,
+          pinchToZoom: false,
+        },
       },
       { toolName: toolNames.StackScrollMouseWheel, bindings: [] },
     ],

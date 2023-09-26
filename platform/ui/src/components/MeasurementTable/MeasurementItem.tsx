@@ -65,15 +65,15 @@ const MeasurementItem = ({ uid, index, label, displayText, isActive, onClick, on
         />
         <Icon
           className={classnames(
-            'text-white text-2lg w-4 absolute cursor-pointer transition duration-300',
-            { 'invisible opacity-0': !isHovering },
-            { 'visible opacity-1': isHovering }
+            'text-white text-2lg w-4 absolute cursor-pointer transition duration-300 visible opacity-1',
+            // { 'invisible opacity-0': !isHovering },
+            // { 'visible opacity-1': isHovering }
           )}
           name="icon-trash"
           style={{
             bottom: 4,
             right: 4,
-            transform: isHovering ? '' : 'translateX(100%)',
+            // transform: isHovering ? '' : 'translateX(100%)',
           }}
           onClick={() => onDelete({ uid: item.uid })}
         />
