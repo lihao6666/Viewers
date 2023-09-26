@@ -353,6 +353,22 @@ const toolbarButtons = [
       ],
     },
   },
+  // 四角信息
+  {
+    id: 'CornerInfo',
+    type: 'ohif.cornerInfoButton',
+    props: {
+      icon: 'check-selected',
+      label: 'Corner Information',
+      commands: [
+        {
+          commandName: 'toggleOpenTagsBrowser',
+          commandOptions: {},
+          context: 'DEFAULT',
+        },
+      ],
+    },
+  },
   {
     id: 'Crosshairs',
     type: 'ohif.radioGroup',
@@ -368,22 +384,6 @@ const toolbarButtons = [
             toolGroupId: 'mpr',
           },
           context: 'CORNERSTONE',
-        },
-      ],
-    },
-  },
-  // 四角信息
-  {
-    id: 'CornerInfo',
-    type: 'ohif.cornerInfoButton',
-    props: {
-      icon: 'check-selected',
-      label: 'Corner Information',
-      commands: [
-        {
-          commandName: 'toggleOpenTagsBrowser',
-          commandOptions: {},
-          context: 'DEFAULT',
         },
       ],
     },
@@ -483,23 +483,23 @@ const toolbarButtons = [
             },
           ]
         ),
-        _createToggleButton(
-          'ImageOverlayViewer',
-          'toggle-dicom-overlay',
-          'Image Overlay',
-          [
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'ImageOverlayViewer',
-              },
-              context: 'CORNERSTONE',
-            },
-          ],
-          'Image Overlay',
-          null,
-          true
-        ),
+        // _createToggleButton(
+        //   'ImageOverlayViewer',
+        //   'toggle-dicom-overlay',
+        //   'Image Overlay',
+        //   [
+        //     {
+        //       commandName: 'setToolActive',
+        //       commandOptions: {
+        //         toolName: 'ImageOverlayViewer',
+        //       },
+        //       context: 'CORNERSTONE',
+        //     },
+        //   ],
+        //   'Image Overlay',
+        //   null,
+        //   true
+        // ),
         _createToolButton(
           'StackScroll',
           'tool-stack-scroll',

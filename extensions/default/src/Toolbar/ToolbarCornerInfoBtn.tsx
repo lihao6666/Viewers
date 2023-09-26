@@ -12,7 +12,7 @@ export default function ToolbarCornerButton(props) {
   return (
     <Tooltip content={props.label} position="bottom">
       <button className={classnames(
-          'transition duration-300 p-[10px] ease-in-out outline-none text-white hover:!bg-primary-dark rounded-md text-2lg',
+          'transition duration-300 p-[8px] ease-in-out outline-none text-white hover:!bg-primary-dark rounded-md',
           {
             'hover:text-primary-light': !viewportData.showTagsBrowser,
             'text-primary-light hover:opacity-80': viewportData.showTagsBrowser,
@@ -20,7 +20,7 @@ export default function ToolbarCornerButton(props) {
         )}
         onClick={handerToggleCornerInfo}
       >
-        <Icon name={icon} className="w-5 h-5 fill-current" />
+        <Icon name={icon} className="w-6 h-6 fill-current" />
       </button>
     </Tooltip>
   );

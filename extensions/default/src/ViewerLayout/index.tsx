@@ -120,6 +120,7 @@ function ViewerLayout({
         hotkeysManager={hotkeysManager}
         extensionManager={extensionManager}
         servicesManager={servicesManager}
+        commandsManager={commandsManager}
       />
       <div
         className="bg-black flex flex-row items-stretch w-full overflow-hidden flex-nowrap relative"

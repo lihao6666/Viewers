@@ -4,7 +4,7 @@
   "description": "OHIF segmentation mode which enables labelmap segmentation read/edit/export",
   "author": "@ohif",
   "license": "MIT",
-  "main": "dist/umd/@ohif/mode-segmentation/index.umd.js",
+  "main": "dist/ohif-mode-segmentation.js",
   "files": [
     "dist/**",
     "public/**",

@@ -123,9 +123,9 @@ function modeFactory({ modeConfiguration }) {
           'Pan',
           'Capture',
           'MPR',
-          'Crosshairs',
-          'TagBrowser',
           'CornerInfo',
+          'TagBrowser',
+          'Crosshairs',
           'MoreTools',
         ]);
       } else {
@@ -138,8 +138,8 @@ function modeFactory({ modeConfiguration }) {
           'Capture',
           'Layout',
           'MPR',
-          'Crosshairs',
           'CornerInfo',
+          'Crosshairs',
           'MoreTools',
           'Settings',
         ]);
