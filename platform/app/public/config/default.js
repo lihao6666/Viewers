@@ -39,7 +39,7 @@ window.config = {
       namespace: '@ohif/extension-default.dataSourcesModule.dicomweb',
       sourceName: 'dicomweb',
       configuration: {
-        friendlyName: 'dcmjs DICOMWeb Server',
+        friendlyName: 'FQ PACS',
         name: 'aws',
         // old server
         // wadoUriRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/wado',
@@ -50,6 +50,33 @@ window.config = {
         wadoUriRoot: '/pacs/wado',
         qidoRoot: '/pacs/dicom-web',
         wadoRoot: '/pacs/dicom-web',
+        qidoSupportsIncludeField: false,
+        imageRendering: 'wadors',
+        thumbnailRendering: 'wadors',
+        enableStudyLazyLoad: true,
+        supportsFuzzyMatching: false,
+        supportsWildcard: true,
+        staticWado: true,
+        singlepart: 'bulkdata,video',
+        // whether the data source should use retrieveBulkData to grab metadata,
+        // and in case of relative path, what would it be relative to, options
+        // are in the series level or study level (some servers like series some study)
+        bulkDataURI: {
+          enabled: true,
+          relativeResolution: 'studies',
+        },
+        omitQuotationForMultipartRequest: true,
+      },
+    },
+    {
+      namespace: '@ohif/extension-default.dataSourcesModule.dicomweb',
+      sourceName: 'dicomweb2',
+      configuration: {
+        friendlyName: 'AWS S3 Static wado secondary server',
+        name: 'aws',
+        wadoUriRoot: 'https://d28o5kq0jsoob5.cloudfront.net/dicomweb',
+        qidoRoot: 'https://d28o5kq0jsoob5.cloudfront.net/dicomweb',
+        wadoRoot: 'https://d28o5kq0jsoob5.cloudfront.net/dicomweb',
         qidoSupportsIncludeField: false,
         supportsReject: false,
         imageRendering: 'wadors',

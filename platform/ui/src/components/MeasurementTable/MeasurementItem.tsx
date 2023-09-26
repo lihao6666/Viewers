@@ -69,7 +69,7 @@ const MeasurementItem = ({ uid, index, label, displayText, isActive, onClick, on
             { 'invisible opacity-0': !isHovering },
             { 'visible opacity-1': isHovering }
           )}
-          name="icon-delete"
+          name="icon-trash"
           style={{
             bottom: 4,
             right: 4,

@@ -76,7 +76,7 @@ function modeFactory({ modeConfiguration }) {
         toolbarService,
         toolGroupService,
         panelService,
-        segmentationService,
+        customizationService,
       } = servicesManager.services;
 
       measurementService.clearMeasurements();
@@ -89,7 +89,6 @@ function modeFactory({ modeConfiguration }) {
       const activateTool = () => {
         toolbarService.recordInteraction({
           groupId: 'WindowLevel',
-          itemId: 'WindowLevel',
           interactionType: 'tool',
           commands: [
             {
@@ -145,6 +144,13 @@ function modeFactory({ modeConfiguration }) {
           'Settings',
         ]);
       }
+
+      customizationService.addModeCustomizations([
+        {
+          id: 'segmentation.disableEditing',
+          value: true,
+        },
+      ]);
 
       // // ActivatePanel event trigger for when a segmentation or measurement is added.
       // // Do not force activation so as to respect the state the user may have left the UI in.
