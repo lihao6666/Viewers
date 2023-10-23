@@ -13,6 +13,11 @@ function getRowsByDisplaySet(activeDisplaySet, instanceNumber) {
   } else {
     metadata = activeDisplaySet.instance || activeDisplaySet;
   }
+
+  if (!metadata) {
+    return [];
+  }
+
   const tags = getSortedTags(metadata);
   const formattedRows = getFormattedRowsFromTags(tags, metadata);
   return formattedRows;
@@ -157,7 +162,6 @@ function getRows(metadata, depth = 0) {
             value = value.Alphabetic;
           } else {
             console.warn(`Unrecognised Value: ${value} for ${keyword}:`);
-            console.warn(value);
             value = ' ';
           }
         } else {

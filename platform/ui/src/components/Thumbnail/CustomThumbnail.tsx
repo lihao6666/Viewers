@@ -177,11 +177,11 @@ const Thumbnail = ({
             </div> */}
           </div>
           <div className="flex items-center pr-1 mt-2 text-base text-blue-300">
-            <div className="mr-4">
+            <div className="mr-2">
               <span className="mr-1">{'S:'}</span>
               {seriesNumber}
             </div>
-            <div className="flex mr-4 items-center">
+            <div className="flex mr-2 items-center">
               <Icon name={countIcon || 'group-layers'} className="mr-1 w-3" />
               {numInstances}
             </div>
@@ -189,7 +189,7 @@ const Thumbnail = ({
             <DisplaySetMessageListTooltip
               messages={messages}
               id={`display-set-tooltip-${displaySetInstanceUID}`}
-              className="ml-4"
+              className="ml-2"
             />
           </div>
         </div>

@@ -10,7 +10,7 @@ window.config = {
   //是否显示右边的标记列表
   showRightPanel: true,
   // 是否能返回列表
-  showStudyList: true,
+  showStudyList: false,
   // some windows systems have issues with more than 3 web workers
   maxNumberOfWebWorkers: 3,
   // below flag is for performance reasons, but it might not work for all servers

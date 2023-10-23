@@ -1,4 +1,5 @@
 import React, { ReactNode, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router';
 import Swiper from 'swiper';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
@@ -28,6 +29,8 @@ function Header({
   const { deviceInfo } = useDeviceInfo();
   const [appConfig] = useAppConfig();
 
+  const { pathname } = useLocation();
+  const isWorkListPage = pathname === '/';
   // TODO: this should be passed in as a prop instead and the react-router-dom
   // dependency should be dropped
   const onClickReturn = () => {
@@ -39,6 +42,9 @@ function Header({
   const toggleOpenSeriesPanel = (event: any, side) => {
     event.preventDefault();
     event.stopPropagation();
+    if (isWorkListPage) {
+      return;
+    }
     // eslint-disable-next-line react/prop-types
     commandsManager.runCommand('toggleOpenPanel', { side });
   };
@@ -83,7 +89,7 @@ function Header({
             {isReturnEnabled && (
               <Icon
                 name="chevron-left"
-                className="text-primary-active w-8"
+                className="w-8 text-white"
               />
             )}
             <div className="flex h-full items-center">
@@ -97,20 +103,22 @@ function Header({
               >
                 <Icon name="series-panel" />
               </a> */}
-              <IconButton
-                id={'options-mark-panel-icon'}
-                variant="text"
-                color="inherit"
-                size="initial"
-                style={{ padding: 10 }}
-                onClick={event => toggleOpenSeriesPanel(event, 'left')}
-                className="hover:bg-primary-light focus:!bg-primary-light text-common-bright hover:!bg-primary-dark hover:text-primary-light inline-flex items-center justify-center rounded-md text-center text-xl text-lg font-bold text-white outline-none transition duration-300 ease-in-out hover:text-black focus:text-black focus:outline-none active:opacity-80"
-              >
-                <Icon
-                  name="series-panel"
-                  className="h-5 w-5 fill-current"
-                />
-              </IconButton>
+              {isWorkListPage ? null : (
+                <IconButton
+                  id={'options-mark-panel-icon'}
+                  variant="text"
+                  color="inherit"
+                  size="initial"
+                  style={{ padding: 10 }}
+                  onClick={event => toggleOpenSeriesPanel(event, 'left')}
+                  className="hover:bg-primary-light focus:!bg-primary-light text-common-bright hover:!bg-primary-dark hover:text-primary-light inline-flex items-center justify-center rounded-md text-center text-xl text-lg font-bold text-white outline-none transition duration-300 ease-in-out hover:text-black focus:text-black focus:outline-none active:opacity-80"
+                >
+                  <Icon
+                    name="series-panel"
+                    className="h-5 w-5 fill-current"
+                  />
+                </IconButton>
+              )}
             </div>
           </div>
         </div>
