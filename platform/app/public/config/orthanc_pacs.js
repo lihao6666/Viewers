@@ -8,9 +8,9 @@ window.config = {
     // helloPage: '@ohif/extension-default.customizationModule.helloPage',
   },
   //是否显示右边的标记列表
-  showRightPanel: true,
+  showRightPanel: false,
   // 是否能返回列表
-  showStudyList: true,
+  showStudyList: false,
   // some windows systems have issues with more than 3 web workers
   maxNumberOfWebWorkers: 3,
   // below flag is for performance reasons, but it might not work for all servers
@@ -49,12 +49,10 @@ window.config = {
         // wadoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
 
         // new server
-        wadoUriRoot: '/apis/pacs/wado',
-        qidoRoot: '/apis/pacs/dicom-web',
-        wadoRoot: '/apis/pacs/dicom-web',
-        // wadoUriRoot: '/pacs/wado',
-        // qidoRoot: '/pacs/dicom-web',
-        // wadoRoot: '/pacs/dicom-web',
+        wadoUriRoot: '/pacs-admin/wado',
+        qidoRoot: '/pacs-admin/dicom-web',
+        wadoRoot: '/pacs-admin/dicom-web',
+        authRoot: '/pacs-admin/dicom-web-auth',
         qidoSupportsIncludeField: false,
         imageRendering: 'wadors',
         thumbnailRendering: 'wadors',

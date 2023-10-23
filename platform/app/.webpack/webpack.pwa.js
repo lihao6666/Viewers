@@ -149,6 +149,9 @@ module.exports = (env, argv) => {
       // compress: true,
       // http2: true,
       // https: true,
+      // hot: true, // 启用热模块替换
+      // liveReload: false, // 禁用LiveReload
+
       allowedHosts: [
         '.cloud-ustcfq.com',
         'workstation-front-dev.cloud-ustcfq.com'

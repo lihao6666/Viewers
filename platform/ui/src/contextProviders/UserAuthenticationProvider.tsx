@@ -89,6 +89,7 @@ export function UserAuthenticationProvider({ children, service }) {
           const searchParams = new URLSearchParams(urlParmasStr);
           const headerAuth = {
             Authorization: 'Bearer ' + searchParams.get('token'),
+            Org: searchParams.get('org'),
           };
           return headerAuth;
         },

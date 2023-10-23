@@ -3,7 +3,7 @@ import Swiper from 'swiper';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
-import { useDeviceInfo } from '@state';
+import { useDeviceInfo, useAppConfig } from '@state';
 import NavBar from '../NavBar';
 import Svg from '../Svg';
 import Icon from '../Icon';
@@ -26,6 +26,7 @@ function Header({
   const toolRowRef = useRef<any>(null);
   const toolRowSwiper = useRef<any>(null);
   const { deviceInfo } = useDeviceInfo();
+  const [appConfig] = useAppConfig();
 
   // TODO: this should be passed in as a prop instead and the react-router-dom
   // dependency should be dropped
@@ -49,13 +50,12 @@ function Header({
       freeMode: true,
       momentumBounce: false,
       momentumBounceRatio: 0,
-      momentumVelocityRatio	: 0,
+      momentumVelocityRatio: 0,
       noSwipingSelector: '#layoutChooser-dropdown-menu, #toolbar-slider, input',
       roundLengths: true,
       scrollbar: false,
     });
-    return () =>
-      toolRowSwiper.current && toolRowSwiper.current.destroy(true, true);
+    return () => toolRowSwiper.current && toolRowSwiper.current.destroy(true, true);
   }, []);
 
   useEffect(() => {
@@ -69,13 +69,13 @@ function Header({
       isSticky={isSticky}
     >
       {/* justify-between */}
-      <div className="flex flex-1 items-center h-full">
-        <div className="flex h-full bg-secondary-dark relative z-10">
+      <div className="flex h-full flex-1 items-center">
+        <div className="bg-secondary-dark relative z-10 flex h-full">
           {/* // TODO: Should preserve filter/sort
               // Either injected service? Or context (like react router's `useLocation`?) */}
           <div
             className={classNames(
-              'inline-flex items-center h-full pr-3 pl-1',
+              'inline-flex h-full items-center pr-3 pl-1',
               isReturnEnabled && 'cursor-pointer'
             )}
             onClick={onClickReturn}
@@ -86,7 +86,7 @@ function Header({
                 className="text-primary-active w-8"
               />
             )}
-            <div className="flex items-center h-full">
+            <div className="flex h-full items-center">
               {WhiteLabeling?.createLogoComponentFn?.(React, {
                 ...props,
                 deviceInfo,
@@ -104,52 +104,58 @@ function Header({
                 size="initial"
                 style={{ padding: 10 }}
                 onClick={event => toggleOpenSeriesPanel(event, 'left')}
-                className="text-center items-center justify-center text-xl transition duration-300 ease-in-out outline-none font-bold focus:outline-none text-white hover:bg-primary-light hover:text-black active:opacity-80 focus:!bg-primary-light focus:text-black rounded-md text-lg inline-flex text-common-bright hover:!bg-primary-dark hover:text-primary-light"
+                className="hover:bg-primary-light focus:!bg-primary-light text-common-bright hover:!bg-primary-dark hover:text-primary-light inline-flex items-center justify-center rounded-md text-center text-xl text-lg font-bold text-white outline-none transition duration-300 ease-in-out hover:text-black focus:text-black focus:outline-none active:opacity-80"
               >
-                <Icon name="series-panel" className="w-5 h-5 fill-current" />
+                <Icon
+                  name="series-panel"
+                  className="h-5 w-5 fill-current"
+                />
               </IconButton>
             </div>
           </div>
         </div>
         {/* <div className="flex items-center">{children}</div> */}
         <div
-          className="flex-1 items-center w-full relative z-0"
+          className="relative z-0 w-full flex-1 items-center"
           style={{ height: 40 }}
         >
           <div
-            className="absolute left-0 top-0 swiper swiper-container h-full w-full scroll-swiper-line"
+            className="swiper swiper-container scroll-swiper-line absolute left-0 top-0 h-full w-full"
             ref={toolRowRef}
           >
             <div className="swiper-wrapper h-full w-full">
-              <div className="swiper-slide h-full auto-width-slide">
-                {children}
-              </div>
+              <div className="swiper-slide auto-width-slide h-full">{children}</div>
             </div>
           </div>
         </div>
-        <div className="flex h-full items-center bg-secondary-dark relative z-10">
+        <div className="bg-secondary-dark relative z-10 flex h-full items-center">
           <div className="flex items-center pr-1 pl-3">
             {/* <span className="mr-3 text-lg text-common-light">
               {t('INVESTIGATIONAL USE ONLY')}
             </span> */}
-            
+
             {/* <a
               onClick={event => toggleOpenSeriesPanel(event, 'right')}
               className="flex items-center mr-2 justify-center h-8 text-white w-8 text-2xl opacity-85"
             >
               <Icon name="mark-panel" />
             </a> */}
-            <IconButton
-              id={'options-mark-panel-icon'}
-              variant="text"
-              color="inherit"
-              size="initial"
-              style={{ padding: 10 }}
-              onClick={event => toggleOpenSeriesPanel(event, 'right')}
-              className="text-center items-center justify-center text-xl transition duration-300 ease-in-out outline-none font-bold focus:outline-none text-white hover:bg-primary-light hover:text-black active:opacity-80 focus:!bg-primary-light focus:text-black rounded-md text-lg inline-flex text-common-bright hover:!bg-primary-dark hover:text-primary-light"
-            >
-              <Icon name="mark-panel" className="w-5 h-5 fill-current" />
-            </IconButton>
+            {appConfig.showRightPanel && (
+              <IconButton
+                id={'options-mark-panel-icon'}
+                variant="text"
+                color="inherit"
+                size="initial"
+                style={{ padding: 10 }}
+                onClick={event => toggleOpenSeriesPanel(event, 'right')}
+                className="hover:bg-primary-light focus:!bg-primary-light text-common-bright hover:!bg-primary-dark hover:text-primary-light inline-flex items-center justify-center rounded-md text-center text-xl text-lg font-bold text-white outline-none transition duration-300 ease-in-out hover:text-black focus:text-black focus:outline-none active:opacity-80"
+              >
+                <Icon
+                  name="mark-panel"
+                  className="h-5 w-5 fill-current"
+                />
+              </IconButton>
+            )}
 
             {/* <Dropdown
               id="options"

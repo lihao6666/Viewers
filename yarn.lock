@@ -8845,15 +8845,9 @@ dicomicc@^0.1:
   resolved "https://registry.yarnpkg.com/dicomicc/-/dicomicc-0.1.0.tgz#c73acc60a8e2d73a20f462c8c7d0e1e0d977c486"
   integrity sha512-kZejPGjLQ9NsgovSyVsiAuCpq6LofNR9Erc8Tt/vQAYGYCoQnTyWDlg5D0TJJQATKul7cSr9k/q0TF8G9qdDkQ==
 
-dicomweb-client@^0.10.2:
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/dicomweb-client/-/dicomweb-client-0.10.2.tgz#9c2e466264a5d3b56c18edaafd360e89912cac13"
-  integrity sha512-sGjq3TxM7jgbe7cBpqddT1VlfOlwXmE7Q12qCSGDOkEL7fgn+Ak/5oW/LiRP2FzmfYzcbpO32r+hC8i4ITXQLw==
-
-dicomweb-client@^0.8:
+dicomweb-client@^0.8, "dicomweb-client@git+https://bmec.ustc.edu.cn/git/Mars456/dicomweb-client.git":
   version "0.8.4"
-  resolved "https://registry.yarnpkg.com/dicomweb-client/-/dicomweb-client-0.8.4.tgz#3da814cedb9415facb50bc5f43af8d961a991c74"
-  integrity sha512-/6oY3/Fg9JyAlbTWuJOYbVqici3+nlZt43+Z/Y47RNiqLc028JcxNlY28u4VQqksxfB59f1hhNbsqsHyDT4vhw==
+  resolved "git+https://bmec.ustc.edu.cn/git/Mars456/dicomweb-client.git#5b9f2318b98079d01bc0fecde348370c807d4470"
 
 didyoumean@^1.2.2:
   version "1.2.2"
