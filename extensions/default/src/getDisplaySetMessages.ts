@@ -19,9 +19,9 @@ export default function getDisplaySetMessages(
 
   const firstInstance = instances[0];
   // Due to current requirements, LOCALIZER series doesn't have any messages
-  if (firstInstance.ImageType.includes('LOCALIZER')) {
-    return messages;
-  }
+  // if (firstInstance.ImageType.includes('LOCALIZER')) {
+  //   return messages;
+  // }
 
   const Modality = firstInstance.Modality;
   if (!constructableModalities.includes(Modality)) {
