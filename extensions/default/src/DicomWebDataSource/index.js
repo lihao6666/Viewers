@@ -87,6 +87,7 @@ function createDicomWebApi(dicomWebConfig, userAuthenticationService) {
       qidoConfig = {
         url: dicomWebConfig.qidoRoot,
         staticWado: dicomWebConfig.staticWado,
+        authRoot: dicomWebConfig.authRoot,
         singlepart: dicomWebConfig.singlepart,
         headers: userAuthenticationService.getAuthorizationHeader(),
         errorInterceptor: errorHandler.getHTTPErrorHandler(),
@@ -95,6 +96,7 @@ function createDicomWebApi(dicomWebConfig, userAuthenticationService) {
       wadoConfig = {
         url: dicomWebConfig.wadoRoot,
         staticWado: dicomWebConfig.staticWado,
+        authRoot: dicomWebConfig.authRoot,
         singlepart: dicomWebConfig.singlepart,
         headers: userAuthenticationService.getAuthorizationHeader(),
         errorInterceptor: errorHandler.getHTTPErrorHandler(),
