@@ -8847,7 +8847,7 @@ dicomicc@^0.1:
 
 dicomweb-client@^0.8, "dicomweb-client@git+https://bmec.ustc.edu.cn/git/Mars456/dicomweb-client.git":
   version "0.8.4"
-  resolved "git+https://bmec.ustc.edu.cn/git/Mars456/dicomweb-client.git#5b9f2318b98079d01bc0fecde348370c807d4470"
+  resolved "git+https://bmec.ustc.edu.cn/git/Mars456/dicomweb-client.git#488b0fd20c73682b45f4b18c95d00661d9736282"
 
 didyoumean@^1.2.2:
   version "1.2.2"
