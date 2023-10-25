@@ -3,7 +3,13 @@ import { vec3 } from 'gl-matrix';
 import PropTypes from 'prop-types';
 import { metaData, Enums, utilities } from '@cornerstonejs/core';
 import { ViewportOverlay } from '@ohif/ui';
-import { formatPN, formatDICOMDate, formatDICOMTime, formatNumberPrecision, isValidNumber } from './utils';
+import {
+  formatPN,
+  formatDICOMDate,
+  formatDICOMTime,
+  formatNumberPrecision,
+  isValidNumber,
+} from './utils';
 import { InstanceMetadata } from 'platform/core/src/types';
 import { ServicesManager } from '@ohif/core';
 import { ImageSliceData } from '@cornerstonejs/core/dist/esm/types';
@@ -23,12 +29,13 @@ const tagNames = {
   '(0020,0013)': 'InstanceNumber', //
   '(0010,0020)': 'PatientID', // 病人id
   '(0018,0015)': 'BodyPartExamined', // 部位
-  '(0008,0070)': 'Manufacturer', // 医院名称
+  '(0008,0081)': 'InstitutionAddress', // 医院地址
   '(0008,0080)': 'InstitutionName', // 产品型号
   '(0008,0021)': 'SeriesDate', // 序列生成日期
   '(0008,0031)': 'SeriesTime', // 序列生成时间
   '(0020,0011)': 'SeriesNumber', // 序列号
   '(0008,103E)': 'SeriesDescription',
+  '(0018,1030)': 'ProtocolName',
   '(0018,9087)': 'DiffusionBValue',
   '(0028,1050)': 'WindowCenter',
   '(0028,1051)': 'WindowWidth',
@@ -39,6 +46,7 @@ const tagNames = {
   '(0018,0088)': 'SpacingBetweenSlices',
   '(0028,0010)': 'Rows',
   '(0028,0011)': 'Columns',
+  '(0018,0082)': 'InversionTime',
 };
 // 右上角
 const RightTopTags = [
@@ -47,7 +55,7 @@ const RightTopTags = [
     sort: 1,
   },
   {
-    tag: '(0008,0070)',
+    tag: '(0008,0081)',
     sort: 2,
   },
   {
@@ -99,10 +107,10 @@ const RightBottomTags = [
 ];
 // 左下角
 const LeftBottomTags = [
-  // {
-  //   tag: '(0008,103E)',
-  //   sort: 0,
-  // },
+  {
+    tag: '(0018,1030)',
+    sort: 0,
+  },
   {
     tag: '(0018,0080)',
     label: 'TR',
@@ -114,29 +122,35 @@ const LeftBottomTags = [
     label: 'TE',
   },
   {
+    tag: '(0018,0082)',
+    label: 'TI',
+    showLabel: true,
+    sort: 2,
+  },
+  {
     tag: '(0018,0083)',
     label: 'NEX',
     showLabel: true,
-    sort: 2,
+    sort: 3,
   },
   {
     tag: '(0018,0088)',
     label: 'THK',
     showLabel: true,
-    sort: 3,
+    sort: 4,
     unit: 'mm',
   },
   {
     tag: '(0018,9087)',
     label: 'B',
     showLabel: true,
-    sort: 4,
+    sort: 5,
   },
   {
     tag: '(0028,0010)',
     label: 'Size',
     showLabel: true,
-    sort: 5,
+    sort: 6,
   },
   {
     tag: '(0028,0011)',
@@ -201,17 +215,13 @@ const tagValFormats = {
 const readTagsMap = (targetTags, dicomTagList) => {
   const currentTagValues = targetTags.reduce((memo, current) => {
     const { valMethod, ...rest } = current;
-    const currentTagInfo = dicomTagList.find(
-      (dicomTag = []) => dicomTag[0] === current.tag
-    );
+    const currentTagInfo = dicomTagList.find((dicomTag = []) => dicomTag[0] === current.tag);
     if (currentTagInfo) {
       const [tagPos, label, tagName, value] = currentTagInfo;
       memo[tagPos] = {
         label,
         tagName,
-        value: tagValFormats[valMethod]
-          ? tagValFormats[valMethod](value)
-          : value,
+        value: tagValFormats[valMethod] ? tagValFormats[valMethod](value) : value,
         ...rest,
       };
     }
@@ -242,9 +252,7 @@ const joinTagsInfo = (joinTags, currentTagValues, symbols = '|') => {
             combinedInfo[key] = itemTabInfo[key];
           } else {
             if (itemTabInfo[key]) {
-              combinedInfo[
-                key
-              ] = `${combinedInfo[key]}${symbol}${itemTabInfo[key]}`;
+              combinedInfo[key] = `${combinedInfo[key]}${symbol}${itemTabInfo[key]}`;
             }
           }
         });
@@ -253,9 +261,7 @@ const joinTagsInfo = (joinTags, currentTagValues, symbols = '|') => {
     }
     currentTagValues[combineNames] = combinedInfo;
   });
-  const rightTopInfos = Object.entries(currentTagValues).map(
-    ([key, value]: any) => value
-  );
+  const rightTopInfos = Object.entries(currentTagValues).map(([key, value]: any) => value);
   rightTopInfos.sort((v1, v2) => v1.sort - v2.sort);
   return rightTopInfos;
 };
@@ -398,18 +404,14 @@ function CustomizableViewportOverlay({
   }, [viewportData, viewportId, imageIndex, cornerstoneViewportService]);
 
   const dicomTagList = useMemo(() => {
-    const selectedDisplaySetInstanceUID = ((viewportData || {}).data || {})
-      .displaySetInstanceUID;
+    const selectedDisplaySetInstanceUID = ((viewportData || {}).data || {}).displaySetInstanceUID;
     const activeDisplaySet = displaySets.find(displaySet => {
       return displaySet.displaySetInstanceUID === selectedDisplaySetInstanceUID;
     });
     if (!activeDisplaySet || instanceNumber === undefined) {
       return [];
     }
-    const tagRows = ParseTagsService.getDicomTags(
-      activeDisplaySet,
-      instanceNumber
-    );
+    const tagRows = ParseTagsService.getDicomTags(activeDisplaySet, instanceNumber);
     return tagRows;
   }, [instanceNumber, viewportData]);
   /**
@@ -585,11 +587,7 @@ function CustomizableViewportOverlay({
   // 右上角
   const getTopRightContent = useCallback(() => {
     const currentTagValues = readTagsMap(RightTopTags, dicomTagList);
-    const rightTopInfos = joinTagsInfo(
-      [['(0008,0021)', '(0008,0031)']],
-      currentTagValues,
-      ' '
-    );
+    const rightTopInfos = joinTagsInfo([['(0008,0021)', '(0008,0031)']], currentTagValues, ' ');
     return rightTopInfos.map(({ label, value, showLabel }, i) => {
       if (!(value || '').trim()) {
         return null;
@@ -631,8 +629,7 @@ function CustomizableViewportOverlay({
     let imagePlaneModule: anyObj = {};
     let cineModule: anyObj = {};
     if (instance && instance.imageId) {
-      imagePlaneModule =
-        metaData.get('imagePlaneModule', instance.imageId) || {};
+      imagePlaneModule = metaData.get('imagePlaneModule', instance.imageId) || {};
       cineModule = metaData.get('cineModule', instance.imageId) || {};
     }
     const { sliceLocation, sliceThickness } = imagePlaneModule || {};
@@ -646,9 +643,7 @@ function CustomizableViewportOverlay({
             {showLabel ? `${label}:` : ''} {value} {unit ? unit : ''}
           </div>
         ))}
-        <div>
-          {frameRate >= 0 ? `${formatNumberPrecision(frameRate, 2)} FPS` : ''}
-        </div>
+        <div>{frameRate >= 0 ? `${formatNumberPrecision(frameRate, 2)} FPS` : ''}</div>
         <div>
           {isValidNumber(sliceLocation)
             ? `Loc: ${formatNumberPrecision(sliceLocation, 2)} mm `
