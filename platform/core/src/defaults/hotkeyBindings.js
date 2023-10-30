@@ -3,10 +3,11 @@ import windowLevelPresets from './windowLevelPresets';
 /*
  * Supported Keys: https://craig.is/killing/mice
  */
-const bindings = [
-  {
+const bindings = [{
     commandName: 'setToolActive',
-    commandOptions: { toolName: 'Zoom' },
+    commandOptions: {
+      toolName: 'Zoom'
+    },
     label: 'Zoom',
     keys: ['z'],
     isEditable: true,
@@ -112,6 +113,12 @@ const bindings = [
     commandName: 'nextImage',
     label: 'Next Image',
     keys: ['down'],
+    isEditable: true,
+  },
+  {
+    commandName: 'addPrinter',
+    label: 'Add Printer',
+    keys: ['f7'],
     isEditable: true,
   },
   {

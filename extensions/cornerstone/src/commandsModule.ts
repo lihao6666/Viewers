@@ -3,6 +3,7 @@ import {
   StackViewport,
   VolumeViewport,
   utilities as csUtils,
+  metaData as csMetaData,
 } from '@cornerstonejs/core';
 import {
   ToolGroupManager,
@@ -347,9 +348,8 @@ function commandsModule({
     },
     showDownloadViewportModal: () => {
       const { activeViewportId } = viewportGridService.getState();
-      const cornerstoneViewport = cornerstoneViewportService.getCornerstoneViewport(
-        activeViewportId
-      );
+      const cornerstoneViewport =
+        cornerstoneViewportService.getCornerstoneViewport(activeViewportId);
       if (!cornerstoneViewport) {
         return;
       }
@@ -538,6 +538,27 @@ function commandsModule({
 
       cstUtils.scroll(viewport, options);
     },
+    addPrinter: () => {
+      const enabledElement = _getActiveViewportEnabledElement();
+      if (!enabledElement) {
+        return;
+      }
+
+      const { viewport } = enabledElement;
+      const imageId = viewport.getCurrentImageId();
+
+      const instance = csMetaData.get('instance', imageId);
+
+      const data = {
+        StudyInstanceUID: instance.StudyInstanceUID,
+        SeriesInstanceUID: instance.SeriesInstanceUID,
+        SOPInstanceUID: instance.SOPInstanceUID,
+      };
+      if (window.apis?.printer) {
+        console.log('addPrinterImage');
+        window.apis.printer.addPrinterImage(data);
+      }
+    },
     setViewportColormap: ({ viewportId, displaySetInstanceUID, colormap, immediate = false }) => {
       const viewport = cornerstoneViewportService.getCornerstoneViewport(viewportId);
 
@@ -677,6 +698,9 @@ function commandsModule({
     nextImage: {
       commandFn: actions.scroll,
       options: { direction: 1 },
+    },
+    addPrinter: {
+      commandFn: actions.addPrinter,
     },
     previousImage: {
       commandFn: actions.scroll,
