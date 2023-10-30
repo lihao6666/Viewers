@@ -6,9 +6,13 @@ import {
   WindowLevelMenuItem,
   SettingMenuItem,
 } from '@ohif/ui';
-import { defaults } from '@ohif/core';
+import {
+  defaults
+} from '@ohif/core';
 
-const { windowLevelPresets } = defaults;
+const {
+  windowLevelPresets
+} = defaults;
 /**
  *
  * @param {*} type - 'tool' | 'action' | 'toggle'
@@ -44,15 +48,13 @@ function _createWwwcPreset(preset, title, subtitle) {
     title,
     subtitle,
     type: 'action',
-    commands: [
-      {
-        commandName: 'setWindowLevel',
-        commandOptions: {
-          ...windowLevelPresets[preset],
-        },
-        context: 'CORNERSTONE',
+    commands: [{
+      commandName: 'setWindowLevel',
+      commandOptions: {
+        ...windowLevelPresets[preset],
       },
-    ],
+      context: 'CORNERSTONE',
+    }, ],
   };
 }
 
@@ -77,179 +79,6 @@ function _createSetToolActiveCommands(toolName) {
 }
 
 const mobileToolbarButton = [
-  // Measurement
-  {
-    id: 'MeasurementTools',
-    type: 'ohif.splitButton',
-    props: {
-      groupId: 'MeasurementTools',
-      isRadio: true, // ?
-      // Switch?
-      primary: _createToolButton(
-        'Length',
-        'tool-length',
-        'Length',
-        [
-          {
-            commandName: 'setToolActive',
-            commandOptions: {
-              toolName: 'Length',
-            },
-            context: 'CORNERSTONE',
-          },
-          {
-            commandName: 'setToolActive',
-            commandOptions: {
-              toolName: 'SRLength',
-              toolGroupId: 'SRToolGroup',
-            },
-            // we can use the setToolActive command for this from Cornerstone commandsModule
-            context: 'CORNERSTONE',
-          },
-        ],
-        'Length'
-      ),
-      secondary: {
-        icon: 'chevron-down',
-        label: '',
-        isActive: true,
-        tooltip: 'More Measure Tools',
-      },
-      items: [
-        _createToolButton(
-          'Length',
-          'tool-length',
-          'Length',
-          [
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'Length',
-              },
-              context: 'CORNERSTONE',
-            },
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'SRLength',
-                toolGroupId: 'SRToolGroup',
-              },
-              // we can use the setToolActive command for this from Cornerstone commandsModule
-              context: 'CORNERSTONE',
-            },
-          ],
-          'Length Tool'
-        ),
-        _createToolButton(
-          'Bidirectional',
-          'tool-bidirectional',
-          'Bidirectional',
-          [
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'Bidirectional',
-              },
-              context: 'CORNERSTONE',
-            },
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'SRBidirectional',
-                toolGroupId: 'SRToolGroup',
-              },
-              context: 'CORNERSTONE',
-            },
-          ],
-          'Bidirectional Tool'
-        ),
-        _createToolButton(
-          'ArrowAnnotate',
-          'tool-annotate',
-          'Annotation',
-          [
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'ArrowAnnotate',
-              },
-              context: 'CORNERSTONE',
-            },
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'SRArrowAnnotate',
-                toolGroupId: 'SRToolGroup',
-              },
-              context: 'CORNERSTONE',
-            },
-          ],
-          'Arrow Annotate'
-        ),
-        _createToolButton(
-          'EllipticalROI',
-          'tool-elipse',
-          'Ellipse',
-          [
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'EllipticalROI',
-              },
-              context: 'CORNERSTONE',
-            },
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'SREllipticalROI',
-                toolGroupId: 'SRToolGroup',
-              },
-              context: 'CORNERSTONE',
-            },
-          ],
-          'Ellipse Tool'
-        ),
-        _createToolButton(
-          'CircleROI',
-          'tool-circle',
-          'Circle',
-          [
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'CircleROI',
-              },
-              context: 'CORNERSTONE',
-            },
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'SRCircleROI',
-                toolGroupId: 'SRToolGroup',
-              },
-              context: 'CORNERSTONE',
-            },
-          ],
-          'Circle Tool'
-        ),
-        _createToolButton(
-          'Rectangle',
-          'tool-rectangle',
-          'Rectangle',
-          [
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'RectangleROI',
-              },
-              context: 'CORNERSTONE',
-            },
-          ],
-          'Rectangle'
-        ),
-      ],
-    },
-  },
   // Zoom..
   {
     id: 'Zoom',
@@ -271,15 +100,13 @@ const mobileToolbarButton = [
         'WindowLevel',
         'tool-window-level',
         'Window Level',
-        [
-          {
-            commandName: 'setToolActive',
-            commandOptions: {
-              toolName: 'WindowLevel',
-            },
-            context: 'CORNERSTONE',
+        [{
+          commandName: 'setToolActive',
+          commandOptions: {
+            toolName: 'WindowLevel',
           },
-        ],
+          context: 'CORNERSTONE',
+        }, ],
         'Window Level'
       ),
       secondary: {
@@ -318,13 +145,27 @@ const mobileToolbarButton = [
       icon: 'upload-cloud',
       label: 'Capture',
       type: 'action',
-      commands: [
-        {
-          commandName: 'showDownloadViewportModal',
-          commandOptions: {},
-          context: 'CORNERSTONE',
+      commands: [{
+        commandName: 'showDownloadViewportModal',
+        commandOptions: {},
+        context: 'CORNERSTONE',
+      }, ],
+    },
+  },
+  {
+    id: 'StackScroll',
+    type: 'ohif.radioGroup',
+    props: {
+      type: 'tool',
+      icon: 'tool-stack-scroll',
+      label: 'Stack Scroll',
+      commands: [{
+        commandName: 'setToolActive',
+        commandOptions: {
+          toolName: 'StackScroll',
         },
-      ],
+        context: 'CORNERSTONE',
+      }, ],
     },
   },
   {
@@ -335,59 +176,7 @@ const mobileToolbarButton = [
       columns: 3,
     },
   },
-  {
-    id: 'MPR',
-    type: 'ohif.action',
-    props: {
-      type: 'toggle',
-      icon: 'icon-mpr',
-      label: 'MPR',
-      commands: [
-        {
-          commandName: 'toggleHangingProtocol',
-          commandOptions: {
-            protocolId: 'mpr',
-          },
-          context: 'DEFAULT',
-        },
-      ],
-    },
-  },
-  {
-    id: 'Crosshairs',
-    type: 'ohif.radioGroup',
-    props: {
-      type: 'tool',
-      icon: 'tool-crosshair',
-      label: 'Crosshairs',
-      commands: [
-        {
-          commandName: 'setToolActive',
-          commandOptions: {
-            toolName: 'Crosshairs',
-            toolGroupId: 'mpr',
-          },
-          context: 'CORNERSTONE',
-        },
-      ],
-    },
-  },
-  // TagBrowser
-  {
-    id: 'TagBrowser',
-    type: 'ohif.toggle',
-    props: {
-      icon: 'list-bullets',
-      label: 'Tag Browser',
-      commands: [
-        {
-          commandName: 'openDICOMTagViewer',
-          commandOptions: {},
-          context: 'DEFAULT',
-        },
-      ],
-    },
-  },
+
   // 四角信息
   {
     id: 'CornerInfo',
@@ -395,12 +184,175 @@ const mobileToolbarButton = [
     props: {
       icon: 'check-selected',
       label: 'Corner Information',
-      commands: [
-        {
-          commandName: 'toggleOpenTagsBrowser',
-          commandOptions: {},
-          context: 'DEFAULT',
-        },
+      commands: [{
+        commandName: 'toggleOpenTagsBrowser',
+        commandOptions: {},
+        context: 'DEFAULT',
+      }, ],
+    },
+  },
+  // Measurement
+  {
+    id: 'MeasurementTools',
+    type: 'ohif.splitButton',
+    props: {
+      groupId: 'MeasurementTools',
+      isRadio: true, // ?
+      // Switch?
+      primary: _createToolButton(
+        'Length',
+        'tool-length',
+        'Length',
+        [{
+            commandName: 'setToolActive',
+            commandOptions: {
+              toolName: 'Length',
+            },
+            context: 'CORNERSTONE',
+          },
+          {
+            commandName: 'setToolActive',
+            commandOptions: {
+              toolName: 'SRLength',
+              toolGroupId: 'SRToolGroup',
+            },
+            // we can use the setToolActive command for this from Cornerstone commandsModule
+            context: 'CORNERSTONE',
+          },
+        ],
+        'Length'
+      ),
+      secondary: {
+        icon: 'chevron-down',
+        label: '',
+        isActive: true,
+        tooltip: 'More Measure Tools',
+      },
+      items: [
+        _createToolButton(
+          'Length',
+          'tool-length',
+          'Length',
+          [{
+              commandName: 'setToolActive',
+              commandOptions: {
+                toolName: 'Length',
+              },
+              context: 'CORNERSTONE',
+            },
+            {
+              commandName: 'setToolActive',
+              commandOptions: {
+                toolName: 'SRLength',
+                toolGroupId: 'SRToolGroup',
+              },
+              // we can use the setToolActive command for this from Cornerstone commandsModule
+              context: 'CORNERSTONE',
+            },
+          ],
+          'Length Tool'
+        ),
+        _createToolButton(
+          'Bidirectional',
+          'tool-bidirectional',
+          'Bidirectional',
+          [{
+              commandName: 'setToolActive',
+              commandOptions: {
+                toolName: 'Bidirectional',
+              },
+              context: 'CORNERSTONE',
+            },
+            {
+              commandName: 'setToolActive',
+              commandOptions: {
+                toolName: 'SRBidirectional',
+                toolGroupId: 'SRToolGroup',
+              },
+              context: 'CORNERSTONE',
+            },
+          ],
+          'Bidirectional Tool'
+        ),
+        _createToolButton(
+          'ArrowAnnotate',
+          'tool-annotate',
+          'Annotation',
+          [{
+              commandName: 'setToolActive',
+              commandOptions: {
+                toolName: 'ArrowAnnotate',
+              },
+              context: 'CORNERSTONE',
+            },
+            {
+              commandName: 'setToolActive',
+              commandOptions: {
+                toolName: 'SRArrowAnnotate',
+                toolGroupId: 'SRToolGroup',
+              },
+              context: 'CORNERSTONE',
+            },
+          ],
+          'Arrow Annotate'
+        ),
+        _createToolButton(
+          'EllipticalROI',
+          'tool-elipse',
+          'Ellipse',
+          [{
+              commandName: 'setToolActive',
+              commandOptions: {
+                toolName: 'EllipticalROI',
+              },
+              context: 'CORNERSTONE',
+            },
+            {
+              commandName: 'setToolActive',
+              commandOptions: {
+                toolName: 'SREllipticalROI',
+                toolGroupId: 'SRToolGroup',
+              },
+              context: 'CORNERSTONE',
+            },
+          ],
+          'Ellipse Tool'
+        ),
+        _createToolButton(
+          'CircleROI',
+          'tool-circle',
+          'Circle',
+          [{
+              commandName: 'setToolActive',
+              commandOptions: {
+                toolName: 'CircleROI',
+              },
+              context: 'CORNERSTONE',
+            },
+            {
+              commandName: 'setToolActive',
+              commandOptions: {
+                toolName: 'SRCircleROI',
+                toolGroupId: 'SRToolGroup',
+              },
+              context: 'CORNERSTONE',
+            },
+          ],
+          'Circle Tool'
+        ),
+        _createToolButton(
+          'Rectangle',
+          'tool-rectangle',
+          'Rectangle',
+          [{
+            commandName: 'setToolActive',
+            commandOptions: {
+              toolName: 'RectangleROI',
+            },
+            context: 'CORNERSTONE',
+          }, ],
+          'Rectangle'
+        ),
       ],
     },
   },
@@ -415,13 +367,11 @@ const mobileToolbarButton = [
         'Reset',
         'tool-reset',
         'Reset View',
-        [
-          {
-            commandName: 'resetViewport',
-            commandOptions: {},
-            context: 'CORNERSTONE',
-          },
-        ],
+        [{
+          commandName: 'resetViewport',
+          commandOptions: {},
+          context: 'CORNERSTONE',
+        }, ],
         'Reset'
       ),
       secondary: {
@@ -435,128 +385,106 @@ const mobileToolbarButton = [
           'Reset',
           'tool-reset',
           'Reset View',
-          [
-            {
-              commandName: 'resetViewport',
-              commandOptions: {},
-              context: 'CORNERSTONE',
-            },
-          ],
+          [{
+            commandName: 'resetViewport',
+            commandOptions: {},
+            context: 'CORNERSTONE',
+          }, ],
           'Reset'
         ),
         _createActionButton(
           'rotate-right',
           'tool-rotate-right',
           'Rotate Right',
-          [
-            {
-              commandName: 'rotateViewportCW',
-              commandOptions: {},
-              context: 'CORNERSTONE',
-            },
-          ],
+          [{
+            commandName: 'rotateViewportCW',
+            commandOptions: {},
+            context: 'CORNERSTONE',
+          }, ],
           'Rotate +90'
         ),
         _createActionButton(
           'flip-horizontal',
           'tool-flip-horizontal',
           'Flip Horizontally',
-          [
-            {
-              commandName: 'flipViewportHorizontal',
-              commandOptions: {},
-              context: 'CORNERSTONE',
-            },
-          ],
-          'Flip Horizontal'
-        ),
-        _createToggleButton('StackImageSync', 'link', 'Stack Image Sync', [
-          {
-            commandName: 'toggleStackImageSync',
+          [{
+            commandName: 'flipViewportHorizontal',
             commandOptions: {},
             context: 'CORNERSTONE',
-          },
-        ]),
+          }, ],
+          'Flip Horizontal'
+        ),
+        _createToggleButton('StackImageSync', 'link', 'Stack Image Sync', [{
+          commandName: 'toggleStackImageSync',
+          commandOptions: {},
+          context: 'CORNERSTONE',
+        }, ]),
         _createToggleButton(
           'ReferenceLines',
           'tool-referenceLines', // change this with the new icon
           'Reference Lines',
-          [
-            {
-              commandName: 'toggleReferenceLines',
+          // two commands for the reference lines tool:
+          // - the first to set the source viewport for the tool when it is enabled
+          // - the second to toggle the tool
+          [{
+              commandName: 'setSourceViewportForReferenceLinesTool',
               commandOptions: {},
               context: 'CORNERSTONE',
             },
-          ]
-        ),
-        _createToolButton(
-          'StackScroll',
-          'tool-stack-scroll',
-          'Stack Scroll',
-          [
             {
               commandName: 'setToolActive',
               commandOptions: {
-                toolName: 'StackScroll',
+                toolName: 'ReferenceLines',
               },
               context: 'CORNERSTONE',
             },
-          ],
-          'Stack Scroll'
+          ]
         ),
         _createActionButton(
           'invert',
           'tool-invert',
           'Invert',
-          [
-            {
-              commandName: 'invertViewport',
-              commandOptions: {},
-              context: 'CORNERSTONE',
-            },
-          ],
+          [{
+            commandName: 'invertViewport',
+            commandOptions: {},
+            context: 'CORNERSTONE',
+          }, ],
           'Invert Colors'
         ),
         _createToolButton(
           'Probe',
           'tool-probe',
           'Probe',
-          [
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'DragProbe',
-              },
-              context: 'CORNERSTONE',
+          [{
+            commandName: 'setToolActive',
+            commandOptions: {
+              toolName: 'DragProbe',
             },
-          ],
+            context: 'CORNERSTONE',
+          }, ],
           'Probe'
         ),
         _createToggleButton(
           'cine',
           'tool-cine',
           'Cine',
-          [
-            {
-              commandName: 'toggleCine',
-              context: 'CORNERSTONE',
-            },
-          ],
+          [{
+            commandName: 'toggleCine',
+            context: 'CORNERSTONE',
+          }, ],
           'Cine'
         ),
         _createToolButton(
           'Angle',
           'tool-angle',
           'Angle',
-          [
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'Angle',
-              },
-              context: 'CORNERSTONE',
+          [{
+            commandName: 'setToolActive',
+            commandOptions: {
+              toolName: 'Angle',
             },
-          ],
+            context: 'CORNERSTONE',
+          }, ],
           'Angle'
         ),
 
@@ -595,45 +523,39 @@ const mobileToolbarButton = [
           'Magnify',
           'tool-magnify',
           'Magnify',
-          [
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'Magnify',
-              },
-              context: 'CORNERSTONE',
+          [{
+            commandName: 'setToolActive',
+            commandOptions: {
+              toolName: 'Magnify',
             },
-          ],
+            context: 'CORNERSTONE',
+          }, ],
           'Magnify'
         ),
         _createToolButton(
           'CalibrationLine',
           'tool-calibration',
           'Calibration',
-          [
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'CalibrationLine',
-              },
-              context: 'CORNERSTONE',
+          [{
+            commandName: 'setToolActive',
+            commandOptions: {
+              toolName: 'CalibrationLine',
             },
-          ],
+            context: 'CORNERSTONE',
+          }, ],
           'Calibration Line'
         ),
-        // _createActionButton(
-        //   'TagBrowser',
-        //   'list-bullets',
-        //   'Dicom Tag Browser',
-        //   [
-        //     {
-        //       commandName: 'openDICOMTagViewer',
-        //       commandOptions: {},
-        //       context: 'DEFAULT',
-        //     },
-        //   ],
-        //   'Dicom Tag Browser'
-        // ),
+        _createActionButton(
+          'TagBrowser',
+          'list-bullets',
+          'Dicom Tag Browser',
+          [{
+            commandName: 'openDICOMTagViewer',
+            commandOptions: {},
+            context: 'DEFAULT',
+          }, ],
+          'Dicom Tag Browser'
+        ),
       ],
     },
   },
@@ -644,13 +566,11 @@ const mobileToolbarButton = [
     props: {
       icon: 'settings',
       label: 'Settings',
-      commands: [
-        {
-          commandName: 'toggleOpenPreferences',
-          commandOptions: {},
-          context: 'DEFAULT',
-        },
-      ],
+      commands: [{
+        commandName: 'toggleOpenPreferences',
+        commandOptions: {},
+        context: 'DEFAULT',
+      }, ],
     },
   },
 ];

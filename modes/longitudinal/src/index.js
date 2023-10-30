@@ -1,9 +1,16 @@
-import { hotkeys } from '@ohif/core';
+import {
+  hotkeys
+} from '@ohif/core';
 import toolbarButtons from './toolbarButtons.js';
 import mobileToolbarButton from './mobileToolbarButton.js';
-import { id } from './id.js';
+import {
+  id
+} from './id.js';
 import initToolGroups from './initToolGroups.js';
-import { isAndroid, isMobile } from 'react-device-detect';
+import {
+  isAndroid,
+  isMobile
+} from 'react-device-detect';
 
 // Allow this mode by excluding non-imaging modalities such as SR, SEG
 // Also, SM is not a simple imaging modalities, so exclude it.
@@ -59,7 +66,9 @@ const extensionDependencies = {
   '@ohif/extension-dicom-video': '^3.0.1',
 };
 
-function modeFactory({ modeConfiguration }) {
+function modeFactory({
+  modeConfiguration
+}) {
   let _activatePanelTriggersSubscriptions = [];
   return {
     // TODO: We're using this as a route segment
@@ -70,7 +79,11 @@ function modeFactory({ modeConfiguration }) {
     /**
      * Lifecycle hooks
      */
-    onModeEnter: ({ servicesManager, extensionManager, commandsManager }) => {
+    onModeEnter: ({
+      servicesManager,
+      extensionManager,
+      commandsManager
+    }) => {
       const {
         measurementService,
         toolbarService,
@@ -90,15 +103,13 @@ function modeFactory({ modeConfiguration }) {
         toolbarService.recordInteraction({
           groupId: 'WindowLevel',
           interactionType: 'tool',
-          commands: [
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'WindowLevel',
-              },
-              context: 'CORNERSTONE',
+          commands: [{
+            commandName: 'setToolActive',
+            commandOptions: {
+              toolName: 'WindowLevel',
             },
-          ],
+            context: 'CORNERSTONE',
+          }, ],
         });
 
         // We don't need to reset the active tool whenever a viewport is getting
@@ -108,24 +119,26 @@ function modeFactory({ modeConfiguration }) {
 
       // Since we only have one viewport for the basic cs3d mode and it has
       // only one hanging protocol, we can just use the first viewport
-      ({ unsubscribe } = toolGroupService.subscribe(
+      ({
+        unsubscribe
+      } = toolGroupService.subscribe(
         toolGroupService.EVENTS.VIEWPORT_ADDED,
         activateTool
       ));
 
       toolbarService.init(extensionManager);
+
       if (isAndroid || isMobile) {
         toolbarService.addButtons(mobileToolbarButton);
         toolbarService.createButtonSection('primary', [
-          'MeasurementTools',
           'Zoom',
           'WindowLevel',
           'Pan',
           'Capture',
-          // 'MPR',
+          'StackScroll',
+          'Layout',
           'CornerInfo',
-          'TagBrowser',
-          'Crosshairs',
+          'MeasurementTools',
           'MoreTools',
         ]);
       } else {
@@ -145,12 +158,10 @@ function modeFactory({ modeConfiguration }) {
         ]);
       }
 
-      customizationService.addModeCustomizations([
-        {
-          id: 'segmentation.disableEditing',
-          value: true,
-        },
-      ]);
+      customizationService.addModeCustomizations([{
+        id: 'segmentation.disableEditing',
+        value: true,
+      }, ]);
 
       // // ActivatePanel event trigger for when a segmentation or measurement is added.
       // // Do not force activation so as to respect the state the user may have left the UI in.
@@ -174,7 +185,9 @@ function modeFactory({ modeConfiguration }) {
       //   ]),
       // ];
     },
-    onModeExit: ({ servicesManager }) => {
+    onModeExit: ({
+      servicesManager
+    }) => {
       const {
         toolGroupService,
         syncGroupService,
@@ -196,57 +209,56 @@ function modeFactory({ modeConfiguration }) {
       series: [],
     },
 
-    isValidMode: function ({ modalities }) {
+    isValidMode: function ({
+      modalities
+    }) {
       const modalities_list = modalities.split('\\');
 
       // Exclude non-image modalities
       return !!modalities_list.filter(modality => NON_IMAGE_MODALITIES.indexOf(modality) === -1)
         .length;
     },
-    routes: [
-      {
-        path: 'longitudinal',
-        /*init: ({ servicesManager, extensionManager }) => {
-          //defaultViewerRouteInit
-        },*/
-        layoutTemplate: () => {
-          return {
-            id: ohif.layout,
-            props: {
-              leftPanels: [tracked.thumbnailList],
-              rightPanels: [dicomSeg.panel, tracked.measurements],
-              rightPanelDefaultClosed: true,
-              viewports: [
-                {
-                  namespace: tracked.viewport,
-                  displaySetsToDisplay: [ohif.sopClassHandler],
-                },
-                {
-                  namespace: dicomsr.viewport,
-                  displaySetsToDisplay: [dicomsr.sopClassHandler],
-                },
-                {
-                  namespace: dicomvideo.viewport,
-                  displaySetsToDisplay: [dicomvideo.sopClassHandler],
-                },
-                {
-                  namespace: dicompdf.viewport,
-                  displaySetsToDisplay: [dicompdf.sopClassHandler],
-                },
-                {
-                  namespace: dicomSeg.viewport,
-                  displaySetsToDisplay: [dicomSeg.sopClassHandler],
-                },
-                {
-                  namespace: dicomRt.viewport,
-                  displaySetsToDisplay: [dicomRt.sopClassHandler],
-                },
-              ],
-            },
-          };
-        },
+    routes: [{
+      path: 'longitudinal',
+      /*init: ({ servicesManager, extensionManager }) => {
+        //defaultViewerRouteInit
+      },*/
+      layoutTemplate: () => {
+        return {
+          id: ohif.layout,
+          props: {
+            leftPanels: [tracked.thumbnailList],
+            rightPanels: [dicomSeg.panel, tracked.measurements],
+            rightPanelDefaultClosed: true,
+            viewports: [{
+                namespace: tracked.viewport,
+                displaySetsToDisplay: [ohif.sopClassHandler],
+              },
+              {
+                namespace: dicomsr.viewport,
+                displaySetsToDisplay: [dicomsr.sopClassHandler],
+              },
+              {
+                namespace: dicomvideo.viewport,
+                displaySetsToDisplay: [dicomvideo.sopClassHandler],
+              },
+              {
+                namespace: dicompdf.viewport,
+                displaySetsToDisplay: [dicompdf.sopClassHandler],
+              },
+              {
+                namespace: dicomSeg.viewport,
+                displaySetsToDisplay: [dicomSeg.sopClassHandler],
+              },
+              {
+                namespace: dicomRt.viewport,
+                displaySetsToDisplay: [dicomRt.sopClassHandler],
+              },
+            ],
+          },
+        };
       },
-    ],
+    }, ],
     extensions: extensionDependencies,
     // Default protocol gets self-registered by default in the init
     hangingProtocol: 'default',
@@ -274,4 +286,7 @@ const mode = {
 };
 
 export default mode;
-export { initToolGroups, toolbarButtons };
+export {
+  initToolGroups,
+  toolbarButtons
+};

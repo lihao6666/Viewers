@@ -1,9 +1,16 @@
-import { hotkeys } from '@ohif/core';
+import {
+  hotkeys
+} from '@ohif/core';
 import toolbarButtons from './toolbarButtons.js';
 import mobileToolbarButton from './mobileToolbarButton.js';
-import { id } from './id.js';
+import {
+  id
+} from './id.js';
 import initToolGroups from './initToolGroups.js';
-import { isAndroid, isMobile } from 'react-device-detect';
+import {
+  isAndroid,
+  isMobile
+} from 'react-device-detect';
 
 // Allow this mode by excluding non-imaging modalities such as SR, SEG
 // Also, SM is not a simple imaging modalities, so exclude it.
@@ -64,9 +71,18 @@ function modeFactory() {
     /**
      * Lifecycle hooks
      */
-    onModeEnter: ({ servicesManager, extensionManager, commandsManager }) => {
-      const { measurementService, toolbarService, toolGroupService, customizationService } =
-        servicesManager.services;
+    onModeEnter: ({
+      servicesManager,
+      extensionManager,
+      commandsManager
+    }) => {
+      const {
+        measurementService,
+        toolbarService,
+        toolGroupService,
+        customizationService
+      } =
+      servicesManager.services;
 
       measurementService.clearMeasurements();
 
@@ -84,15 +100,13 @@ function modeFactory() {
         toolbarService.recordInteraction({
           groupId: 'WindowLevel',
           interactionType: 'tool',
-          commands: [
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'WindowLevel',
-              },
-              context: 'CORNERSTONE',
+          commands: [{
+            commandName: 'setToolActive',
+            commandOptions: {
+              toolName: 'WindowLevel',
             },
-          ],
+            context: 'CORNERSTONE',
+          }, ],
         });
 
         // We don't need to reset the active tool whenever a viewport is getting
@@ -102,7 +116,9 @@ function modeFactory() {
 
       // Since we only have one viewport for the basic cs3d mode and it has
       // only one hanging protocol, we can just use the first viewport
-      ({ unsubscribe } = toolGroupService.subscribe(
+      ({
+        unsubscribe
+      } = toolGroupService.subscribe(
         toolGroupService.EVENTS.VIEWPORT_ADDED,
         activateTool
       ));
@@ -128,6 +144,7 @@ function modeFactory() {
           'WindowLevel',
           'Pan',
           'Capture',
+          'Layout',
           'MPR',
           'Crosshairs',
           'TagBrowser',
@@ -148,7 +165,9 @@ function modeFactory() {
         ]);
       }
     },
-    onModeExit: ({ servicesManager }) => {
+    onModeExit: ({
+      servicesManager
+    }) => {
       const {
         toolGroupService,
         syncGroupService,
@@ -166,53 +185,52 @@ function modeFactory() {
       series: [],
     },
 
-    isValidMode: function ({ modalities }) {
+    isValidMode: function ({
+      modalities
+    }) {
       const modalities_list = modalities.split('\\');
 
       // Exclude non-image modalities
       return !!modalities_list.filter(modality => NON_IMAGE_MODALITIES.indexOf(modality) === -1)
         .length;
     },
-    routes: [
-      {
-        path: 'basic-test',
-        /*init: ({ servicesManager, extensionManager }) => {
-          //defaultViewerRouteInit
-        },*/
-        layoutTemplate: () => {
-          return {
-            id: ohif.layout,
-            props: {
-              leftPanels: [tracked.thumbnailList],
-              rightPanels: [dicomSeg.panel, tracked.measurements],
-              // rightPanelDefaultClosed: true, // optional prop to start with collapse panels
-              viewports: [
-                {
-                  namespace: tracked.viewport,
-                  displaySetsToDisplay: [ohif.sopClassHandler],
-                },
-                {
-                  namespace: dicomsr.viewport,
-                  displaySetsToDisplay: [dicomsr.sopClassHandler],
-                },
-                {
-                  namespace: dicomvideo.viewport,
-                  displaySetsToDisplay: [dicomvideo.sopClassHandler],
-                },
-                {
-                  namespace: dicompdf.viewport,
-                  displaySetsToDisplay: [dicompdf.sopClassHandler],
-                },
-                {
-                  namespace: dicomSeg.viewport,
-                  displaySetsToDisplay: [dicomSeg.sopClassHandler],
-                },
-              ],
-            },
-          };
-        },
+    routes: [{
+      path: 'basic-test',
+      /*init: ({ servicesManager, extensionManager }) => {
+        //defaultViewerRouteInit
+      },*/
+      layoutTemplate: () => {
+        return {
+          id: ohif.layout,
+          props: {
+            leftPanels: [tracked.thumbnailList],
+            rightPanels: [dicomSeg.panel, tracked.measurements],
+            // rightPanelDefaultClosed: true, // optional prop to start with collapse panels
+            viewports: [{
+                namespace: tracked.viewport,
+                displaySetsToDisplay: [ohif.sopClassHandler],
+              },
+              {
+                namespace: dicomsr.viewport,
+                displaySetsToDisplay: [dicomsr.sopClassHandler],
+              },
+              {
+                namespace: dicomvideo.viewport,
+                displaySetsToDisplay: [dicomvideo.sopClassHandler],
+              },
+              {
+                namespace: dicompdf.viewport,
+                displaySetsToDisplay: [dicompdf.sopClassHandler],
+              },
+              {
+                namespace: dicomSeg.viewport,
+                displaySetsToDisplay: [dicomSeg.sopClassHandler],
+              },
+            ],
+          },
+        };
       },
-    ],
+    }, ],
     extensions: extensionDependencies,
     // Default protocol gets self-registered by default in the init
     hangingProtocol: 'default',
