@@ -538,24 +538,29 @@ function commandsModule({
 
       cstUtils.scroll(viewport, options);
     },
-    addPrinter: () => {
+    addPrinter: ({ allSeriesInstances = false }) => {
       const enabledElement = _getActiveViewportEnabledElement();
       if (!enabledElement) {
         return;
       }
 
       const { viewport } = enabledElement;
+
       const imageId = viewport.getCurrentImageId();
 
       const instance = csMetaData.get('instance', imageId);
-
       const data = {
         StudyInstanceUID: instance.StudyInstanceUID,
         SeriesInstanceUID: instance.SeriesInstanceUID,
-        SOPInstanceUID: instance.SOPInstanceUID,
       };
+      console.log(allSeriesInstances);
+      if (!allSeriesInstances) {
+        data['SOPInstanceUID'] = instance.SOPInstanceUID;
+        data['Properties'] = viewport.getProperties();
+      }
+
       if (window.apis?.printer) {
-        console.log('addPrinterImage');
+        console.log('addPrinterImage', data);
         window.apis.printer.addPrinterImage(data);
       }
     },
@@ -699,8 +704,12 @@ function commandsModule({
       commandFn: actions.scroll,
       options: { direction: 1 },
     },
-    addPrinter: {
+    addInstancePrinter: {
       commandFn: actions.addPrinter,
+    },
+    addSeriesPrinter: {
+      commandFn: actions.addPrinter,
+      options: { allSeriesInstances: true },
     },
     previousImage: {
       commandFn: actions.scroll,

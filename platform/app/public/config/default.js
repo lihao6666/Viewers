@@ -220,9 +220,14 @@ window.config = {
       keys: ['up'],
     },
     {
-      commandName: 'addPrinter',
-      label: 'Add Printer',
+      commandName: 'addInstancePrinter',
+      label: 'Add Instance Printer',
       keys: ['f7'],
+    },
+    {
+      commandName: 'addPrinter',
+      label: 'Add Series Printer',
+      keys: ['f6'],
     },
     // {
     //   commandName: 'previousViewportDisplaySet',

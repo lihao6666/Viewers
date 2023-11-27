@@ -116,9 +116,15 @@ const bindings = [{
     isEditable: true,
   },
   {
-    commandName: 'addPrinter',
-    label: 'Add Printer',
+    commandName: 'addInstancePrinter',
+    label: 'Add Instance Printer',
     keys: ['f7'],
+    isEditable: true,
+  },
+  {
+    commandName: 'addSeriesPrinter',
+    label: 'Add Series Printer',
+    keys: ['f6'],
     isEditable: true,
   },
   {
