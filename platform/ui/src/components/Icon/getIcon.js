@@ -150,7 +150,14 @@ import oldTrash from './../../assets/icons/old-trash.svg';
 import oldPlay from './../../assets/icons/old-play.svg';
 import oldStop from './../../assets/icons/old-stop.svg';
 
+/** Add SVG */
+
+import bone from './../../assets/icons/bone.svg';
+import softTissue from './../../assets/icons/soft-tissue.svg';
+
 const ICONS = {
+  'bone': bone,
+  'soft-tissue': softTissue,
   'arrow-down': arrowDown,
   'arrow-left': arrowLeft,
   'arrow-left-small': arrowLeftSmall,
@@ -284,7 +291,7 @@ const ICONS = {
   'series-panel': seriesPanel,
   'check-selected': checkSelected,
   'icon-trash': iconTrash,
-  // 
+  //
   'chevron-left-new': chevronLeftNew,
   'chevron-down-new': chevronDownNew,
   'settings-bars': settingsBars,
@@ -318,10 +325,16 @@ function addIcon(iconName, iconSVG) {
  */
 export default function getIcon(key, props) {
   if (!key || !ICONS[key]) {
-    return React.createElement('div', {className: 'ww-1'}, 'Missing Icon');
+    return React.createElement('div', {
+      className: 'ww-1'
+    }, 'Missing Icon');
   }
 
   return React.createElement(ICONS[key], props);
 }
 
-export { getIcon, ICONS, addIcon };
+export {
+  getIcon,
+  ICONS,
+  addIcon
+};

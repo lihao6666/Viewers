@@ -5,9 +5,13 @@ import {
   // ListMenu,
   WindowLevelMenuItem,
 } from '@ohif/ui';
-import { defaults } from '@ohif/core';
+import {
+  defaults
+} from '@ohif/core';
 
-const { windowLevelPresets } = defaults;
+const {
+  windowLevelPresets
+} = defaults;
 /**
  *
  * @param {*} type - 'tool' | 'action' | 'toggle'
@@ -44,15 +48,13 @@ function _createWwwcPreset(preset, title, subtitle) {
     title,
     subtitle,
     type: 'action',
-    commands: [
-      {
-        commandName: 'setWindowLevel',
-        commandOptions: {
-          ...windowLevelPresets[preset],
-        },
-        context: 'CORNERSTONE',
+    commands: [{
+      commandName: 'setWindowLevel',
+      commandOptions: {
+        ...windowLevelPresets[preset],
       },
-    ],
+      context: 'CORNERSTONE',
+    }, ],
   };
 }
 
@@ -89,8 +91,7 @@ const toolbarButtons = [
         'Length',
         'tool-length',
         'Length',
-        [
-          {
+        [{
             commandName: 'setToolActive',
             commandOptions: {
               toolName: 'Length',
@@ -120,8 +121,7 @@ const toolbarButtons = [
           'Length',
           'tool-length',
           'Length',
-          [
-            {
+          [{
               commandName: 'setToolActive',
               commandOptions: {
                 toolName: 'Length',
@@ -144,8 +144,7 @@ const toolbarButtons = [
           'Bidirectional',
           'tool-bidirectional',
           'Bidirectional',
-          [
-            {
+          [{
               commandName: 'setToolActive',
               commandOptions: {
                 toolName: 'Bidirectional',
@@ -167,8 +166,7 @@ const toolbarButtons = [
           'ArrowAnnotate',
           'tool-annotate',
           'Annotation',
-          [
-            {
+          [{
               commandName: 'setToolActive',
               commandOptions: {
                 toolName: 'ArrowAnnotate',
@@ -190,8 +188,7 @@ const toolbarButtons = [
           'EllipticalROI',
           'tool-elipse',
           'Ellipse',
-          [
-            {
+          [{
               commandName: 'setToolActive',
               commandOptions: {
                 toolName: 'EllipticalROI',
@@ -213,8 +210,7 @@ const toolbarButtons = [
           'CircleROI',
           'tool-circle',
           'Circle',
-          [
-            {
+          [{
               commandName: 'setToolActive',
               commandOptions: {
                 toolName: 'CircleROI',
@@ -236,15 +232,13 @@ const toolbarButtons = [
           'Rectangle',
           'tool-rectangle',
           'Rectangle',
-          [
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'RectangleROI',
-              },
-              context: 'CORNERSTONE',
+          [{
+            commandName: 'setToolActive',
+            commandOptions: {
+              toolName: 'RectangleROI',
             },
-          ],
+            context: 'CORNERSTONE',
+          }, ],
           'Rectangle'
         ),
       ],
@@ -271,15 +265,13 @@ const toolbarButtons = [
         'WindowLevel',
         'tool-window-level',
         'Window Level',
-        [
-          {
-            commandName: 'setToolActive',
-            commandOptions: {
-              toolName: 'WindowLevel',
-            },
-            context: 'CORNERSTONE',
+        [{
+          commandName: 'setToolActive',
+          commandOptions: {
+            toolName: 'WindowLevel',
           },
-        ],
+          context: 'CORNERSTONE',
+        }, ],
         'Window Level'
       ),
       secondary: {
@@ -318,13 +310,11 @@ const toolbarButtons = [
       icon: 'upload-cloud',
       label: 'Capture',
       type: 'action',
-      commands: [
-        {
-          commandName: 'showDownloadViewportModal',
-          commandOptions: {},
-          context: 'CORNERSTONE',
-        },
-      ],
+      commands: [{
+        commandName: 'showDownloadViewportModal',
+        commandOptions: {},
+        context: 'CORNERSTONE',
+      }, ],
     },
   },
   {
@@ -342,17 +332,32 @@ const toolbarButtons = [
       type: 'toggle',
       icon: 'icon-mpr',
       label: 'MPR',
-      commands: [
-        {
-          commandName: 'toggleHangingProtocol',
-          commandOptions: {
-            protocolId: 'mpr',
-          },
-          context: 'DEFAULT',
+      commands: [{
+        commandName: 'toggleHangingProtocol',
+        commandOptions: {
+          protocolId: 'mpr',
         },
-      ],
+        context: 'DEFAULT',
+      }, ],
     },
   },
+  {
+    id: 'VR',
+    type: 'ohif.action',
+    props: {
+      type: 'toggle',
+      icon: 'soft-tissue',
+      label: 'VR',
+      commands: [{
+        commandName: 'toggleHangingProtocol',
+        commandOptions: {
+          protocolId: 'mprAnd3DVolumeViewport',
+        },
+        context: 'DEFAULT',
+      }, ],
+    },
+  },
+
   // 四角信息
   {
     id: 'CornerInfo',
@@ -360,13 +365,11 @@ const toolbarButtons = [
     props: {
       icon: 'check-selected',
       label: 'Corner Information',
-      commands: [
-        {
-          commandName: 'toggleOpenTagsBrowser',
-          commandOptions: {},
-          context: 'DEFAULT',
-        },
-      ],
+      commands: [{
+        commandName: 'toggleOpenTagsBrowser',
+        commandOptions: {},
+        context: 'DEFAULT',
+      }, ],
     },
   },
   {
@@ -376,16 +379,14 @@ const toolbarButtons = [
       type: 'tool',
       icon: 'tool-crosshair',
       label: 'Crosshairs',
-      commands: [
-        {
-          commandName: 'setToolActive',
-          commandOptions: {
-            toolName: 'Crosshairs',
-            toolGroupId: 'mpr',
-          },
-          context: 'CORNERSTONE',
+      commands: [{
+        commandName: 'setToolActive',
+        commandOptions: {
+          toolName: 'Crosshairs',
+          toolGroupId: 'mpr',
         },
-      ],
+        context: 'CORNERSTONE',
+      }, ],
     },
   },
   // More...
@@ -399,13 +400,11 @@ const toolbarButtons = [
         'Reset',
         'tool-reset',
         'Reset View',
-        [
-          {
-            commandName: 'resetViewport',
-            commandOptions: {},
-            context: 'CORNERSTONE',
-          },
-        ],
+        [{
+          commandName: 'resetViewport',
+          commandOptions: {},
+          context: 'CORNERSTONE',
+        }, ],
         'Reset'
       ),
       secondary: {
@@ -419,48 +418,40 @@ const toolbarButtons = [
           'Reset',
           'tool-reset',
           'Reset View',
-          [
-            {
-              commandName: 'resetViewport',
-              commandOptions: {},
-              context: 'CORNERSTONE',
-            },
-          ],
+          [{
+            commandName: 'resetViewport',
+            commandOptions: {},
+            context: 'CORNERSTONE',
+          }, ],
           'Reset'
         ),
         _createActionButton(
           'rotate-right',
           'tool-rotate-right',
           'Rotate Right',
-          [
-            {
-              commandName: 'rotateViewportCW',
-              commandOptions: {},
-              context: 'CORNERSTONE',
-            },
-          ],
+          [{
+            commandName: 'rotateViewportCW',
+            commandOptions: {},
+            context: 'CORNERSTONE',
+          }, ],
           'Rotate +90'
         ),
         _createActionButton(
           'flip-horizontal',
           'tool-flip-horizontal',
           'Flip Horizontally',
-          [
-            {
-              commandName: 'flipViewportHorizontal',
-              commandOptions: {},
-              context: 'CORNERSTONE',
-            },
-          ],
-          'Flip Horizontal'
-        ),
-        _createToggleButton('StackImageSync', 'link', 'Stack Image Sync', [
-          {
-            commandName: 'toggleStackImageSync',
+          [{
+            commandName: 'flipViewportHorizontal',
             commandOptions: {},
             context: 'CORNERSTONE',
-          },
-        ]),
+          }, ],
+          'Flip Horizontal'
+        ),
+        _createToggleButton('StackImageSync', 'link', 'Stack Image Sync', [{
+          commandName: 'toggleStackImageSync',
+          commandOptions: {},
+          context: 'CORNERSTONE',
+        }, ]),
         _createToggleButton(
           'ReferenceLines',
           'tool-referenceLines', // change this with the new icon
@@ -468,8 +459,7 @@ const toolbarButtons = [
           // two commands for the reference lines tool:
           // - the first to set the source viewport for the tool when it is enabled
           // - the second to toggle the tool
-          [
-            {
+          [{
               commandName: 'setSourceViewportForReferenceLinesTool',
               commandOptions: {},
               context: 'CORNERSTONE',
@@ -504,70 +494,60 @@ const toolbarButtons = [
           'StackScroll',
           'tool-stack-scroll',
           'Stack Scroll',
-          [
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'StackScroll',
-              },
-              context: 'CORNERSTONE',
+          [{
+            commandName: 'setToolActive',
+            commandOptions: {
+              toolName: 'StackScroll',
             },
-          ],
+            context: 'CORNERSTONE',
+          }, ],
           'Stack Scroll'
         ),
         _createActionButton(
           'invert',
           'tool-invert',
           'Invert',
-          [
-            {
-              commandName: 'invertViewport',
-              commandOptions: {},
-              context: 'CORNERSTONE',
-            },
-          ],
+          [{
+            commandName: 'invertViewport',
+            commandOptions: {},
+            context: 'CORNERSTONE',
+          }, ],
           'Invert Colors'
         ),
         _createToolButton(
           'Probe',
           'tool-probe',
           'Probe',
-          [
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'DragProbe',
-              },
-              context: 'CORNERSTONE',
+          [{
+            commandName: 'setToolActive',
+            commandOptions: {
+              toolName: 'DragProbe',
             },
-          ],
+            context: 'CORNERSTONE',
+          }, ],
           'Probe'
         ),
         _createToggleButton(
           'cine',
           'tool-cine',
           'Cine',
-          [
-            {
-              commandName: 'toggleCine',
-              context: 'CORNERSTONE',
-            },
-          ],
+          [{
+            commandName: 'toggleCine',
+            context: 'CORNERSTONE',
+          }, ],
           'Cine'
         ),
         _createToolButton(
           'Angle',
           'tool-angle',
           'Angle',
-          [
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'Angle',
-              },
-              context: 'CORNERSTONE',
+          [{
+            commandName: 'setToolActive',
+            commandOptions: {
+              toolName: 'Angle',
             },
-          ],
+            context: 'CORNERSTONE',
+          }, ],
           'Angle'
         ),
 
@@ -606,43 +586,37 @@ const toolbarButtons = [
           'Magnify',
           'tool-magnify',
           'Magnify',
-          [
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'Magnify',
-              },
-              context: 'CORNERSTONE',
+          [{
+            commandName: 'setToolActive',
+            commandOptions: {
+              toolName: 'Magnify',
             },
-          ],
+            context: 'CORNERSTONE',
+          }, ],
           'Magnify'
         ),
         _createToolButton(
           'CalibrationLine',
           'tool-calibration',
           'Calibration',
-          [
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'CalibrationLine',
-              },
-              context: 'CORNERSTONE',
+          [{
+            commandName: 'setToolActive',
+            commandOptions: {
+              toolName: 'CalibrationLine',
             },
-          ],
+            context: 'CORNERSTONE',
+          }, ],
           'Calibration Line'
         ),
         _createActionButton(
           'TagBrowser',
           'list-bullets',
           'Dicom Tag Browser',
-          [
-            {
-              commandName: 'openDICOMTagViewer',
-              commandOptions: {},
-              context: 'DEFAULT',
-            },
-          ],
+          [{
+            commandName: 'openDICOMTagViewer',
+            commandOptions: {},
+            context: 'DEFAULT',
+          }, ],
           'Dicom Tag Browser'
         ),
       ],
@@ -655,13 +629,11 @@ const toolbarButtons = [
     props: {
       icon: 'settings',
       label: 'Settings',
-      commands: [
-        {
-          commandName: 'toggleOpenPreferences',
-          commandOptions: {},
-          context: 'DEFAULT',
-        },
-      ],
+      commands: [{
+        commandName: 'toggleOpenPreferences',
+        commandOptions: {},
+        context: 'DEFAULT',
+      }, ],
     },
   },
 ];

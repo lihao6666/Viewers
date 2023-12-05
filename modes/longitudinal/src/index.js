@@ -151,6 +151,7 @@ function modeFactory({
           'Capture',
           'Layout',
           'MPR',
+          'VR',
           'CornerInfo',
           'Crosshairs',
           'MoreTools',
